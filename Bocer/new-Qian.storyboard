@@ -192,29 +192,13 @@
                         <color key="backgroundColor" red="0.0" green="0.50499242544174194" blue="0.36583054065704346" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <view key="tableHeaderView" alpha="0.0" contentMode="scaleToFill" id="6P1-tq-O2R" customClass="PassThroughView" customModule="Bocer" customModuleProvider="target">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="6P1-tq-O2R" customClass="UIControl">
                             <rect key="frame" x="0.0" y="0.0" width="125" height="78"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWr-NC-6yo">
-                                    <rect key="frame" x="36" y="21" width="22" height="22"/>
-                                    <color key="backgroundColor" red="0.78257179259999998" green="0.18707901239999999" blue="0.3878305554" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="200" id="2aK-6f-bYT"/>
-                                        <constraint firstAttribute="height" constant="44" id="HSL-fF-s3G"/>
-                                    </constraints>
-                                    <state key="normal">
-                                        <color key="titleShadowColor" red="0.78257179259999998" green="0.18707901239999999" blue="0.3878305554" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="dismissMenu:" destination="cZA-mn-z9W" eventType="touchUpInside" id="vQi-o4-B6i"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="DWr-NC-6yo" secondAttribute="bottom" id="gJZ-Eh-Bce"/>
-                                <constraint firstItem="DWr-NC-6yo" firstAttribute="leading" secondItem="6P1-tq-O2R" secondAttribute="leading" id="mCd-5z-psw"/>
-                            </constraints>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="dimiss:" destination="cZA-mn-z9W" eventType="touchUpInside" id="VkG-64-6gr"/>
+                            </connections>
                         </view>
                         <sections>
                             <tableViewSection id="Frd-Qh-qUY">
@@ -437,7 +421,6 @@
                     <connections>
                         <outlet property="chatTVC" destination="oO8-ac-HDw" id="NKY-Zj-2hq"/>
                         <outlet property="historyTVC" destination="gHa-WJ-dm0" id="LsV-zm-huY"/>
-                        <outlet property="mButton" destination="DWr-NC-6yo" id="GMZ-Ht-t7a"/>
                         <outlet property="mainTVC" destination="fXo-XS-bQc" id="lrD-jv-rO1"/>
                         <outlet property="payTVC" destination="Ret-Sg-I1G" id="hZL-TB-vhM"/>
                         <outlet property="profileTVC" destination="dPI-PG-pU2" id="0OP-EX-4GM"/>

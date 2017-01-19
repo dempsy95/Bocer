@@ -19,7 +19,6 @@ protocol MenuViewControllerDelegate: class {
 
 class MenuViewController: UITableViewController, Menu, UIViewControllerTransitioningDelegate {
     
-    @IBOutlet weak var mButton: UIButton!
     @IBOutlet weak var mainTVC: UITableViewCell!
     @IBOutlet weak var settingTVC: UITableViewCell!
     @IBOutlet weak var chatTVC: UITableViewCell!
@@ -33,6 +32,9 @@ class MenuViewController: UITableViewController, Menu, UIViewControllerTransitio
         return [tableView.tableHeaderView!] + tableView.visibleCells
     }
     
+    @IBAction func dimiss(_ sender: Any) {
+        delegate?.menuDidCancel(self)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -58,11 +60,6 @@ class MenuViewController: UITableViewController, Menu, UIViewControllerTransitio
         tableView.layer.shadowRadius = 2.5
     }
 
-    @IBAction func dismissMenu(_ sender: UIButton) {
-        print("button clicked")
-        delegate?.menuDidCancel(self)
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         print("Menu closed")
     }
