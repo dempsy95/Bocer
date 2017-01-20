@@ -27,6 +27,7 @@
 		25F7B9ED1E31346A00F056C4 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7B9EA1E31346A00F056C4 /* SkyFloatingLabelTextFieldWithIcon.swift */; };
 		25F7B9EE1E31346A00F056C4 /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7B9EB1E31346A00F056C4 /* UITextField+fixCaretPosition.swift */; };
 		25F7B9F01E31369F00F056C4 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25F7B9EF1E31369F00F056C4 /* fontawesome-webfont.ttf */; };
+		25F7B9F31E31592900F056C4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7B9F21E31592900F056C4 /* ProfileViewController.swift */; };
 		7116AFE75949AA6BC3717DD9 /* Pods_Bocer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F498B1526FB0F0879B3C0BE /* Pods_Bocer.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		25F7B9EA1E31346A00F056C4 /* SkyFloatingLabelTextFieldWithIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SkyFloatingLabelTextFieldWithIcon.swift; path = SkyFloatingTextField/SkyFloatingLabelTextFieldWithIcon.swift; sourceTree = "<group>"; };
 		25F7B9EB1E31346A00F056C4 /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextField+fixCaretPosition.swift"; path = "SkyFloatingTextField/UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
 		25F7B9EF1E31369F00F056C4 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		25F7B9F21E31592900F056C4 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		629E503D099BA3B4DDD90A84 /* Pods-Bocer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bocer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bocer/Pods-Bocer.debug.xcconfig"; sourceTree = "<group>"; };
 		9F498B1526FB0F0879B3C0BE /* Pods_Bocer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bocer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -98,15 +100,9 @@
 				25F7B9D51E312EAF00F056C4 /* new-Qian.storyboard */,
 				25F7B9C61E312E1900F056C4 /* Assets.xcassets */,
 				25F7B9D11E312EAF00F056C4 /* Constant.swift */,
-				25F7B9D21E312EAF00F056C4 /* InitialViewController.swift */,
-				25F7B9D31E312EAF00F056C4 /* MainViewController.swift */,
-				25F7B9D41E312EAF00F056C4 /* MenuViewController.swift */,
-				25F7B9D61E312EAF00F056C4 /* PassThroughView.swift */,
-				25F7B9D71E312EAF00F056C4 /* ResetPassword2ViewController.swift */,
-				25F7B9D81E312EAF00F056C4 /* ResetPasswordViewController.swift */,
-				25F7B9D91E312EAF00F056C4 /* SignInViewController.swift */,
-				25F7B9DA1E312EAF00F056C4 /* SignUp1ViewController.swift */,
-				25F7B9DB1E312EAF00F056C4 /* SignUp2ViewController.swift */,
+				25F7B9F41E315F1700F056C4 /* Sign in/up */,
+				25F7B9F61E315F4300F056C4 /* Supporting Files */,
+				25F7B9F51E315F3000F056C4 /* Main */,
 				25F7B9E91E31346A00F056C4 /* SkyFloatingLabelTextField.swift */,
 				25F7B9EA1E31346A00F056C4 /* SkyFloatingLabelTextFieldWithIcon.swift */,
 				25F7B9EB1E31346A00F056C4 /* UITextField+fixCaretPosition.swift */,
@@ -114,6 +110,37 @@
 				25F7B9CB1E312E1900F056C4 /* Info.plist */,
 			);
 			path = Bocer;
+			sourceTree = "<group>";
+		};
+		25F7B9F41E315F1700F056C4 /* Sign in/up */ = {
+			isa = PBXGroup;
+			children = (
+				25F7B9D21E312EAF00F056C4 /* InitialViewController.swift */,
+				25F7B9D71E312EAF00F056C4 /* ResetPassword2ViewController.swift */,
+				25F7B9D81E312EAF00F056C4 /* ResetPasswordViewController.swift */,
+				25F7B9D91E312EAF00F056C4 /* SignInViewController.swift */,
+				25F7B9DA1E312EAF00F056C4 /* SignUp1ViewController.swift */,
+				25F7B9DB1E312EAF00F056C4 /* SignUp2ViewController.swift */,
+			);
+			name = "Sign in/up";
+			sourceTree = "<group>";
+		};
+		25F7B9F51E315F3000F056C4 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				25F7B9D31E312EAF00F056C4 /* MainViewController.swift */,
+				25F7B9D41E312EAF00F056C4 /* MenuViewController.swift */,
+				25F7B9F21E31592900F056C4 /* ProfileViewController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		25F7B9F61E315F4300F056C4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				25F7B9D61E312EAF00F056C4 /* PassThroughView.swift */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		A3AE1728C020AE547084358B /* Pods */ = {
@@ -265,6 +292,7 @@
 				25F7B9C21E312E1900F056C4 /* ViewController.swift in Sources */,
 				25F7B9E01E312EAF00F056C4 /* MenuViewController.swift in Sources */,
 				25F7B9E21E312EAF00F056C4 /* PassThroughView.swift in Sources */,
+				25F7B9F31E31592900F056C4 /* ProfileViewController.swift in Sources */,
 				25F7B9C01E312E1900F056C4 /* AppDelegate.swift in Sources */,
 				25F7B9E31E312EAF00F056C4 /* ResetPassword2ViewController.swift in Sources */,
 				25F7B9EC1E31346A00F056C4 /* SkyFloatingLabelTextField.swift in Sources */,

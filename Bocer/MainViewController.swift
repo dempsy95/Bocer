@@ -99,11 +99,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     }
     
     @objc private func openSlideMenu() {
-//        if slideView.ll_isOpen {
-//            slideView.ll_close()
-//        } else {
-//            slideView.ll_open()
-//        }
         print("slide menu opened")
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Menu") as! MenuViewController
@@ -117,7 +112,16 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     
     //conform to protocol menuviewcontrollerdelegate
     func menu(_ menu: MenuViewController, didSelectItemAt index: Int, at point: CGPoint) {
-        
+        switch index {
+        case 1:
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
+            }
+            showProfile()
+            break
+        default:
+            break
+        }
     }
     
     func menuDidCancel(_ menu: MenuViewController) {
@@ -139,6 +143,15 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func showProfile() {
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "Profile") 
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
+
     }
     
 
