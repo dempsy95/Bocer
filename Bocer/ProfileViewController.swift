@@ -174,7 +174,7 @@ class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIVie
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Main")
         vc.modalTransitionStyle = .crossDissolve
-        vc.view.layer.speed = 0.5
+        vc.view.layer.speed = 0.4
         self.present(vc, animated: true, completion: nil)
         
     }
