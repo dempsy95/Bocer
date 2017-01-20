@@ -95,7 +95,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     }
     
     @objc private func openSlideMenu() {
-        print("slide menu opened")
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Menu") as! MenuViewController
         vc.delegate = self

@@ -48,12 +48,10 @@ class MenuViewController: UITableViewController, Menu, UIViewControllerTransitio
         historyTVC.selectedBackgroundView = bgColor
         payTVC.selectedBackgroundView = bgColor
         profileTVC.selectedBackgroundView = bgColor
-        print("selectedItem is \(selectedItem)")
         self.preferredContentSize = CGSize(width: 125, height: 667)
         let indexPath = IndexPath(row: selectedItem, section: 0)
         tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         self.tableView.delegate?.tableView!(self.tableView, didSelectRowAt: indexPath)
-        print("index path is \(indexPath)")
         tableView.layer.shadowColor = UIColor.black.cgColor
         tableView.layer.shadowOpacity = 1
         tableView.layer.shadowOffset = CGSize.zero
@@ -61,7 +59,6 @@ class MenuViewController: UITableViewController, Menu, UIViewControllerTransitio
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        print("Menu closed")
     }
     
     override func didReceiveMemoryWarning() {
