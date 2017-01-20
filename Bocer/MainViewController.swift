@@ -11,11 +11,7 @@ import SideMenu
 
 class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate, MenuViewControllerDelegate {
 
-    fileprivate var selectedIndex = 0
-    fileprivate var transitionPoint: CGPoint!
     private let mNavBar = Constant().makeNavBar()
-    private var leftSwipe: UIPanGestureRecognizer?
-    private var percent: UIPercentDrivenInteractiveTransition?
     lazy fileprivate var menuAnimator : MenuTransitionAnimator! = MenuTransitionAnimator(mode: .presentation, shouldPassEventsOutsideMenu: false) { [unowned self] in
         self.dismiss(animated: true, completion: nil)
     }
@@ -148,7 +144,8 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     private func showProfile() {
         self.presentedViewController?.dismiss(animated: true, completion: nil)
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "Profile") 
+        let vc = sb.instantiateViewController(withIdentifier: "Profile")
+        vc.view.layer.speed = 0.3
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
 

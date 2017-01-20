@@ -467,6 +467,9 @@
                                 <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
                                 <size key="titleShadowOffset" width="2" height="2"/>
                                 <state key="normal" image="menu_icon"/>
+                                <connections>
+                                    <action selector="menuFired:" destination="hzF-x1-ICV" eventType="touchUpInside" id="wmd-2K-Fog"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QiQ-wx-nwg">
                                 <rect key="frame" x="0.0" y="330" width="375" height="1"/>
@@ -570,6 +573,9 @@
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <state key="normal" image="book"/>
+                                <connections>
+                                    <action selector="bookFired:" destination="hzF-x1-ICV" eventType="touchUpInside" id="h4o-Lp-muO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

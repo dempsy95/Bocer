@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SideMenu
 
-class ProfileViewController: UIViewController, UIScrollViewDelegate {
+class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var collegeButton: UIButton!
@@ -21,6 +22,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var addressLabel: UILabel!
     private var cancelAction: UIAlertAction?
     private let tablePage = UITableView()
+    lazy fileprivate var menuAnimator : MenuTransitionAnimator! = MenuTransitionAnimator(mode: .presentation, shouldPassEventsOutsideMenu: false) { [unowned self] in
+        self.dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +44,14 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         //customize button for edit info
         cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelHandler)
         
-        retrieveInfo()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        retrieveInfo()
+    }
+    
+    
     @IBAction func photoFired(_ sender: UIButton) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let changePhotoAction = UIAlertAction(title: "Change Photo", style: .default, handler: changePhotoHandler)
@@ -50,6 +59,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         alertController.addAction(changePhotoAction)
         self.present(alertController, animated: true, completion: nil)
     }
+    
     @IBAction func nameFired(_ sender: UIButton) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let changePhotoAction = UIAlertAction(title: "Change Photo", style: .default, handler: changePhotoHandler)
@@ -81,6 +91,58 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    @IBAction func bookFired(_ sender: UIButton) {
+    }
+    @IBAction func menuFired(_ sender: UIButton) {
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "Menu") as! MenuViewController
+        vc.delegate = self
+        vc.transitioningDelegate = self
+        vc.modalPresentationStyle = .custom
+        vc.selectedItem = 1
+        self.show(vc, sender: self)
+    }
+    
+    //TODO:
+    //Get users' info by using uid
+    private func retrieveInfo() {
+        //nameLabel.text = userInfo(uid).getFirstName + " " + userInfo(uid).getLastName
+        //emailLabel.text = userInfo(uid).getEmail
+        //collegeLabel.text = userInfo(uid).getCollege
+        //addressLabel.text = userInfo(uid).getAddress
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    //conform to protocol menuviewcontrollerdelegate
+    func menu(_ menu: MenuViewController, didSelectItemAt index: Int, at point: CGPoint) {
+        switch index {
+        case 0:
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
+            }
+            showMain()
+        default:
+            break
+        }
+    }
+    
+    func menuDidCancel(_ menu: MenuViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func animationController(forPresented presented: UIViewController, presenting _: UIViewController,
+                             source _: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return menuAnimator
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return MenuTransitionAnimator(mode: .dismissal)
+    }
+    
     //Action Handler for alert view
     private func cancelHandler(alert: UIAlertAction!) {
         self.presentedViewController?.dismiss(animated: false, completion: nil)
@@ -106,21 +168,17 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         //goto change email vc
     }
     
-    //TODO:
-    //Get users' info by using uid
-    private func retrieveInfo() {
-        //nameLabel.text = userInfo(uid).getFirstName + " " + userInfo(uid).getLastName
-        //emailLabel.text = userInfo(uid).getEmail
-        //collegeLabel.text = userInfo(uid).getCollege
-        //addressLabel.text = userInfo(uid).getAddress
+    //go to the other vcs
+    private func showMain() {
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "Main")
+        vc.modalTransitionStyle = .crossDissolve
+        vc.view.layer.speed = 0.5
+        self.present(vc, animated: true, completion: nil)
+        
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
     /*
     // MARK: - Navigation
 
