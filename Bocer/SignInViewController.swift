@@ -62,7 +62,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
     
     //customize navigation item
     private func onMakeNavitem()->UINavigationItem{
-        let backBtn = UIBarButtonItem(title: "  Back", style: .plain,
+        let backBtn = UIBarButtonItem(title: " Back", style: .plain,
                                       target: self, action: #selector(SignInViewController.onCancel))
         backBtn.tintColor = UIColor.white
         mNavItem.title = "SIGN IN"

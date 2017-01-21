@@ -49,7 +49,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let identifier="Cell";
-        let cell=tableView.dequeueReusableCell(withIdentifier: identifier);
+        let cell=tableView.dequeueReusableCell(withIdentifier: identifier)
         let mImage = cell?.viewWithTag(100) as! UIImageView?
         let mAvatar = cell?.viewWithTag(101) as! UIImageView?
         let mView = cell?.viewWithTag(99)
@@ -88,9 +88,17 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         btn.addTarget(self, action: #selector(MainViewController.openSlideMenu), for: .touchUpInside)
         btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
+        
+        let mRightImage = UIImage(named: "search")
+        let rightBtn = UIButton(frame: CGRect(x: self.view.bounds.maxX - 55, y: 30, width: 25, height: 25))
+        rightBtn.setImage(mRightImage, for: .normal)
+        rightBtn.addTarget(self, action: #selector(MainViewController.searchFired), for: .touchUpInside)
+        rightBtn.tintColor = UIColor.white
+        let rightBtnItem = UIBarButtonItem(customView: rightBtn)
         mNavItem.title = "BOCER"
         mNavBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Chalkduster", size: 25)!, NSForegroundColorAttributeName: UIColor.white]
         mNavItem.setLeftBarButton(btnItem, animated: true)
+        mNavItem.setRightBarButton(rightBtnItem, animated: true)
         return mNavItem
     }
     
@@ -104,6 +112,13 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         self.show(vc, sender: self)
     }
     
+    @objc private func searchFired() {
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "Search") as! SearchViewController
+        let transition = Constant().transitionFromRight()
+        view.window!.layer.add(transition, forKey: kCATransition)
+        self.present(vc, animated: false)
+    }
     
     //conform to protocol menuviewcontrollerdelegate
     func menu(_ menu: MenuViewController, didSelectItemAt index: Int, at point: CGPoint) {

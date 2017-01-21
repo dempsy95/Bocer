@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIVie
         bookButton.layer.shadowRadius = 1
         bookButton.layer.shadowOffset = CGSize(width: 0, height: 0.8)
         bookButton.layer.shadowOpacity = 1
-        bookButton.layer.cornerRadius = 22.5
+        bookButton.layer.cornerRadius = 25
         
         //customize button for edit info
         cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelHandler)

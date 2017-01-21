@@ -39,6 +39,23 @@ class Constant {
         tf.selectedIconColor = overcastBlueColor
         tf.iconMarginBottom = 11
         tf.iconMarginLeft = 2.0
-
+    }
+    
+    func transitionFromRight() -> CATransition {
+        let transition = CATransition()
+        transition.duration = 0.4
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        return transition
+    }
+    
+    func transitionFromLeft() -> CATransition {
+        let transition = CATransition()
+        transition.duration = 0.4
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft
+        return transition
     }
 }

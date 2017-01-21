@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25E102B01E32D70700363129 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E102AF1E32D70700363129 /* SearchViewController.swift */; };
 		25F7B9C01E312E1900F056C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7B9BF1E312E1900F056C4 /* AppDelegate.swift */; };
 		25F7B9C21E312E1900F056C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7B9C11E312E1900F056C4 /* ViewController.swift */; };
 		25F7B9C51E312E1900F056C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F7B9C31E312E1900F056C4 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		12DE343053123281FDAD05E4 /* Pods-Bocer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bocer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bocer/Pods-Bocer.release.xcconfig"; sourceTree = "<group>"; };
+		25E102AF1E32D70700363129 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		25F7B9BC1E312E1900F056C4 /* Bocer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bocer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F7B9BF1E312E1900F056C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F7B9C11E312E1900F056C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				25F7B9D31E312EAF00F056C4 /* MainViewController.swift */,
 				25F7B9D41E312EAF00F056C4 /* MenuViewController.swift */,
+				25E102AF1E32D70700363129 /* SearchViewController.swift */,
 				25F7B9F21E31592900F056C4 /* ProfileViewController.swift */,
 			);
 			name = Main;
@@ -289,6 +292,7 @@
 				25F7B9EE1E31346A00F056C4 /* UITextField+fixCaretPosition.swift in Sources */,
 				25F7B9E41E312EAF00F056C4 /* ResetPasswordViewController.swift in Sources */,
 				25F7B9E71E312EAF00F056C4 /* SignUp2ViewController.swift in Sources */,
+				25E102B01E32D70700363129 /* SearchViewController.swift in Sources */,
 				25F7B9C21E312E1900F056C4 /* ViewController.swift in Sources */,
 				25F7B9E01E312EAF00F056C4 /* MenuViewController.swift in Sources */,
 				25F7B9E21E312EAF00F056C4 /* PassThroughView.swift in Sources */,

@@ -55,7 +55,7 @@ class ResetPassword2ViewController: UIViewController, UITextFieldDelegate, UITab
     
     //customize navigation item
     private func onMakeNavitem()->UINavigationItem{
-        let backBtn = UIBarButtonItem(title: "  Back", style: .plain,
+        let backBtn = UIBarButtonItem(title: " Back", style: .plain,
                                       target: self, action: #selector(ResetPassword2ViewController.onCancel))
         backBtn.tintColor = UIColor.white
         mNavItem.title = "RESET PASSWORD"

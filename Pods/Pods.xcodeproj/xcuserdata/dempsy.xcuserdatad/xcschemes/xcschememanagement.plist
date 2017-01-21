@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-Bocer.xcscheme</key>
+		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Socket.IO-Client-Swift.xcscheme</key>
+		<key>Pods-Bocer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6056A819B6AC8C9FB145F3FFD174222A</key>
+		<key>3665D37EEB319D18F0FF1A86E337B352</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CB0D19009FB5C08FEC0B80A0788D390B</key>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EC041C4DA330967C581AE38C71F95EAC</key>
+		<key>9D5D9CA0EA07504F7D78B9FDC61BD0A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

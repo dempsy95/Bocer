@@ -81,7 +81,7 @@ class SignUp2ViewController: UIViewController, UITextFieldDelegate {
     
     //customize navigation item
     private func onMakeNavitem()->UINavigationItem{
-        let backBtn = UIBarButtonItem(title: "  Back", style: .plain,
+        let backBtn = UIBarButtonItem(title: " Back", style: .plain,
                                       target: self, action: #selector(SignUp2ViewController.onCancel))
         backBtn.tintColor = UIColor.white
         mNavItem.title = "SIGN UP"
