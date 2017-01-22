@@ -49,7 +49,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vcP-f8-rG0" id="lC3-Gi-bCS">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="199.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="199"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="99" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lih-Je-cLY">
@@ -207,7 +207,7 @@
                                         <rect key="frame" x="0.0" y="78" width="125" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fXo-XS-bQc" id="DWA-vN-WAA">
-                                            <rect key="frame" x="0.0" y="0.0" width="125" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="125" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-2" translatesAutoresizingMaskIntoConstraints="NO" id="QUM-AD-5dl">
@@ -241,7 +241,7 @@
                                         <rect key="frame" x="0.0" y="158" width="125" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dPI-PG-pU2" id="wRN-xQ-y47">
-                                            <rect key="frame" x="0.0" y="0.0" width="125" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="125" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-3" translatesAutoresizingMaskIntoConstraints="NO" id="g59-UD-aBe">
@@ -275,7 +275,7 @@
                                         <rect key="frame" x="0.0" y="238" width="125" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ret-Sg-I1G" id="d2f-Lu-jYF">
-                                            <rect key="frame" x="0.0" y="0.0" width="125" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="125" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-4" translatesAutoresizingMaskIntoConstraints="NO" id="hAI-gV-stG">
@@ -309,7 +309,7 @@
                                         <rect key="frame" x="0.0" y="318" width="125" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gHa-WJ-dm0" id="Ix1-8U-8pH">
-                                            <rect key="frame" x="0.0" y="0.0" width="125" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="125" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-5" translatesAutoresizingMaskIntoConstraints="NO" id="pzc-A5-tJC">
@@ -343,7 +343,7 @@
                                         <rect key="frame" x="0.0" y="398" width="125" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oO8-ac-HDw" id="Yih-xx-aPn">
-                                            <rect key="frame" x="0.0" y="0.0" width="125" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="125" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-6" translatesAutoresizingMaskIntoConstraints="NO" id="lFc-DM-pSl">
@@ -377,7 +377,7 @@
                                         <rect key="frame" x="0.0" y="478" width="125" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oK2-fv-IYT" id="lw6-ai-f0u">
-                                            <rect key="frame" x="0.0" y="0.0" width="125" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="125" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-7" translatesAutoresizingMaskIntoConstraints="NO" id="Fn6-OW-4DK">
@@ -664,7 +664,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="unq-Kz-coJ" id="bD1-2L-duY">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="129.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="book_image" translatesAutoresizingMaskIntoConstraints="NO" id="Z3i-t0-RdL">
