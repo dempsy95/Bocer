@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "书.png",
+      "filename" : "批量增加.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "书-1.png",
+      "filename" : "批量增加-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "书-2.png",
+      "filename" : "批量增加-2.png",
       "scale" : "3x"
     }
   ],

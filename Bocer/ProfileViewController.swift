@@ -9,10 +9,11 @@
 import UIKit
 import SideMenu
 
-class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIViewControllerTransitioningDelegate {
+class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIViewControllerTransitioningDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var emailButton: UIButton!
-    @IBOutlet weak var collegeButton: UIButton!
+    @IBOutlet weak var mTableView: UITableView!
+    @IBOutlet weak var mScroll: UIScrollView!
+    @IBOutlet weak var mPageControl: UIPageControl!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var bookButton: UIButton!
     @IBOutlet weak var mImage: UIImageView!
@@ -20,6 +21,11 @@ class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIVie
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var collegeLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+
+    var uid: Int?
+    private var bid: [Int]?
+    private var currentpage = 0
+    private var imageofbutton: [String] = ["pencil", "book"]
     private var cancelAction: UIAlertAction?
     private let tablePage = UITableView()
     lazy fileprivate var menuAnimator : MenuTransitionAnimator! = MenuTransitionAnimator(mode: .presentation, shouldPassEventsOutsideMenu: false) { [unowned self] in
@@ -41,58 +47,81 @@ class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIVie
         bookButton.layer.shadowOpacity = 1
         bookButton.layer.cornerRadius = 25
         
-        //customize button for edit info
-        cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelHandler)
+        //customize scroll view
+        mScroll.showsHorizontalScrollIndicator = false
+        mScroll.showsVerticalScrollIndicator = false
+        mScroll.scrollsToTop = false
+        mScroll.delegate = self
+//        mScroll.isPagingEnabled = true
+        mScroll.isScrollEnabled = true
+        
+        //customize page controller
+        mPageControl.addTarget(self, action: #selector(ProfileViewController.pageChanged), for: UIControlEvents.valueChanged)
+        
+        //delegate table view
+        mTableView.delegate = self
+        mTableView.dataSource = self
         
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        mScroll.contentSize = CGSize(width: 640, height: 300)
         retrieveInfo()
     }
     
-    
-    @IBAction func photoFired(_ sender: UIButton) {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let changePhotoAction = UIAlertAction(title: "Change Photo", style: .default, handler: changePhotoHandler)
-        alertController.addAction(cancelAction!)
-        alertController.addAction(changePhotoAction)
-        self.present(alertController, animated: true, completion: nil)
+    //UIScrollViewDelegate方法，每次滚动结束后调用
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == mScroll {
+            //通过scrollView内容的偏移计算当前显示的是第几页
+            let page = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+            //设置pageController的当前页
+            mPageControl.currentPage = page
+            if currentpage != page {
+                currentpage = page
+                changeButton()
+            }
+        }
     }
     
-    @IBAction func nameFired(_ sender: UIButton) {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let changePhotoAction = UIAlertAction(title: "Change Photo", style: .default, handler: changePhotoHandler)
-        let changeNameAction = UIAlertAction(title: "Change Name", style: .default, handler: changeNameHandler)
-        alertController.addAction(cancelAction!)
-        alertController.addAction(changeNameAction)
-        alertController.addAction(changePhotoAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    @IBAction func emailFired(_ sender: UIButton) {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let changeEmailAction = UIAlertAction(title: "Change Email", style: .default, handler: changeEmailHandler)
-        alertController.addAction(cancelAction!)
-        alertController.addAction(changeEmailAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    @IBAction func collegeFired(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "Warning",
-                                                message: "You should change your college email address before change your college name", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    @IBAction func addressFired(_ sender: UIButton) {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let changeAddressAction = UIAlertAction(title: "Change Address", style: .default, handler: changeAddressHandler)
-        alertController.addAction(cancelAction!)
-        alertController.addAction(changeAddressAction)
-        self.present(alertController, animated: true, completion: nil)
+    //点击页控件时事件处理
+    @objc private func pageChanged(sender:UIPageControl) {
+        //根据点击的页数，计算scrollView需要显示的偏移量
+        let point = CGPoint(x: 320*sender.currentPage, y: 0)
+        mScroll.setContentOffset(point, animated: true)
+        if currentpage != sender.currentPage {
+            currentpage = sender.currentPage
+            changeButton()
+        }
     }
     
+    //changeButton
+    private func changeButton() {
+        if currentpage == 1 {
+            UIView.transition(with: bookButton, duration: 0.15, options: [UIViewAnimationOptions.transitionFlipFromLeft, UIViewAnimationOptions.allowAnimatedContent], animations: {
+                self.bookButton.setImage(UIImage(named: "book"), for: UIControlState.normal)
+                self.bookButton.backgroundColor = UIColor.brown
+            }, completion: nil)
+        } else {
+            UIView.transition(with: bookButton, duration: 0.15, options: [UIViewAnimationOptions.transitionFlipFromRight, UIViewAnimationOptions.allowAnimatedContent], animations: {
+                self.bookButton.setImage(UIImage(named: "pencil"), for: UIControlState.normal)
+                self.bookButton.backgroundColor = UIColor.red
+            }, completion: nil)
+        }
+    }
+    
+    //TODO:
+    //Edit user's info or add a book
     @IBAction func bookFired(_ sender: UIButton) {
+        if currentpage == 0 {
+            //TODO:
+            //Edit personal info
+        } else {
+            //TODO:
+            //Add a book
+        }
     }
+    
     @IBAction func menuFired(_ sender: UIButton) {
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Menu") as! MenuViewController
@@ -110,6 +139,7 @@ class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIVie
         //emailLabel.text = userInfo(uid).getEmail
         //collegeLabel.text = userInfo(uid).getCollege
         //addressLabel.text = userInfo(uid).getAddress
+        //bid = userInfo(uid).getBook
     }
     
     override func didReceiveMemoryWarning() {
@@ -143,31 +173,6 @@ class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIVie
         return MenuTransitionAnimator(mode: .dismissal)
     }
     
-    //Action Handler for alert view
-    private func cancelHandler(alert: UIAlertAction!) {
-        self.presentedViewController?.dismiss(animated: false, completion: nil)
-    }
-    
-    private func changePhotoHandler(alert: UIAlertAction!) {
-        self.presentedViewController?.dismiss(animated: false, completion: nil)
-        //goto change photo vc
-    }
-    
-    private func changeAddressHandler(alert: UIAlertAction!) {
-        self.presentedViewController?.dismiss(animated: false, completion: nil)
-        //goto change address vc
-    }
-    
-    private func changeNameHandler(alert: UIAlertAction!) {
-        self.presentedViewController?.dismiss(animated: false, completion: nil)
-        //goto change name vc
-    }
-    
-    private func changeEmailHandler(alert: UIAlertAction!) {
-        self.presentedViewController?.dismiss(animated: false, completion: nil)
-        //goto change email vc
-    }
-    
     //go to the other vcs
     private func showMain() {
         self.presentedViewController?.dismiss(animated: true, completion: nil)
@@ -177,6 +182,29 @@ class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIVie
         vc.view.layer.speed = 0.4
         self.present(vc, animated: true, completion: nil)
         
+    }
+    
+    //TODO:
+    //Table View delegate for books
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let identify: String = "bookCell"
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: identify)
+        let mImage = cell?.viewWithTag(100) as! UIImageView? //photo of the book
+        let mTitle = cell?.viewWithTag(101)
+        let mAuthor = cell?.viewWithTag(102)
+        let mPrice = cell?.viewWithTag(103)
+        
+        //TODO:
+        //retrieve bookinfo by using book id
+        cell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        
+        return cell!
     }
     
     /*
