@@ -9,7 +9,7 @@
 import UIKit
 import SideMenu
 
-class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIViewControllerTransitioningDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var mTableView: UITableView!
     @IBOutlet weak var mScroll: UIScrollView!
@@ -28,9 +28,6 @@ class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIVie
     private var imageofbutton: [String] = ["pencil", "book"]
     private var cancelAction: UIAlertAction?
     private let tablePage = UITableView()
-    lazy fileprivate var menuAnimator : MenuTransitionAnimator! = MenuTransitionAnimator(mode: .presentation, shouldPassEventsOutsideMenu: false) { [unowned self] in
-        self.dismiss(animated: true, completion: nil)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,13 +120,7 @@ class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIVie
     }
     
     @IBAction func menuFired(_ sender: UIButton) {
-        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "Menu") as! MenuViewController
-        vc.delegate = self
-        vc.transitioningDelegate = self
-        vc.modalPresentationStyle = .custom
-        vc.selectedItem = 1
-        self.show(vc, sender: self)
+        showMain()
     }
     
     //TODO:
@@ -147,41 +138,11 @@ class ProfileViewController: UIViewController, MenuViewControllerDelegate, UIVie
         // Dispose of any resources that can be recreated.
     }
     
-    //conform to protocol menuviewcontrollerdelegate
-    func menu(_ menu: MenuViewController, didSelectItemAt index: Int, at point: CGPoint) {
-        switch index {
-        case 0:
-            DispatchQueue.main.async {
-                self.dismiss(animated: true, completion: nil)
-            }
-            showMain()
-        default:
-            break
-        }
-    }
-    
-    func menuDidCancel(_ menu: MenuViewController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func animationController(forPresented presented: UIViewController, presenting _: UIViewController,
-                             source _: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return menuAnimator
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return MenuTransitionAnimator(mode: .dismissal)
-    }
-    
     //go to the other vcs
     private func showMain() {
-        self.presentedViewController?.dismiss(animated: true, completion: nil)
-        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "Main")
-        vc.modalTransitionStyle = .crossDissolve
-        vc.view.layer.speed = 0.4
-        self.present(vc, animated: true, completion: nil)
-        
+        self.view.layer.speed = 0.7
+        self.modalTransitionStyle = .coverVertical
+        self.dismiss(animated: true, completion: nil)
     }
     
     //TODO:

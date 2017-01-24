@@ -59,11 +59,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @objc private func didCancel() {
-        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "Main")
         let transition = Constant().transitionFromLeft()
         view.window!.layer.add(transition, forKey: kCATransition)
-        self.present(vc, animated: false)
+        self.dismiss(animated: false, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

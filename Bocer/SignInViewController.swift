@@ -130,6 +130,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Main") as UIViewController
         vc.modalTransitionStyle = .flipHorizontal
+//        DispatchQueue.main.async {
+//            self.dismiss(animated: true, completion: nil)
+//        }
         self.present(vc, animated: true, completion: nil)
     }
     

@@ -58,4 +58,5 @@ class Constant {
         transition.subtype = kCATransitionFromLeft
         return transition
     }
+    
 }

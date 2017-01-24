@@ -109,6 +109,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         vc.transitioningDelegate = self
         vc.modalPresentationStyle = .custom
         vc.selectedItem = 0
+        
         self.show(vc, sender: self)
     }
     
@@ -124,9 +125,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     func menu(_ menu: MenuViewController, didSelectItemAt index: Int, at point: CGPoint) {
         switch index {
         case 1:
-            DispatchQueue.main.async {
-                self.dismiss(animated: true, completion: nil)
-            }
             showProfile()
             break
         default:
@@ -158,11 +156,13 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     private func showProfile() {
         self.presentedViewController?.dismiss(animated: true, completion: nil)
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "Profile")
-        vc.view.layer.speed = 0.4
+        let vc = sb.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+        vc.view.layer.speed = 0.7
         vc.modalTransitionStyle = .crossDissolve
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
+        }
         self.present(vc, animated: true, completion: nil)
-
     }
     
 
