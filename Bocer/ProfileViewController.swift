@@ -120,6 +120,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
     }
     
     @IBAction func menuFired(_ sender: UIButton) {
+        UIView.transition(with: menuButton, duration: 0.15, options: UIViewAnimationOptions.transitionFlipFromTop, animations: nil, completion: nil)
         showMain()
     }
     

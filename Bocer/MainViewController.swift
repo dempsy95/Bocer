@@ -83,20 +83,20 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     //customize navigation item
     private func onMakeNavitem()->UINavigationItem{
         let mImage = UIImage(named: "menu_icon")
-        let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 25, height: 25))
+        let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
         btn.addTarget(self, action: #selector(MainViewController.openSlideMenu), for: .touchUpInside)
         btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
         
         let mRightImage = UIImage(named: "search")
-        let rightBtn = UIButton(frame: CGRect(x: self.view.bounds.maxX - 55, y: 30, width: 25, height: 25))
+        let rightBtn = UIButton(frame: CGRect(x: self.view.bounds.maxX - 55, y: 30, width: 20, height: 20))
         rightBtn.setImage(mRightImage, for: .normal)
         rightBtn.addTarget(self, action: #selector(MainViewController.searchFired), for: .touchUpInside)
         rightBtn.tintColor = UIColor.white
         let rightBtnItem = UIBarButtonItem(customView: rightBtn)
         mNavItem.title = "BOCER"
-        mNavBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Chalkduster", size: 25)!, NSForegroundColorAttributeName: UIColor.white]
+        mNavBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Chalkduster", size: 27)!, NSForegroundColorAttributeName: UIColor.white]
         mNavItem.setLeftBarButton(btnItem, animated: true)
         mNavItem.setRightBarButton(rightBtnItem, animated: true)
         return mNavItem
@@ -126,6 +126,9 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         switch index {
         case 1:
             showProfile()
+            break
+        case 2:
+            showPay()
             break
         default:
             break
@@ -157,6 +160,18 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         self.presentedViewController?.dismiss(animated: true, completion: nil)
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+        vc.view.layer.speed = 0.7
+        vc.modalTransitionStyle = .crossDissolve
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
+        }
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    private func showPay() {
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "Pay") as! PayViewController
         vc.view.layer.speed = 0.7
         vc.modalTransitionStyle = .crossDissolve
         DispatchQueue.main.async {

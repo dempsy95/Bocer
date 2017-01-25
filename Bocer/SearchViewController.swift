@@ -38,18 +38,25 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func viewClicked(_ sender: Any) {
+        mSearchBar.resignFirstResponder() 
     }
     
     private func onMakeNavitem()->UINavigationItem{
-        let btn = UIBarButtonItem(title: " Back", style: .plain,
-                                      target: self, action: #selector(SearchViewController.didCancel))
+        let mImage = UIImage(named: "back")
+        let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
+        btn.setImage(mImage, for: .normal)
+        btn.addTarget(self, action: #selector(SearchViewController.didCancel), for: .touchUpInside)
         btn.tintColor = UIColor.white
-        mNavItem.setLeftBarButton(btn, animated: true)
+        let btnItem = UIBarButtonItem(customView: btn)
+        mNavItem.setLeftBarButton(btnItem, animated: true)
         
-        let rightBtn = UIBarButtonItem(title: "Search", style: .plain,
-                                  target: self, action: #selector(SearchViewController.didSearch))
-        rightBtn.tintColor = UIColor.white
-        mNavItem.setRightBarButton(rightBtn, animated: true)
+        let mrImage = UIImage(named: "search")
+        let rbtn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
+        rbtn.setImage(mrImage, for: .normal)
+        rbtn.addTarget(self, action: #selector(SearchViewController.didSearch), for: .touchUpInside)
+        rbtn.tintColor = UIColor.white
+        let rbtnItem = UIBarButtonItem(customView: rbtn)
+        mNavItem.setRightBarButton(rbtnItem, animated: true)
         mNavItem.title = "SEARCH"
         return mNavItem
     }

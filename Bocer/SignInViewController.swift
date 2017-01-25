@@ -62,11 +62,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
     
     //customize navigation item
     private func onMakeNavitem()->UINavigationItem{
-        let backBtn = UIBarButtonItem(title: " Back", style: .plain,
-                                      target: self, action: #selector(SignInViewController.onCancel))
-        backBtn.tintColor = UIColor.white
+        let mImage = UIImage(named: "back")
+        let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
+        btn.setImage(mImage, for: .normal)
+        btn.addTarget(self, action: #selector(SignInViewController.onCancel), for: .touchUpInside)
+        btn.tintColor = UIColor.white
+        let btnItem = UIBarButtonItem(customView: btn)
         mNavItem.title = "SIGN IN"
-        mNavItem.setLeftBarButton(backBtn, animated: true)
+        mNavItem.setLeftBarButton(btnItem, animated: true)
         return mNavItem
     }
     
@@ -130,9 +133,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Main") as UIViewController
         vc.modalTransitionStyle = .flipHorizontal
-//        DispatchQueue.main.async {
-//            self.dismiss(animated: true, completion: nil)
-//        }
         self.present(vc, animated: true, completion: nil)
     }
     

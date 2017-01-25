@@ -61,11 +61,14 @@ class SignUp1ViewController: UIViewController, UITextFieldDelegate, UITableViewD
     
     //customize navigation item
     private func onMakeNavitem()->UINavigationItem{
-        let backBtn = UIBarButtonItem(title: " Back", style: .plain,
-                                      target: self, action: #selector(SignUp1ViewController.onCancel))
-        backBtn.tintColor = UIColor.white
+        let mImage = UIImage(named: "back")
+        let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
+        btn.setImage(mImage, for: .normal)
+        btn.addTarget(self, action: #selector(SignUp1ViewController.onCancel), for: .touchUpInside)
+        btn.tintColor = UIColor.white
+        let btnItem = UIBarButtonItem(customView: btn)
         mNavItem.title = "SIGN UP"
-        mNavItem.setLeftBarButton(backBtn, animated: true)
+        mNavItem.setLeftBarButton(btnItem, animated: true)
         return mNavItem
     }
     

@@ -11,7 +11,7 @@ import UIKit
 
 class Constant {
     let buttonCornerRadius = 5 as Float
-    let defaultColor = UIColor(red: 0, green: 128/255, blue: 128/255, alpha: 1)
+    let defaultColor = UIColor(red: 38/255, green: 38/255, blue: 59/255, alpha: 1)
     
     func makeNavBar() -> UINavigationBar {
         var navBar: UINavigationBar
@@ -23,6 +23,7 @@ class Constant {
         navBar.backgroundColor = defaultColor
         let navTitleAttribute: NSDictionary = NSDictionary(object: UIColor.white, forKey: NSForegroundColorAttributeName as NSCopying)
         navBar.titleTextAttributes = navTitleAttribute as? [String : AnyObject]
+        
         return navBar
     }
     

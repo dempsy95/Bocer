@@ -1,15 +1,18 @@
 PODS:
   - Alamofire (4.3.0)
+  - CreditCardValidator (0.3.2)
   - YALSideMenu (2.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
+  - CreditCardValidator
   - YALSideMenu (~> 2.0)
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  CreditCardValidator: f2e0fc0f273e3f303513d35745df23d336eb1d67
   YALSideMenu: 4d6b90ea44dcdded18a99e46b676e4ad51d9c6bb
 
-PODFILE CHECKSUM: 1d221616dcc386a7f7700998e03f5636d2e1e0a3
+PODFILE CHECKSUM: 3c545db21a7da3eb76383308d23ac595e28c9bab
 
 COCOAPODS: 1.1.1

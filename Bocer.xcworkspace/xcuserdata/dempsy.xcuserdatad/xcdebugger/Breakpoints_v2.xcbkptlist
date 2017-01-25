@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bocer/SearchViewController.swift"
-            timestampString = "506733246.278244"
+            timestampString = "507023345.959705"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "onMakeNavitem()"
             landmarkType = "7">
          </BreakpointContent>

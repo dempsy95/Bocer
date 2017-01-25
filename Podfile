@@ -7,4 +7,5 @@ target ‘Bocer’ do
   # Pods for mealplanappiOS
   pod ‘Alamofire’, ‘~> 4.3’
   pod 'YALSideMenu', '~> 2.0'
+  pod "CreditCardValidator"
 end

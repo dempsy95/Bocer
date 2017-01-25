@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CreditCardValidator.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Bocer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,7 +27,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3665D37EEB319D18F0FF1A86E337B352</key>
+		<key>06DACF8DBF00078CC427153B4F5DE848</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>87998F6222897118C049E59687388086</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -32,7 +42,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9D5D9CA0EA07504F7D78B9FDC61BD0A0</key>
+		<key>B340B25DD177F7E228F0CF12B238EB32</key>
 		<dict>
 			<key>primary</key>
 			<true/>
