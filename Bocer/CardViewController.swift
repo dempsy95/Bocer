@@ -80,14 +80,14 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     private func onMakeNavitem()->UINavigationItem{
-        let mImage = UIImage(named: "cancel")
+        let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
         btn.addTarget(self, action: #selector(CardViewController.didCancel), for: .touchUpInside)
         btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
         
-        mNavItem.title = "PAYMENT"
+        mNavItem.title = "MASTERCARD"
         mNavItem.setLeftBarButton(btnItem, animated: true)
         return mNavItem
     }
