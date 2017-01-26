@@ -87,8 +87,16 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
         btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
         
+        let mRImage = UIImage(named: "small_menu")
+        let rbtn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
+        rbtn.setImage(mRImage, for: .normal)
+        rbtn.addTarget(self, action: #selector(CardViewController.didMenu), for: .touchUpInside)
+        rbtn.tintColor = UIColor.white
+        let rbtnItem = UIBarButtonItem(customView: rbtn)
+        
         mNavItem.title = "MASTERCARD"
         mNavItem.setLeftBarButton(btnItem, animated: true)
+        mNavItem.setRightBarButton(rbtnItem, animated: true)
         return mNavItem
     }
     
@@ -97,7 +105,32 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
         view.window!.layer.add(transition, forKey: kCATransition)
         self.dismiss(animated: false, completion: nil)
     }
+    
+    @objc private func didMenu() {
+        let mAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actionEdit = UIAlertAction(title: "Edit", style: .default, handler: {
+            (action: UIAlertAction!) in self.didEdit()
+        })
+        let actionDelete = UIAlertAction(title: "Delete", style: .destructive, handler: {
+            (action: UIAlertAction!) in self.didDelete()
+        })
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (action: UIAlertAction!) in mAlert.dismiss(animated: true, completion: nil)
+        })
+        mAlert.addAction(actionEdit)
+        mAlert.addAction(actionDelete)
+        mAlert.addAction(actionCancel)
+        self.present(mAlert, animated: true, completion: nil)
+    }
 
+    private func didEdit() {
+        
+    }
+    
+    private func didDelete() {
+        
+    }
+    
     private func secure(origin: String) -> String {
         var res = "•••• •••• •••• "
         res = res + origin.substring(from: origin.index(origin.startIndex, offsetBy: 12))
