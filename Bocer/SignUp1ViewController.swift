@@ -146,7 +146,18 @@ class SignUp1ViewController: UIViewController, UITextFieldDelegate, UITableViewD
     }
     
     @IBAction func nextBtnFired(_ sender: UIButton) {
-        nextPerformed()
+        if(emailTF.text == nil || emailTF.text == "" || pwTF.text == nil || pwTF.text == ""){
+            let alertController = UIAlertController(title: "Woops!", message: "Both email and password can not be empty", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+            // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                (result : UIAlertAction) -> Void in
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else{
+            nextPerformed()
+        }
     }
     
     @IBAction func keyboardShouldResign(_ sender: UIView) {

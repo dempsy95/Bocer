@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class SignUp2ViewController: UIViewController, UITextFieldDelegate {
     //user information
     internal var username:String?
     internal var password:String?
     internal var school:String?
+    internal var firstname:String?
+    internal var lastname:String?
     
     //UI elements
     @IBOutlet weak var mNavItem: UINavigationItem!
@@ -113,7 +117,22 @@ class SignUp2ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func enterFired(_ sender: UIButton) {
-        enterPerformed()
+        if(firstNameTF.text == nil || firstNameTF.text == "" || lastNameTF.text == nil || lastNameTF.text == ""
+            || collegeTF.text == nil || collegeTF.text == ""){
+            let alertController = UIAlertController(title: "Woops!", message: "All the fields can not be empty", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+            // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                (result : UIAlertAction) -> Void in
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else{
+            self.school = collegeTF.text
+            self.firstname = firstNameTF.text
+            self.lastname = lastNameTF.text
+            enterPerformed()
+        }
     }
     @IBAction func viewClicked(_ sender: UIView) {
         firstNameTF.resignFirstResponder()
@@ -126,7 +145,67 @@ class SignUp2ViewController: UIViewController, UITextFieldDelegate {
     add the new user to the server, log in
     */
     private func enterPerformed() {
-        
+        Alamofire.request(
+            URL(string: "http://localhost:3000/addUser")!,
+            method: .post,
+            parameters: ["username":self.username!,"password":self.password!,"school":self.school!,"firstName":self.firstname!,"lastName":self.lastname!])
+            .validate()
+            .responseJSON {response in
+                let result = response.result.value
+                var json = JSON(result)
+                if(json["Target Action"] == "signupresult"){
+                    if(json["content"] == "fail"){
+                        let alertController = UIAlertController(title: "Woops!", message: "Server failed", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                        // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+                        let okAction = UIAlertAction(title: "Try again", style: UIAlertActionStyle.default) {
+                            (result : UIAlertAction) -> Void in
+                        }
+                        alertController.addAction(okAction)
+                        self.present(alertController, animated: true, completion: nil)
+
+                    }
+                    else if(json["content"] == "exist"){
+                        let alertController = UIAlertController(title: "Woops!", message: "Username already exists", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                        // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+                        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                            (result : UIAlertAction) -> Void in
+                        }
+                        alertController.addAction(okAction)
+                        self.present(alertController, animated: true, completion: nil)
+
+                    }
+                    else{ // success
+                        Alamofire.request(
+                            URL(string: "http://localhost:3000/login")!,
+                            method: .post,
+                            parameters: ["username":self.username!,"password":self.password!])
+                            .validate()
+                            .responseJSON {response in
+                                var result = response.result.value
+                                var json = JSON(result)
+                                if(json["Target Action"] == "loginresult"){
+                                    if(json["content"] == "success"){
+                                        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+                                        let vc = sb.instantiateViewController(withIdentifier: "Main") as! MainViewController
+                                        vc.username = self.username!
+                                        vc.password = self.password!
+                                        vc.modalTransitionStyle = .flipHorizontal
+                                        self.present(vc, animated: true, completion: nil)
+                                    }
+                                    else{
+                                        let alertController = UIAlertController(title: "Congratulations!", message: "Now you can log in", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                                        // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+                                        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                                            (result : UIAlertAction) -> Void in
+                                        }
+                                        alertController.addAction(okAction)
+                                        self.present(alertController, animated: true, completion: nil)
+                                    }
+                                }
+                        }
+                    }
+                }
+        }
     }
     
     override func didReceiveMemoryWarning() {
