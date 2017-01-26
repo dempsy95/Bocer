@@ -85,11 +85,21 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/CountryPicker/CountryPicker.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CreditCardValidator/CreditCardValidator.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/FormTextField/FormTextField.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Formatter/Formatter.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/InputValidator/InputValidator.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Validation/Validation.framework"
   install_framework "$BUILT_PRODUCTS_DIR/YALSideMenu/SideMenu.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/CountryPicker/CountryPicker.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CreditCardValidator/CreditCardValidator.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/FormTextField/FormTextField.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Formatter/Formatter.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/InputValidator/InputValidator.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Validation/Validation.framework"
   install_framework "$BUILT_PRODUCTS_DIR/YALSideMenu/SideMenu.framework"
 fi

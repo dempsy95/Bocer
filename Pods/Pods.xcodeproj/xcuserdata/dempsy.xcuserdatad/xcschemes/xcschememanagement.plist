@@ -9,12 +9,37 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CountryPicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>CreditCardValidator.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FormTextField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Formatter.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>InputValidator.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Bocer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Validation.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,7 +57,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>87998F6222897118C049E59687388086</key>
+		<key>20B8D91A7066936C41028C8262F6D91B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>74A72672FFDFBC68733EBD58ABAF1EFF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>85D64574E892D7043CFD59D0CBE71D5C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,7 +77,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B340B25DD177F7E228F0CF12B238EB32</key>
+		<key>ABB22700A27734F955F11687D5A50F2B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EB7CB63832948BAE262BA5477760DE21</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EEB5306E4243879C44047DA0809AC841</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F49A3E1CCB7B636004C684708E51B9FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

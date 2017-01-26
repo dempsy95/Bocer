@@ -8,4 +8,6 @@ target ‘Bocer’ do
   pod ‘Alamofire’, ‘~> 4.3’
   pod 'YALSideMenu', '~> 2.0'
   pod "CreditCardValidator"
+  pod “CountryPicker”
+  pod ‘FormTextField'
 end

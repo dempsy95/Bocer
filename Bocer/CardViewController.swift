@@ -124,7 +124,14 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func didEdit() {
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "CardEdit") as! CardEditViewController
+        let transition = Constant().transitionFromRight()
+        view.window!.layer.add(transition, forKey: kCATransition)
         
+        vc.cardNumber = self.cardNumber
+        
+        self.present(vc, animated: false)
     }
     
     private func didDelete() {

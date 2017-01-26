@@ -10,6 +10,7 @@
 		25E102B01E32D70700363129 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E102AF1E32D70700363129 /* SearchViewController.swift */; };
 		25E9A9461E38769F00B259EF /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E9A9451E38769F00B259EF /* PayViewController.swift */; };
 		25E9A9481E38914700B259EF /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E9A9471E38914700B259EF /* CardViewController.swift */; };
+		25E9A96E1E39AD7000B259EF /* CardEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E9A96D1E39AD7000B259EF /* CardEditViewController.swift */; };
 		25F7B9C01E312E1900F056C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7B9BF1E312E1900F056C4 /* AppDelegate.swift */; };
 		25F7B9C21E312E1900F056C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7B9C11E312E1900F056C4 /* ViewController.swift */; };
 		25F7B9C51E312E1900F056C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F7B9C31E312E1900F056C4 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 		25E102AF1E32D70700363129 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		25E9A9451E38769F00B259EF /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		25E9A9471E38914700B259EF /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		25E9A96D1E39AD7000B259EF /* CardEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardEditViewController.swift; sourceTree = "<group>"; };
 		25F7B9BC1E312E1900F056C4 /* Bocer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bocer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F7B9BF1E312E1900F056C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F7B9C11E312E1900F056C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			children = (
 				25E9A9451E38769F00B259EF /* PayViewController.swift */,
 				25E9A9471E38914700B259EF /* CardViewController.swift */,
+				25E9A96D1E39AD7000B259EF /* CardEditViewController.swift */,
 			);
 			name = Pay;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				25F7B9EC1E31346A00F056C4 /* SkyFloatingLabelTextField.swift in Sources */,
 				25F7B9DD1E312EAF00F056C4 /* Constant.swift in Sources */,
 				25F7B9ED1E31346A00F056C4 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
+				25E9A96E1E39AD7000B259EF /* CardEditViewController.swift in Sources */,
 				25E9A9461E38769F00B259EF /* PayViewController.swift in Sources */,
 				25F7B9E61E312EAF00F056C4 /* SignUp1ViewController.swift in Sources */,
 				25F7B9DE1E312EAF00F056C4 /* InitialViewController.swift in Sources */,
