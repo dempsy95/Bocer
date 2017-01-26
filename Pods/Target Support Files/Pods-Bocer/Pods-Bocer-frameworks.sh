@@ -90,6 +90,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/FormTextField/FormTextField.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Formatter/Formatter.framework"
   install_framework "$BUILT_PRODUCTS_DIR/InputValidator/InputValidator.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Validation/Validation.framework"
   install_framework "$BUILT_PRODUCTS_DIR/YALSideMenu/SideMenu.framework"
 fi
@@ -100,6 +101,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/FormTextField/FormTextField.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Formatter/Formatter.framework"
   install_framework "$BUILT_PRODUCTS_DIR/InputValidator/InputValidator.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Validation/Validation.framework"
   install_framework "$BUILT_PRODUCTS_DIR/YALSideMenu/SideMenu.framework"
 fi

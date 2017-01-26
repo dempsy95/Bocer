@@ -1,3 +1,4 @@
+# coding: utf-8
 # Uncomment this line to define a global platform for your project
 # platform :ios, '9.0'
 
@@ -9,5 +10,6 @@ target ‘Bocer’ do
   pod 'YALSideMenu', '~> 2.0'
   pod "CreditCardValidator"
   pod “CountryPicker”
+  pod 'SwiftyJSON'
   pod ‘FormTextField'
 end

@@ -8,6 +8,7 @@ PODS:
     - InputValidator (~> 1.0.0)
   - InputValidator (1.0.1):
     - Validation (~> 1.0.1)
+  - SwiftyJSON (3.1.4)
   - Validation (1.0.1)
   - YALSideMenu (2.0.1)
 
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - CountryPicker
   - CreditCardValidator
   - FormTextField
+  - SwiftyJSON
   - YALSideMenu (~> 2.0)
 
 SPEC CHECKSUMS:
@@ -25,9 +27,10 @@ SPEC CHECKSUMS:
   Formatter: 81601aa8bcbbac4cc18f1665913b691930a99470
   FormTextField: ff84dec95ce9dec7cfb2490b8f369b179c548ed5
   InputValidator: b86cc38de23bcf259987a00ba1075e09fa1b9c79
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Validation: 9e128449861addfb0d37375b31830fb4bc5f84b9
   YALSideMenu: 4d6b90ea44dcdded18a99e46b676e4ad51d9c6bb
 
-PODFILE CHECKSUM: 67f457f6490cdfa492849b7b5398de0ecf1c886c
+PODFILE CHECKSUM: 4e0402a99650e3be928efa504613b671e9517430
 
 COCOAPODS: 1.1.1

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate {
 
@@ -81,20 +83,20 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
         self.view.addGestureRecognizer(swipeRecognizer)
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let text = textField.text {
-            if let floatingLabelTextField = textField as? SkyFloatingLabelTextField {
-                if(textField == emailTF && (isValidEmail(s: text))) {
-                    floatingLabelTextField.errorMessage = "Invalid email"
-                }
-                else {
-                    // The error message will only disappear when we reset it to nil or empty string
-                    floatingLabelTextField.errorMessage = ""
-                }
-            }
-        }
-        return true
-    }
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if let text = textField.text {
+//            if let floatingLabelTextField = textField as? SkyFloatingLabelTextField {
+//                if(textField == emailTF && (isValidEmail(s: text))) {
+//                    floatingLabelTextField.errorMessage = "Invalid email"
+//                }
+//                else {
+//                    // The error message will only disappear when we reset it to nil or empty string
+//                    floatingLabelTextField.errorMessage = ""
+//                }
+//            }
+//        }
+//        return true
+//    }
     
     @IBAction func viewClicked(_ sender: Any) {
         emailTF.resignFirstResponder()
@@ -129,11 +131,37 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
     It is used to call the sign in request to the back end
     */
     private func signInPerformed() {
-        //for test
-        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "Main") as UIViewController
-        vc.modalTransitionStyle = .flipHorizontal
-        self.present(vc, animated: true, completion: nil)
+        var username = emailTF.text
+        var password = pwTF.text
+        Alamofire.request(
+            URL(string: "http://localhost:3000/login")!,
+            method: .post,
+            parameters: ["username":username!, "password":password!])
+            .validate()
+            .responseJSON {response in
+                var result = response.result.value
+                var json = JSON(result)
+                if(json["Target Action"] == "loginresult"){ //ok let's login in!
+                    if(json["content"] == "success"){
+                        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+                        let vc = sb.instantiateViewController(withIdentifier: "Main") as! MainViewController
+                        vc.username = username!
+                        vc.password = password!
+                        vc.modalTransitionStyle = .flipHorizontal
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                    else{
+                        //initializing alert view
+                        let alertController = UIAlertController(title: "Woops!", message: "Wrong combination", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                        // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+                        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                            (result : UIAlertAction) -> Void in
+                        }
+                        alertController.addAction(okAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
+        }
     }
     
     /*

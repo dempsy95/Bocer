@@ -9,7 +9,12 @@
 import UIKit
 
 class SignUp2ViewController: UIViewController, UITextFieldDelegate {
-
+    //user information
+    internal var username:String?
+    internal var password:String?
+    internal var school:String?
+    
+    //UI elements
     @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var firstNameTF: SkyFloatingLabelTextFieldWithIcon!
     @IBOutlet weak var lastNameTF: SkyFloatingLabelTextFieldWithIcon!
@@ -20,7 +25,6 @@ class SignUp2ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         enterBtn.layer.cornerRadius = CGFloat(Constant().buttonCornerRadius)
         
@@ -58,6 +62,14 @@ class SignUp2ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //assign school name
+        if(school != nil){
+            collegeTF.text = school
+            collegeTF.isEnabled = false
+        }
+        else{
+            collegeTF.isEnabled = true
+        }
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
     }
     

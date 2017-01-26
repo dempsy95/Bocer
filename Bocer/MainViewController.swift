@@ -10,6 +10,10 @@ import UIKit
 import SideMenu
 
 class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate, MenuViewControllerDelegate {
+    //user info
+    internal var username:String?
+    internal var password:String?
+    
 
     private let mNavBar = Constant().makeNavBar()
     lazy fileprivate var menuAnimator : MenuTransitionAnimator! = MenuTransitionAnimator(mode: .presentation, shouldPassEventsOutsideMenu: false) { [unowned self] in

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class SignUp1ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, NSURLConnectionDataDelegate {
 
@@ -108,10 +110,38 @@ class SignUp1ViewController: UIViewController, UITextFieldDelegate, UITableViewD
     
     private func nextPerformed() {
         if checkValidation(email: emailTF.text, pw: pwTF.text) {
-            let sb = UIStoryboard(name: "new-Qian", bundle: nil);
-            let vc = sb.instantiateViewController(withIdentifier: "Signup2") as UIViewController
-            //self.push(vc, animated: true, completion: nil)
-            self.navigationController?.pushViewController(vc, animated: true)
+            var username = emailTF.text
+            var password = pwTF.text
+            Alamofire.request(
+                URL(string: "http://localhost:3000/searchSchoolname")!,
+                method: .post,
+                parameters: ["domain":username!])
+                .validate()
+                .responseJSON {response in
+                    var result = response.result.value
+                    var json = JSON(result)
+                    if(json["Target Action"] == "searchSchoolnameresult"){
+                        if(json["content"] != "fail"){
+                            var school = json["content"]
+                            let sb = UIStoryboard(name: "new-Qian", bundle: nil);
+                            let vc = sb.instantiateViewController(withIdentifier: "Signup2") as! SignUp2ViewController
+                            vc.username = username!
+                            vc.password = password!
+                            vc.school = school.rawString()!
+                            //self.push(vc, animated: true, completion: nil)
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                        else{
+                            print("fail")
+                            let sb = UIStoryboard(name: "new-Qian", bundle: nil);
+                            let vc = sb.instantiateViewController(withIdentifier: "Signup2") as! SignUp2ViewController
+                            vc.username = username!
+                            vc.password = password!
+                            //self.push(vc, animated: true, completion: nil)
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    }
+                }
         }
     }
     
