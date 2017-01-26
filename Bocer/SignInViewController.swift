@@ -32,7 +32,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
         emailTF.title = "Email Address"
         emailTF.iconFont = UIFont(name: "FontAwesome", size: 20)
         emailTF.iconText = "\u{f007}"
-        emailTF.errorColor = .red
         Constant().customizeSFLTextField(tf: emailTF)
         pwTF.delegate = self
         pwTF.title = "Password"
@@ -133,6 +132,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
     private func signInPerformed() {
         var username = emailTF.text
         var password = pwTF.text
+        /*
         Alamofire.request(
             URL(string: "http://localhost:3000/login")!,
             method: .post,
@@ -143,12 +143,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
                 var json = JSON(result)
                 if(json["Target Action"] == "loginresult"){ //ok let's login in!
                     if(json["content"] == "success"){
+        */
                         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
                         let vc = sb.instantiateViewController(withIdentifier: "Main") as! MainViewController
                         vc.username = username!
                         vc.password = password!
                         vc.modalTransitionStyle = .flipHorizontal
                         self.present(vc, animated: true, completion: nil)
+        /*
                     }
                     else{
                         //initializing alert view
@@ -162,6 +164,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
                     }
                 }
         }
+ */
     }
     
     /*

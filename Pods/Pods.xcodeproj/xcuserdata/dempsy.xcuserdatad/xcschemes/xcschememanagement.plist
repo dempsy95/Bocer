@@ -19,27 +19,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FormTextField.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Formatter.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>InputValidator.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Bocer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Validation.xcscheme</key>
+		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -51,52 +36,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>06DACF8DBF00078CC427153B4F5DE848</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>20B8D91A7066936C41028C8262F6D91B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>74A72672FFDFBC68733EBD58ABAF1EFF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>85D64574E892D7043CFD59D0CBE71D5C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ABB22700A27734F955F11687D5A50F2B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EB7CB63832948BAE262BA5477760DE21</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EEB5306E4243879C44047DA0809AC841</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F49A3E1CCB7B636004C684708E51B9FF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

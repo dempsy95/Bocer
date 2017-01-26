@@ -129,7 +129,7 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
         let transition = Constant().transitionFromRight()
         view.window!.layer.add(transition, forKey: kCATransition)
         
-        vc.cardNumber = self.cardNumber
+        vc.mCardNumber = self.cardNumber
         
         self.present(vc, animated: false)
     }

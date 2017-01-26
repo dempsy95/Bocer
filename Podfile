@@ -11,5 +11,4 @@ target ‘Bocer’ do
   pod "CreditCardValidator"
   pod “CountryPicker”
   pod 'SwiftyJSON'
-  pod ‘FormTextField'
 end

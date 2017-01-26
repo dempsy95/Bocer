@@ -2,21 +2,13 @@ PODS:
   - Alamofire (4.3.0)
   - CountryPicker (1.3)
   - CreditCardValidator (0.3.2)
-  - Formatter (1.0.0)
-  - FormTextField (1.0.0):
-    - Formatter (~> 1.0.0)
-    - InputValidator (~> 1.0.0)
-  - InputValidator (1.0.1):
-    - Validation (~> 1.0.1)
   - SwiftyJSON (3.1.4)
-  - Validation (1.0.1)
   - YALSideMenu (2.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
   - CountryPicker
   - CreditCardValidator
-  - FormTextField
   - SwiftyJSON
   - YALSideMenu (~> 2.0)
 
@@ -24,13 +16,9 @@ SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   CountryPicker: 664c26411d833bb068c80beb15dc951eadde2911
   CreditCardValidator: f2e0fc0f273e3f303513d35745df23d336eb1d67
-  Formatter: 81601aa8bcbbac4cc18f1665913b691930a99470
-  FormTextField: ff84dec95ce9dec7cfb2490b8f369b179c548ed5
-  InputValidator: b86cc38de23bcf259987a00ba1075e09fa1b9c79
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
-  Validation: 9e128449861addfb0d37375b31830fb4bc5f84b9
   YALSideMenu: 4d6b90ea44dcdded18a99e46b676e4ad51d9c6bb
 
-PODFILE CHECKSUM: 4e0402a99650e3be928efa504613b671e9517430
+PODFILE CHECKSUM: e9cff67ae1c2ab53dda3b246e607a56fe541278e
 
 COCOAPODS: 1.1.1
