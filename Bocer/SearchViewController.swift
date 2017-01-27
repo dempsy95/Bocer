@@ -14,6 +14,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var mSearchBar: UISearchBar!
     @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var mResultTable: UITableView!
+    @IBOutlet weak var mMiddleTable: UITableView!
     private var result = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         mSearchBar.delegate = self
         self.mResultTable.delegate = self
         mResultTable.dataSource = self
+        self.mMiddleTable.delegate = self
+        self.mMiddleTable.dataSource = self
         mSearchBar.backgroundImage = UIImage()
         mSearchBar.barTintColor = Constant().defaultColor
         mSearchBar.backgroundColor = UIColor.clear
@@ -30,6 +33,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.view.addSubview(mNavBar)
         mNavBar.pushItem(onMakeNavitem(), animated: true)
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        
+        //
+        mResultTable.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,7 +68,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @objc private func didSearch() {
-        
+        //TODO:
+        //When search fired, information inside search bar is sent to the server, and the client will get a list of book names back
+        UIView.transition(with: mResultTable, duration: 0.3, options: [UIViewAnimationOptions.transitionCrossDissolve, UIViewAnimationOptions.allowAnimatedContent], animations: {
+            self.mMiddleTable.isHidden = false
+            self.mResultTable.isHidden = true
+        }, completion: nil)
     }
     
     @objc private func didCancel() {
@@ -72,26 +83,50 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if tableView == mMiddleTable {
+            return 5
+        } else {
+            return 5
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == mResultTable {
+            let identify: String = "searchCell"
         
-        let identify: String = "searchCell"
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: identify)
-        let mImage = cell?.viewWithTag(100) as! UIImageView? //photo of the book
-        let mTitle = cell?.viewWithTag(101)
-        let mAuthor = cell?.viewWithTag(102)
-        let mPrice = cell?.viewWithTag(103)
-        let mAvatar = cell?.viewWithTag(104) as! UIImageView?
-        mAvatar?.layer.cornerRadius = 25
-        mAvatar?.layer.masksToBounds = true
+            let cell = tableView.dequeueReusableCell(withIdentifier: identify)
+            let mImage = cell?.viewWithTag(100) as! UIImageView? //photo of the book
+            let mTitle = cell?.viewWithTag(101) as! UILabel?
+            let mAuthor = cell?.viewWithTag(102) as! UILabel?
+            let mPrice = cell?.viewWithTag(103) as! UILabel?
+            let mAvatar = cell?.viewWithTag(104) as! UIImageView?
+            mAvatar?.layer.cornerRadius = 25
+            mAvatar?.layer.masksToBounds = true
         
         
-        cell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            cell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
-        return cell!
+            return cell!
+        } else {
+            let identify: String = "searchMiddleCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: identify)
+            let mTitle = cell?.viewWithTag(100) as! UILabel?
+            return cell!
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == mMiddleTable {
+            let cell = mMiddleTable.cellForRow(at: indexPath)
+            //TODO:
+            //Send book name back to the server
+            //get all the selling items
+            
+            UIView.transition(with: mMiddleTable, duration: 0.3, options: [UIViewAnimationOptions.transitionCrossDissolve, UIViewAnimationOptions.allowAnimatedContent], animations: {
+                self.mMiddleTable.isHidden = true
+                self.mResultTable.isHidden = false
+            }, completion: nil)
+        }
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -119,21 +154,19 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     // 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        didSearch()
     }
     
     // 取消按钮触发事件
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         // 搜索内容置空
         searchBar.text = ""
-//        self.result = self.array
-//        self.tableView.reloadData()
+
     }
 
-    
     //TODO:
     //下拉刷新加载更多功能
     /*
