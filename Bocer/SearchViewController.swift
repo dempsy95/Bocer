@@ -12,6 +12,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     private var mNavBar = Constant().makeNavBar()
     @IBOutlet weak var mSearchBar: UISearchBar!
+    @IBOutlet weak var schoolButton: UIButton!
     @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var mResultTable: UITableView!
     @IBOutlet weak var mMiddleTable: UITableView!
@@ -28,6 +29,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         mSearchBar.barTintColor = Constant().defaultColor
         mSearchBar.backgroundColor = UIColor.clear
         mSearchBar.isTranslucent = true
+        
+        schoolButton.layer.cornerRadius = CGFloat(Constant().buttonCornerRadius)
+        schoolButton.layer.borderWidth = 1
+        schoolButton.layer.borderColor = UIColor.black.cgColor
         
         // Do any additional setup after loading the view.
         self.view.addSubview(mNavBar)
@@ -116,6 +121,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        mSearchBar.resignFirstResponder()
         if tableView == mMiddleTable {
             let cell = mMiddleTable.cellForRow(at: indexPath)
             //TODO:
@@ -164,9 +170,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         // 搜索内容置空
         searchBar.text = ""
-
+        searchBar.resignFirstResponder()
     }
 
+    @IBAction func schoolButtonFired(_ sender: UIButton) {
+    }
     //TODO:
     //下拉刷新加载更多功能
     /*

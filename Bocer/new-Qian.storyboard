@@ -852,20 +852,46 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I4w-sb-FiW">
+                                <rect key="frame" x="0.0" y="79" width="375" height="47"/>
+                                <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3iH-IL-Z9F">
+                                        <rect key="frame" x="28" y="8" width="306" height="54"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.14685894691780821" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                                        <state key="normal" title="University of California, Los Angeles">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="schoolButtonFired:" destination="hJo-TD-HVH" eventType="touchUpInside" id="aC2-lC-vg5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.15035015339999999" green="0.1471406072" blue="0.23209506269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="3iH-IL-Z9F" firstAttribute="centerX" secondItem="I4w-sb-FiW" secondAttribute="centerX" id="9fV-Q8-XSM"/>
+                                    <constraint firstItem="3iH-IL-Z9F" firstAttribute="centerY" secondItem="I4w-sb-FiW" secondAttribute="centerY" id="CNQ-AM-yy6"/>
+                                    <constraint firstItem="3iH-IL-Z9F" firstAttribute="top" secondItem="I4w-sb-FiW" secondAttribute="top" constant="3" id="IL6-kz-t4X"/>
+                                    <constraint firstItem="3iH-IL-Z9F" firstAttribute="leading" secondItem="I4w-sb-FiW" secondAttribute="leading" constant="15" id="Xuv-CN-6xh"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FAK-IX-AnV" firstAttribute="leading" secondItem="mQC-xe-HPf" secondAttribute="leading" id="7Gb-Gv-cXc"/>
+                            <constraint firstItem="I4w-sb-FiW" firstAttribute="leading" secondItem="mQC-xe-HPf" secondAttribute="leading" id="7WB-uK-PuC"/>
                             <constraint firstItem="P5h-of-CXh" firstAttribute="trailing" secondItem="FAK-IX-AnV" secondAttribute="trailing" id="8Hx-Qz-VJU"/>
                             <constraint firstItem="P5h-of-CXh" firstAttribute="top" secondItem="FAK-IX-AnV" secondAttribute="top" id="8sn-wh-Tjo"/>
                             <constraint firstItem="FAK-IX-AnV" firstAttribute="trailing" secondItem="mQC-xe-HPf" secondAttribute="trailing" id="CjY-Ba-qL1"/>
-                            <constraint firstItem="mQC-xe-HPf" firstAttribute="top" secondItem="rlB-Cy-MGF" secondAttribute="bottom" constant="44" id="G64-gz-ffM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mQC-xe-HPf" secondAttribute="trailing" constant="-16" id="K3C-FD-VMn"/>
                             <constraint firstItem="mQC-xe-HPf" firstAttribute="leading" secondItem="hdW-Bs-65S" secondAttribute="leadingMargin" constant="-16" id="LI0-Gs-aib"/>
                             <constraint firstItem="n3b-gA-aTo" firstAttribute="top" secondItem="FAK-IX-AnV" secondAttribute="bottom" id="NRx-9C-X7R"/>
                             <constraint firstItem="P5h-of-CXh" firstAttribute="leading" secondItem="FAK-IX-AnV" secondAttribute="leading" id="Ok4-Av-TcI"/>
+                            <constraint firstItem="mQC-xe-HPf" firstAttribute="top" secondItem="I4w-sb-FiW" secondAttribute="bottom" id="cMT-Y0-s1m"/>
+                            <constraint firstItem="I4w-sb-FiW" firstAttribute="trailing" secondItem="mQC-xe-HPf" secondAttribute="trailing" id="cbB-yE-agx"/>
                             <constraint firstItem="P5h-of-CXh" firstAttribute="bottom" secondItem="FAK-IX-AnV" secondAttribute="bottom" id="gB2-Nr-nmj"/>
                             <constraint firstItem="FAK-IX-AnV" firstAttribute="top" secondItem="mQC-xe-HPf" secondAttribute="bottom" id="rIQ-tq-Kru"/>
+                            <constraint firstItem="I4w-sb-FiW" firstAttribute="top" secondItem="rlB-Cy-MGF" secondAttribute="bottom" constant="44" id="zy1-Ha-in2"/>
                         </constraints>
                         <connections>
                             <action selector="viewClicked:" destination="hJo-TD-HVH" eventType="touchUpInside" id="CDA-42-BYd"/>
@@ -877,6 +903,7 @@
                         <outlet property="mNavItem" destination="1L0-rH-mef" id="f9f-qG-kP4"/>
                         <outlet property="mResultTable" destination="FAK-IX-AnV" id="wsC-2O-3EK"/>
                         <outlet property="mSearchBar" destination="mQC-xe-HPf" id="C5z-UB-F1l"/>
+                        <outlet property="schoolButton" destination="3iH-IL-Z9F" id="7HF-40-6ba"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZc-go-7qm" userLabel="First Responder" sceneMemberID="firstResponder"/>
