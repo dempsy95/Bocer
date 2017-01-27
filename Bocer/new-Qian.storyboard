@@ -14,7 +14,7 @@
         <scene sceneID="dbR-Zm-FRm">
             <objects>
                 <navigationController id="Dqp-Mq-TcR" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f3g-9a-YkO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="f3g-9a-YkO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -880,11 +880,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="visa" translatesAutoresizingMaskIntoConstraints="NO" id="g86-9T-57q">
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Visa" translatesAutoresizingMaskIntoConstraints="NO" id="g86-9T-57q">
                                                     <rect key="frame" x="22" y="9" width="61" height="47"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="48" id="jr1-y2-u4f"/>
-                                                        <constraint firstAttribute="height" constant="36" id="yYr-Bf-Iw7"/>
+                                                        <constraint firstAttribute="height" constant="40" id="yYr-Bf-Iw7"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="•••• 2346 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WN4-Ln-dGN">
@@ -1003,7 +1003,7 @@
                                                     <rect key="frame" x="21" y="8" width="137" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Card Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0X-0b-MYw">
-                                                            <rect key="frame" x="0.0" y="0.0" width="87" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="86.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -1088,8 +1088,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8bF-dC-3aE" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="Bocer" customModuleProvider="target">
-                                <rect key="frame" x="33" y="137" width="200" height="41.607421875"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8bF-dC-3aE" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="Bocer" customModuleProvider="target">
+                                <rect key="frame" x="33" y="137" width="300" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="mH0-97-K4y"/>
                                 </constraints>
@@ -1100,11 +1100,11 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Card Number"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="visa" translatesAutoresizingMaskIntoConstraints="NO" id="vIc-cD-t9x">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Visa" translatesAutoresizingMaskIntoConstraints="NO" id="vIc-cD-t9x">
                                 <rect key="frame" x="250" y="115" width="135" height="74"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="7Si-8e-Agf"/>
-                                    <constraint firstAttribute="width" constant="60" id="FUb-aE-FdI"/>
+                                    <constraint firstAttribute="height" constant="55" id="7Si-8e-Agf"/>
+                                    <constraint firstAttribute="width" constant="64" id="FUb-aE-FdI"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  MM/YY" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pdH-gg-IhH" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="Bocer" customModuleProvider="target">
@@ -1133,9 +1133,9 @@
                         <constraints>
                             <constraint firstItem="DOe-Tx-beP" firstAttribute="leading" secondItem="pdH-gg-IhH" secondAttribute="trailing" constant="10" id="36j-9O-gvo"/>
                             <constraint firstItem="pdH-gg-IhH" firstAttribute="centerY" secondItem="DOe-Tx-beP" secondAttribute="centerY" id="6mW-uP-WCZ"/>
-                            <constraint firstItem="vIc-cD-t9x" firstAttribute="leading" secondItem="8bF-dC-3aE" secondAttribute="trailing" constant="5" id="7fh-K2-lYX"/>
                             <constraint firstItem="pdH-gg-IhH" firstAttribute="leading" secondItem="8bF-dC-3aE" secondAttribute="leading" id="HtK-dU-7Dt"/>
                             <constraint firstItem="DOe-Tx-beP" firstAttribute="trailing" secondItem="vIc-cD-t9x" secondAttribute="trailing" id="S7q-4t-LVW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8bF-dC-3aE" secondAttribute="trailing" constant="5" id="TTh-XM-Jgy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vIc-cD-t9x" secondAttribute="trailing" constant="5" id="cdX-9I-4hd"/>
                             <constraint firstItem="8bF-dC-3aE" firstAttribute="bottom" secondItem="vIc-cD-t9x" secondAttribute="bottom" id="chw-9w-DpQ"/>
                             <constraint firstItem="8bF-dC-3aE" firstAttribute="leading" secondItem="eQH-lI-rnb" secondAttribute="leadingMargin" constant="5" id="mTy-O4-eh0"/>
@@ -1660,6 +1660,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Visa" width="256" height="256"/>
         <image name="book_image" width="130" height="194"/>
         <image name="cancel" width="100" height="100"/>
         <image name="fivestar" width="150" height="40"/>
@@ -1672,7 +1673,6 @@
         <image name="pencil" width="100" height="100"/>
         <image name="sample_avatar" width="60" height="70"/>
         <image name="sample_big_avatar" width="1224" height="1632"/>
-        <image name="visa" width="128" height="128"/>
         <image name="wechat_icon" width="267" height="92"/>
     </resources>
 </document>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CreditCardValidator
 
 class CardEditViewController: UIViewController, UITextFieldDelegate {
 
@@ -19,6 +20,7 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
     internal var mCardTitle: String? = "ADD CARD"
     private let mNavBar = Constant().makeNavBar()
     private var firstChange = true
+    private var cvvLimit = 3
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,9 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func viewClicked(_ sender: UIView) {
+        mNumber.resignFirstResponder()
+        mDate.resignFirstResponder()
+        mCVV.resignFirstResponder()
     }
     
     private func secure(origin: String) -> String {
@@ -70,36 +75,94 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
     
     //textfield delegate
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == mNumber && textField.text == nil {
-            textField.text = mCardNumber
+        if textField == mNumber {
+            if (textField.text == nil || textField.text == "") && mCardNumber != nil{
+                textField.text = secure(origin: mCardNumber!)
+            }
+            if textField != nil {
+                let text = textField.text!
+                let v = CreditCardValidator()
+                let flag = v.validate(string: text)
+                if !flag {
+                    UIView.transition(with: mImage, duration: 0.15, options: [UIViewAnimationOptions.transitionFlipFromTop, UIViewAnimationOptions.allowAnimatedContent], animations: {
+                        self.mImage.image = UIImage(named: "creditcard")
+                    }, completion: nil)
+                } else {
+                    let type = v.type(from: text)?.name
+                    let image = UIImage(named: type!)
+                    if image! != self.mImage.image {
+                        UIView.transition(with: mImage, duration: 0.15, options: [UIViewAnimationOptions.transitionFlipFromTop, UIViewAnimationOptions.allowAnimatedContent], animations: {
+                            self.mImage.image = image
+                        }, completion: nil)
+                    }
+                    if type != "Amex" {
+                        cvvLimit = 3
+                    } else {
+                        cvvLimit = 4
+                    }
+                    
+                }
+            }
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == mNumber {
+            mDate.becomeFirstResponder()
+        } else if textField == mDate {
+            mCVV.becomeFirstResponder()
+        } else {
+            
+        }
+        return true
+    }
+    
+    func canInsert(atLocation y:Int, modNumber z: Int) -> Bool { return ((1 + y)%(z + 1) == 0) ? true : false }
+    
+    func canRemove(atLocation y:Int, modNumber z: Int) -> Bool { return (y != 0) ? (y%(z + 1) == 0) : false }
     
     //limit the maximum length of the textfield
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if (textField == mNumber) {
-            if ((textField.text?.characters.count)! >= 19) {
-                textField.text = textField.text?.substring(to: (textField.text?.index((textField.text?.startIndex)!, offsetBy: 18))!)
-                return true
+            if range.location == 19 {
+                return false
             }
-            if ((textField.text?.characters.count)! % 5 == 4) {
-                textField.text = textField.text! + " "
+            
+            let nsText = textField.text! as NSString
+            
+            if range.length == 0 && canInsert(atLocation: range.location, modNumber: 4) {
+                textField.text! = textField.text! + " " + string
+                return false
             }
-            if ((textField.text?.characters.count)! % 5 == 0 && (textField.text?.characters.count)! != 0 && textField.text?.substring(from: (textField.text?.endIndex)!) != " ") {
-                textField.text = textField.text?.substring(to: (textField.text?.index((textField.text?.endIndex)!, offsetBy: -1))!)
+            
+            if range.length == 1 && canRemove(atLocation: range.location, modNumber: 4) {
+                textField.text! = nsText.replacingCharacters(in: NSMakeRange(range.location-1, 2), with: "")
+                return false
             }
+            
             return true
-        } else if (textField == mDate) {
-            if ((textField.text?.characters.count)! >= 5) {
-                textField.text = textField.text?.substring(to: (textField.text?.index((textField.text?.startIndex)!, offsetBy: 4))!)
-                return true
+        } else if textField == mCVV {
+            if range.location == cvvLimit {
+                return false
             }
             return true
         } else {
-            if ((textField.text?.characters.count)! >= 4) {
-                textField.text = textField.text?.substring(to: (textField.text?.index((textField.text?.startIndex)!, offsetBy: 3))!)
-                return true
+            if range.location == 5 {
+                return false
             }
+            
+            let nsText = textField.text! as NSString
+            
+            if range.length == 0 && canInsert(atLocation: range.location, modNumber: 2) {
+                textField.text! = textField.text! + "/" + string
+                return false
+            }
+            
+            if range.length == 1 && canRemove(atLocation: range.location, modNumber: 2) {
+                textField.text! = nsText.replacingCharacters(in: NSMakeRange(range.location-1, 2), with: "")
+                return false
+            }
+            
             return true
         }
     }
@@ -138,10 +201,94 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
         self.dismiss(animated: false, completion: nil)
     }
     
+    //TODO:
+    //send card info to the server
     @objc private func didFinish() {
-
+        if mDate.text == nil || (mDate.text?.characters.count)! < 4 {
+            dateAlert()
+            return
+        }
+        let month = (mDate.text?.substring(to: (mDate.text?.index((mDate.text?.startIndex)!, offsetBy: 2))!))! as String
+        let year = (mDate.text?.substring(from: (mDate.text?.index((mDate.text?.startIndex)!, offsetBy: 3))!))! as String
+        if Int(month)! > 12 || Int(month)! < 0 {
+            dateAlert()
+            return
+        }
+        if Int(year)! > 50 || Int(year)! < 0 {
+            dateAlert()
+            return
+        }
+        
+        var number = "" as String
+        if (mNumber.text == nil) {
+            numberAlert()
+            return
+        }
+        for digit in (mNumber.text?.characters)! {
+            if digit != " " {
+              number = number + String(digit)
+            }
+            if (digit < "0" || digit > "9") {
+                numberAlert()
+                return
+            }
+        }
+        if number.characters.count < 12 {
+            numberAlert()
+            return
+        }
+        
+        if (mCVV.text == nil) {
+            cvvAlert()
+            return
+        }
+        let cvv = mCVV.text!
+        for digit in cvv.characters {
+            if (digit < "0" || digit > "9") {
+                cvvAlert()
+                return
+            }
+        }
+        if cvv.characters.count != cvvLimit {
+            cvvAlert()
+            return
+        }
+        print(month+year)
+        print(number)
+        print(cvv)
+        //TODO:
+        //send info:
+        //card number: number
+        //card expiary date: month year
+        //card cvv: cvv
+        let transition = Constant().transitionFromLeft()
+        view.window!.layer.add(transition, forKey: kCATransition)
+        self.dismiss(animated: false, completion: nil)
     }
 
+    private func dateAlert() {
+        let alertController = UIAlertController(title: "Warning",
+                                                message: "The expiary date of your credit card is invalid", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func numberAlert() {
+        let alertController = UIAlertController(title: "Warning",
+                                                message: "The number of your credit card is invalid", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func cvvAlert() {
+        let alertController = UIAlertController(title: "Warning",
+                                                message: "The CVV number of your credit card is invalid", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     /*
     // MARK: - Navigation
