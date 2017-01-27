@@ -14,7 +14,7 @@
         <scene sceneID="dbR-Zm-FRm">
             <objects>
                 <navigationController id="Dqp-Mq-TcR" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f3g-9a-YkO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="f3g-9a-YkO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -858,8 +858,8 @@
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3iH-IL-Z9F">
                                         <rect key="frame" x="28" y="8" width="306" height="54"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.14685894691780821" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
-                                        <state key="normal" title="University of California, Los Angeles">
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
+                                        <state key="normal" title="California State University, Monterey Bay">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1090,7 +1090,7 @@
                                                     <rect key="frame" x="21" y="8" width="137" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Card Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0X-0b-MYw">
-                                                            <rect key="frame" x="0.0" y="0.0" width="87" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="86.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>

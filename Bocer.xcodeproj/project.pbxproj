@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25744AFE1E3AF1C200D34D88 /* SchoolList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25744AFD1E3AF1C200D34D88 /* SchoolList.swift */; };
 		25E102B01E32D70700363129 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E102AF1E32D70700363129 /* SearchViewController.swift */; };
 		25E9A9461E38769F00B259EF /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E9A9451E38769F00B259EF /* PayViewController.swift */; };
 		25E9A9481E38914700B259EF /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E9A9471E38914700B259EF /* CardViewController.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		12DE343053123281FDAD05E4 /* Pods-Bocer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bocer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bocer/Pods-Bocer.release.xcconfig"; sourceTree = "<group>"; };
+		25744AFD1E3AF1C200D34D88 /* SchoolList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolList.swift; sourceTree = "<group>"; };
 		25E102AF1E32D70700363129 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		25E9A9451E38769F00B259EF /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		25E9A9471E38914700B259EF /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				25F7B9D51E312EAF00F056C4 /* new-Qian.storyboard */,
 				25F7B9C61E312E1900F056C4 /* Assets.xcassets */,
 				25F7B9D11E312EAF00F056C4 /* Constant.swift */,
+				25744AFD1E3AF1C200D34D88 /* SchoolList.swift */,
 				25F7B9F41E315F1700F056C4 /* Sign in/up */,
 				25F7B9F61E315F4300F056C4 /* Supporting Files */,
 				25F7B9F51E315F3000F056C4 /* Main */,
@@ -335,6 +338,7 @@
 				25F7B9E31E312EAF00F056C4 /* ResetPassword2ViewController.swift in Sources */,
 				25F7B9EC1E31346A00F056C4 /* SkyFloatingLabelTextField.swift in Sources */,
 				25F7B9DD1E312EAF00F056C4 /* Constant.swift in Sources */,
+				25744AFE1E3AF1C200D34D88 /* SchoolList.swift in Sources */,
 				25F7B9ED1E31346A00F056C4 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
 				25E9A96E1E39AD7000B259EF /* CardEditViewController.swift in Sources */,
 				25E9A9461E38769F00B259EF /* PayViewController.swift in Sources */,
