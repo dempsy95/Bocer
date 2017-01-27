@@ -91,7 +91,6 @@ class ResetPassword2ViewController: UIViewController, UITextFieldDelegate, UITab
     }
     
     @IBAction func confirmFired(_ sender: UIButton) {
-        
         confirmPerformed()
     }
     @IBAction func viewClicked(_ sender: UIView) {
@@ -106,7 +105,67 @@ class ResetPassword2ViewController: UIViewController, UITextFieldDelegate, UITab
     3. go back to the login view
     */
     private func confirmPerformed() {
-        
+        if(pw1TF.text!.characters.count < 6){
+            let alertController = UIAlertController(title: "Woops!", message: "Your password should have more than 6 characters", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+            // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                (result : UIAlertAction) -> Void in
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else{
+            if(pw1TF.text! != pw2TF.text!){
+                let alertController = UIAlertController(title: "Woops!", message: "Two passwords are not the same", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+                let okAction = UIAlertAction(title: "Re-type", style: UIAlertActionStyle.default) {
+                    (result : UIAlertAction) -> Void in
+                }
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+            else{
+                Alamofire.request(
+                    URL(string: "http://localhost:3000/reset")!,
+                    method: .post,
+                    parameters: ["username":self.username!,"token":self.token!,"password":pw1TF.text!])
+                    .validate()
+                    .responseJSON {response in
+                        var result = response.result.value
+                        var json = JSON(result)
+                        if(json["Target Action"] == "reset"){
+                            if(json["content"] == "fail"){
+                                let alertController = UIAlertController(title: "Woops!", message: "Something bad happened", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                                // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+                                let okAction = UIAlertAction(title: "Re-type", style: UIAlertActionStyle.default) {
+                                    (result : UIAlertAction) -> Void in
+                                }
+                                alertController.addAction(okAction)
+                                self.present(alertController, animated: true, completion: nil)
+                            }
+                            else if(json["content"] == "error"){
+                                let alertController = UIAlertController(title: "Woops!", message: "Email address does not exist", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                                // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+                                let okAction = UIAlertAction(title: "Re-type", style: UIAlertActionStyle.default) {
+                                    (result : UIAlertAction) -> Void in
+                                }
+                                alertController.addAction(okAction)
+                                self.present(alertController, animated: true, completion: nil)
+                            }
+                            else{
+                                let alertController = UIAlertController(title: "Congratulations!", message: "Reset password success!", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                                // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+                                let okAction = UIAlertAction(title: "Log in again", style: UIAlertActionStyle.default) {
+                                    (result : UIAlertAction) -> Void in self.navigationController?.popToRootViewController(animated: true)
+                                }
+                                alertController.addAction(okAction)
+                                self.present(alertController, animated: true, completion: nil)
+                                print("here")
+                            }
+                        }
+                }
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

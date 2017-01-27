@@ -160,7 +160,18 @@ class SignUp1ViewController: UIViewController, UITextFieldDelegate, UITableViewD
                 self.present(alertController, animated: true, completion: nil)
             }
             else{
-                nextPerformed()
+                if((pwTF.text?.characters.count)! < 6){
+                    let alertController = UIAlertController(title: "Woops!", message: "Your password should have more than 6 characters", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                    // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                        (result : UIAlertAction) -> Void in
+                    }
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                else{
+                    nextPerformed()
+                }
             }
         }
     }

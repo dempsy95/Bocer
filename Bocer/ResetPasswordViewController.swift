@@ -217,12 +217,24 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate, UITabl
 
     
     private func enterPerformed() {
-        let sb = UIStoryboard(name: "new-Qian", bundle: nil);
-        let vc = sb.instantiateViewController(withIdentifier: "ResetPassword2") as! ResetPassword2ViewController
-        vc.username = emailTF.text
-        vc.token = pwTF.text
-        //self.push(vc, animated: true, completion: nil)
-        self.navigationController?.pushViewController(vc, animated: true)
+        if(emailTF.text == "" || emailTF.text == nil || pwTF.text == "" || pwTF.text == nil){
+            let alertController = UIAlertController(title: "Woops!", message: "Both fields can not be empty", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+            // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                (result : UIAlertAction) -> Void in
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+
+        }
+        else{
+            let sb = UIStoryboard(name: "new-Qian", bundle: nil);
+            let vc = sb.instantiateViewController(withIdentifier: "ResetPassword2") as! ResetPassword2ViewController
+            vc.username = emailTF.text
+            vc.token = pwTF.text
+            //self.push(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     override func didReceiveMemoryWarning() {
