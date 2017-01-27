@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     private var mNavBar = Constant().makeNavBar()
     @IBOutlet weak var mSearchBar: UISearchBar!
@@ -17,6 +17,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var mResultTable: UITableView!
     @IBOutlet weak var mMiddleTable: UITableView!
     private var result = [String]()
+    private var schoolName: String? = "University of California, Los Angeles"
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +34,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         schoolButton.layer.cornerRadius = CGFloat(Constant().buttonCornerRadius)
         schoolButton.layer.borderWidth = 1
         schoolButton.layer.borderColor = UIColor.black.cgColor
+        schoolButton.setTitle(schoolName, for: .focused)
+        schoolButton.setTitle(schoolName, for: .highlighted)
+        schoolButton.setTitle(schoolName, for: .normal)
+        schoolButton.setTitle(schoolName, for: .selected)
+
         
         // Do any additional setup after loading the view.
         self.view.addSubview(mNavBar)
@@ -174,6 +180,103 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     @IBAction func schoolButtonFired(_ sender: UIButton) {
+        mSearchBar.resignFirstResponder()
+        let title = ""
+        let message = "\n\n\n\n\n\n\n\n\n\n"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
+        alert.isModalInPopover = true
+        
+        //Create a frame (placeholder/wrapper) for the picker and then create the picker
+        let pickerFrame: CGRect = CGRect(x: 17, y: 52, width: 270, height: 120)// CGRectMake(left), top, width, height) - left and top are like margins
+        let picker: UIPickerView = UIPickerView(frame: pickerFrame)
+        
+        picker.tag = 0
+        picker.delegate = self;
+        picker.dataSource = self;
+        
+        alert.view.addSubview(picker);
+
+        //Create the toolbar view - the view witch will hold our 2 buttons
+        let toolFrame = CGRect(x: 17, y: 5, width: 270, height: 45)
+        let toolView: UIView = UIView(frame: toolFrame);
+        
+        //add buttons to the view
+        let buttonCancelFrame: CGRect = CGRect(x: 0, y: 7, width: 70, height: 30) //size & position of the button as placed on the toolView
+
+        //Create the cancel button & set its title
+        let buttonCancel: UIButton = UIButton(frame: buttonCancelFrame);
+        buttonCancel.setTitle("Cancel", for: UIControlState.normal);
+        buttonCancel.setTitleColor(UIColor.black, for: UIControlState.normal);
+        toolView.addSubview(buttonCancel); //add it to the toolView
+        
+        //Add the target - target, function to call, the event witch will trigger the function call
+        buttonCancel.addTarget(self, action: #selector(SearchViewController.cancelSelection), for: UIControlEvents.touchDown);
+
+        //add buttons to the view
+        let buttonOkFrame: CGRect = CGRect(x: 200, y: 7, width: 70, height: 30); //size & position of the button as placed on the toolView
+        
+        //Create the Select button & set the title
+        let buttonOk: UIButton = UIButton(frame: buttonOkFrame);
+        buttonOk.setTitle("Select", for: UIControlState.normal);
+        buttonOk.setTitleColor(UIColor.black, for: UIControlState.normal);
+        toolView.addSubview(buttonOk); //add to the subview
+        
+        //Add the target - target, function to call, the event witch will trigger the function call
+        buttonOk.addTarget(self, action: #selector(SearchViewController.okSelection), for: UIControlEvents.touchDown);
+        
+        //add the toolbar to the alert controller
+        alert.view.addSubview(toolView);
+        
+        self.present(alert, animated: true, completion: nil);
+    }
+    
+    @objc private func okSelection(sender: UIButton){
+        // Your code when select button is tapped
+        schoolButton.setTitle(schoolName, for: .focused)
+        schoolButton.setTitle(schoolName, for: .highlighted)
+        schoolButton.setTitle(schoolName, for: .normal)
+        schoolButton.setTitle(schoolName, for: .selected)
+        //schoolButton.contentHorizontalAlignment = .center
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func cancelSelection(sender: UIButton){
+        self.dismiss(animated: true, completion: nil);
+        // We dismiss the alert. Here you can add your additional code to execute when cancel is pressed
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // returns number of rows in each component..
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        return SchoolList().School.count
+    }
+    
+    // Return the title of each row in your picker ... In my case that will be the profile name or the username string
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return SchoolList().School[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        schoolName = SchoolList().School[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var pickerLabel = view as? UILabel;
+        
+        if (pickerLabel == nil)
+        {
+            pickerLabel = UILabel()
+            
+            pickerLabel?.font = UIFont(name: "Montserrat", size: 12)
+            pickerLabel?.textAlignment = NSTextAlignment.center
+        }
+        
+        pickerLabel?.text = SchoolList().School[row]
+        
+        return pickerLabel!;
     }
     //TODO:
     //下拉刷新加载更多功能
