@@ -82,19 +82,13 @@ class SignUp1ViewController: UIViewController, UITextFieldDelegate, UITableViewD
         self.view.addGestureRecognizer(swipeRecognizer)
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let text = textField.text {
-            if let floatingLabelTextField = textField as? SkyFloatingLabelTextField {
-                if(textField == emailTF && (isValidEmail(s: text))) {
-                    floatingLabelTextField.errorMessage = "Invalid email"
-                }
-                else {
-                    // The error message will only disappear when we reset it to nil or empty string
-                    floatingLabelTextField.errorMessage = ""
-                }
-            }
-        }
-        return true
+    //validate if email address is valid
+    func validateEmail(enteredEmail:String) -> Bool {
+        
+        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+        return emailPredicate.evaluate(with: enteredEmail)
+        
     }
     
     //text field close
@@ -156,7 +150,18 @@ class SignUp1ViewController: UIViewController, UITextFieldDelegate, UITableViewD
             self.present(alertController, animated: true, completion: nil)
         }
         else{
-            nextPerformed()
+            if(!validateEmail(enteredEmail: emailTF.text!) || !(emailTF.text?.hasSuffix(".edu"))!){
+                let alertController = UIAlertController(title: "Woops!", message: "Should use a college email address", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                    (result : UIAlertAction) -> Void in
+                }
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+            else{
+                nextPerformed()
+            }
         }
     }
     

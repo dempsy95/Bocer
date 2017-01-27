@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class ResetPassword2ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate {
-
-        private let mNavBar = Constant().makeNavBar()
+    //user information
+    internal var username:String?
+    internal var token:String?
+    
+    private let mNavBar = Constant().makeNavBar()
 
     @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var pw1TF: SkyFloatingLabelTextFieldWithIcon!
@@ -86,6 +91,7 @@ class ResetPassword2ViewController: UIViewController, UITextFieldDelegate, UITab
     }
     
     @IBAction func confirmFired(_ sender: UIButton) {
+        
         confirmPerformed()
     }
     @IBAction func viewClicked(_ sender: UIView) {

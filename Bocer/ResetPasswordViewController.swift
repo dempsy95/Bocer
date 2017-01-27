@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class ResetPasswordViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate {
 
@@ -80,21 +82,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate, UITabl
         self.view.addGestureRecognizer(swipeRecognizer)
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let text = textField.text {
-            if let floatingLabelTextField = textField as? SkyFloatingLabelTextField {
-                if(textField == emailTF && (isValidEmail(s: text))) {
-                    floatingLabelTextField.errorMessage = "Invalid email"
-                }
-                else {
-                    // The error message will only disappear when we reset it to nil or empty string
-                    floatingLabelTextField.errorMessage = ""
-                }
-            }
-        }
-        return true
-    }
-    
+
     //text field close
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         resignFirstResponder()
@@ -157,47 +145,84 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate, UITabl
         pwTF.resignFirstResponder()
     }
     
+    //validate if email address is valid
+    func validateEmail(enteredEmail:String) -> Bool {
+        
+        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+        return emailPredicate.evaluate(with: enteredEmail)
+        
+    }
+    
     /*
     TODO:
      1. Need to check whether email account is exist
     */
     private func sendPerformed() {
-        
-        //begin counting
-        if !isCounting {
-            beginCounting()
-            let alertController = UIAlertController(title: "Warning",
-                                                message: "A verification link has been sent to your Email.\nYou need to wait 60 seconds to send another one.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        if(validateEmail(enteredEmail: emailTF.text!)){
+            Alamofire.request(
+                URL(string: "http://localhost:3000/forgetPassword")!,
+                method: .post,
+                parameters: ["username":emailTF.text!])
+                .validate()
+                .responseJSON {response in
+                    var result = response.result.value
+                    var json = JSON(result)
+                    if(json["Target Action"] == "forgetresult"){
+                        if(json["content"] == "fail"){
+                            let alertController = UIAlertController(title: "Woops!", message: "Something bad happens", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                            // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+                            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                                (result : UIAlertAction) -> Void in
+                            }
+                            alertController.addAction(okAction)
+                            self.present(alertController, animated: true, completion: nil)
+
+                        }
+                        else if(json["content"] == "not exist"){
+                            let alertController = UIAlertController(title: "Woops!", message: "The email address does not exist", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                            // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+                            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                                (result : UIAlertAction) -> Void in
+                            }
+                            alertController.addAction(okAction)
+                            self.present(alertController, animated: true, completion: nil)
+
+                        }
+                        else{ //success
+                            //begin counting
+                            if !self.isCounting {
+                                self.beginCounting()
+                                let alertController = UIAlertController(title: "Warning",
+                                                                        message: "A verification link has been sent to your Email.\nYou need to wait 60 seconds to send another one.", preferredStyle: .alert)
+                                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                                alertController.addAction(okAction)
+                                self.present(alertController, animated: true, completion: nil)
+                            }
+                        }
+                    }
+            }
+        }
+        else{
+            let alertController = UIAlertController(title: "Woops!", message: "Not a valid email address", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+            // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                (result : UIAlertAction) -> Void in
+            }
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
         }
     }
     
-    /*
-     TODO:
-     isValidEmail
-     input an email and check whether it is a valid college email or not
-     */
-    private func isValidEmail(s: String) -> Bool {
-        return true
-    }
-    
-    /*
-    TODO:
-    check whether the verification code entered by the user is correct or not
-    */
-    private func checkVerificationCode(s: String?) -> Bool {
-        return true
-    }
+
     
     private func enterPerformed() {
-        if checkVerificationCode(s: pwTF.text) {
-            let sb = UIStoryboard(name: "new-Qian", bundle: nil);
-            let vc = sb.instantiateViewController(withIdentifier: "ResetPassword2") as UIViewController
-            //self.push(vc, animated: true, completion: nil)
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil);
+        let vc = sb.instantiateViewController(withIdentifier: "ResetPassword2") as! ResetPassword2ViewController
+        vc.username = emailTF.text
+        vc.token = pwTF.text
+        //self.push(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
