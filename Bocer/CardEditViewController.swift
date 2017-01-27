@@ -253,14 +253,14 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
             cvvAlert()
             return
         }
-        print(month+year)
-        print(number)
-        print(cvv)
-        //TODO:
-        //send info:
-        //card number: number
-        //card expiary date: month year
-        //card cvv: cvv
+        
+        if (validate()) {
+          //TODO:
+          //send info:
+          //card number: number
+          //card expiary date: month year
+          //card cvv: cvv
+        }
         let transition = Constant().transitionFromLeft()
         view.window!.layer.add(transition, forKey: kCATransition)
         self.dismiss(animated: false, completion: nil)
@@ -288,6 +288,13 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //TODO:
+    //validate credit card
+    private func validate() -> Bool {
+        return true
+
     }
     
     /*
