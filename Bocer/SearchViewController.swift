@@ -7,8 +7,20 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    //informatino specific from server
+    internal var search_row_num:Int?
+    internal var result_row_num:Int?
+    internal var search_text:String?
+    
+    var search_result:[Dictionary<String, String>] = []
+    internal var googld_id:String?
+    
+    
+    //end information from server
 
     private var mNavBar = Constant().makeNavBar()
     @IBOutlet weak var mSearchBar: UISearchBar!
@@ -20,7 +32,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var schoolName: String? = "University of California, Los Angeles"
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //server part
+        self.search_row_num = 0
+        self.result_row_num = 0
+        //end server part
         mSearchBar.delegate = self
         self.mResultTable.delegate = self
         mResultTable.dataSource = self
@@ -81,6 +96,31 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @objc private func didSearch() {
         //TODO:
         //When search fired, information inside search bar is sent to the server, and the client will get a list of book names back
+        self.search_result.removeAll()
+        Alamofire.request(
+            URL(string: "http://localhost:3000/searchBook")!,
+            method: .post,
+            parameters: ["field":self.search_text!])
+            .validate()
+            .responseJSON {response in
+                var result = response.result.value
+                var json = JSON(result)
+                if(json["content"] != "fail"){
+                    for item in json["content"].array! {
+                        var temp = [String:String]()
+                        temp["title"] = item["title"].string!
+                        if(item["authors"] == nil){
+                            temp["author"] = "no author for this book"
+                        }
+                        else{
+                            temp["author"] = item["authors"][0].string!
+                        }
+                        temp["google_id"] = item["id"].string!
+                        self.search_result.append(temp)
+                    }
+                    self.mMiddleTable.reloadData()
+                }
+        }
         UIView.transition(with: mResultTable, duration: 0.3, options: [UIViewAnimationOptions.transitionCrossDissolve, UIViewAnimationOptions.allowAnimatedContent], animations: {
             self.mMiddleTable.isHidden = false
             self.mResultTable.isHidden = true
@@ -95,9 +135,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == mMiddleTable {
-            return 5
-        } else {
-            return 5
+            return self.search_result.count
+        }
+        else if(tableView == mResultTable) {
+            return self.result_row_num!
+        }
+        else{
+            return 0 //in case of more tables added
         }
     }
     
@@ -122,6 +166,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let identify: String = "searchMiddleCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identify)
             let mTitle = cell?.viewWithTag(100) as! UILabel?
+            let mAuthor = cell?.viewWithTag(101) as! UILabel?
+            mTitle?.text = self.search_result[indexPath.row]["title"]
+            mAuthor?.text = self.search_result[indexPath.row]["author"]
             return cell!
         }
     }
@@ -141,10 +188,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        print("[ViewController searchBar] searchText: \(searchText)")
-        
+    //will added auto complete as one of the functionalities
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.search_text = searchText
+        didSearch()
+    }
+    
+//    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+//        
+//        print("[ViewController searchBar] searchText: \(searchText)")
+//        
 //        // 没有搜索内容时显示全部内容
 //        if searchText == "" {
 //            self.result = self.array
@@ -160,10 +213,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //                }
 //            }
 //        }
-        
-        // 刷新tableView 数据显示
+//        
+//         刷新tableView 数据显示
 //        self.tableView.reloadData()
-    }
+//    }
     
     // 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
