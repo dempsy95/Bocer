@@ -158,6 +158,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let mAuthor = cell?.viewWithTag(102) as! UILabel?
             let mPrice = cell?.viewWithTag(103) as! UILabel?
             let mAvatar = cell?.viewWithTag(104) as! UIImageView?
+            let mEdition = cell?.viewWithTag(105) as! UILabel?
             mAvatar?.layer.cornerRadius = 25
             mAvatar?.layer.masksToBounds = true
         

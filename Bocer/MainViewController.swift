@@ -62,6 +62,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         let mComment = cell?.viewWithTag(3) as! UILabel?
         let mPublisher = cell?.viewWithTag(4) as! UILabel?
         let mRate = cell?.viewWithTag(5) as! UIImageView?
+        let mEdition = cell?.viewWithTag(6) as! UILabel?
         mAvatar?.layer.cornerRadius = 30
         mAvatar?.layer.masksToBounds = true
         
@@ -76,6 +77,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         //getBookinfo(bookID).publisher
         //getBookinfo(bookID).comment
         //getBookinfo(bookID).rate
+        //getBookinfo(bookID).edition
         return cell!
     }
     

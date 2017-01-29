@@ -161,6 +161,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         let mTitle = cell?.viewWithTag(101)
         let mAuthor = cell?.viewWithTag(102)
         let mPrice = cell?.viewWithTag(103)
+        let mEdition = cell?.viewWithTag(104)
         
         //TODO:
         //retrieve bookinfo by using book id

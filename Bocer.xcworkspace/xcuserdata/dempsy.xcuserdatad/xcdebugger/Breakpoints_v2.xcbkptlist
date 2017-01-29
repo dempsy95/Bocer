@@ -62,9 +62,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "11"
-            endingLineNumber = "11"
-            landmarkName = "SearchViewController"
-            landmarkType = "3">
+            endingLineNumber = "11">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -343,11 +341,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bocer/SearchViewController.swift"
-            timestampString = "507183513.98885"
+            timestampString = "507418703.093155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "SearchViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bocer/SearchViewController.swift"
+            timestampString = "507418703.093155"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "schoolButtonFired(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -359,28 +373,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bocer/SearchViewController.swift"
-            timestampString = "507183513.98885"
+            timestampString = "507418703.093155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
-            landmarkName = "schoolButtonFired(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bocer/SearchViewController.swift"
-            timestampString = "507183513.98885"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
-            landmarkName = "schoolButtonFired(_:)"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "searchBarCancelButtonClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
