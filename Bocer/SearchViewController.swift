@@ -59,7 +59,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.view.addSubview(mNavBar)
         mNavBar.pushItem(onMakeNavitem(), animated: true)
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
-        
         //
         mResultTable.isHidden = true
     }
@@ -104,22 +103,24 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             .responseJSON {response in
                 var result = response.result.value
                 var json = JSON(result)
-                if(json["content"] != "fail"){
-                    self.search_result.removeAll()
-                    for item in json["content"].array! {
-                        var temp = [String:String]()
-                        temp["title"] = item["title"].string!
-                        if(item["authors"] == nil){
-                            temp["author"] = "no author for this book"
+                if(result != nil){
+                    if(json["content"] != "fail"){
+                        self.search_result.removeAll()
+                        for item in json["content"].array! {
+                            var temp = [String:String]()
+                            temp["title"] = item["title"].string!
+                            if(item["authors"] == nil){
+                                temp["author"] = "no author for this book"
+                            }
+                            else{
+                                temp["author"] = item["authors"][0].string!
+                            }
+                            temp["google_id"] = item["id"].string!
+                            self.search_result.append(temp)
                         }
-                        else{
-                            temp["author"] = item["authors"][0].string!
+                        if(json["bookname"].string! == self.search_text!){
+                            self.mMiddleTable.reloadData()
                         }
-                        temp["google_id"] = item["id"].string!
-                        self.search_result.append(temp)
-                    }
-                    if(json["bookname"].string! == self.search_text!){
-                        self.mMiddleTable.reloadData()
                     }
                 }
         }
