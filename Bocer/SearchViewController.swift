@@ -96,7 +96,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @objc private func didSearch() {
         //TODO:
         //When search fired, information inside search bar is sent to the server, and the client will get a list of book names back
-        self.search_result.removeAll()
         Alamofire.request(
             URL(string: "http://localhost:3000/searchBook")!,
             method: .post,
@@ -106,6 +105,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 var result = response.result.value
                 var json = JSON(result)
                 if(json["content"] != "fail"){
+                    self.search_result.removeAll()
                     for item in json["content"].array! {
                         var temp = [String:String]()
                         temp["title"] = item["title"].string!
@@ -118,7 +118,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         temp["google_id"] = item["id"].string!
                         self.search_result.append(temp)
                     }
-                    self.mMiddleTable.reloadData()
+                    if(json["bookname"].string! == self.search_text!){
+                        self.mMiddleTable.reloadData()
+                    }
                 }
         }
         UIView.transition(with: mResultTable, duration: 0.3, options: [UIViewAnimationOptions.transitionCrossDissolve, UIViewAnimationOptions.allowAnimatedContent], animations: {
@@ -177,9 +179,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         mSearchBar.resignFirstResponder()
         if tableView == mMiddleTable {
             let cell = mMiddleTable.cellForRow(at: indexPath)
-            //TODO:
-            //Send book name back to the server
-            //get all the selling items
             
             UIView.transition(with: mMiddleTable, duration: 0.3, options: [UIViewAnimationOptions.transitionCrossDissolve, UIViewAnimationOptions.allowAnimatedContent], animations: {
                 self.mMiddleTable.isHidden = true
@@ -191,32 +190,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //will added auto complete as one of the functionalities
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.search_text = searchText
-        didSearch()
+//        [NSObject .cancelPreviousPerformRequests(withTarget: self, selector: Selector(("didsearch")), object: searchText)]
+//        
+//        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(didSearch(bookname:sear)), userInfo: nil, repeats: false)
+        [NSObject .cancelPreviousPerformRequests(withTarget: self, selector: #selector(didSearch), object: nil)]
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(didSearch), userInfo: nil, repeats: false)
     }
     
-//    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-//        
-//        print("[ViewController searchBar] searchText: \(searchText)")
-//        
-//        // 没有搜索内容时显示全部内容
-//        if searchText == "" {
-//            self.result = self.array
-//        } else {
-//            
-//            // 匹配用户输入的前缀，不区分大小写
-//            self.result = []
-//            
-//            for arr in self.array {
-//                
-//                if arr.lowercaseString.hasPrefix(searchText.lowercaseString) {
-//                    self.result.append(arr)
-//                }
-//            }
-//        }
-//        
-//         刷新tableView 数据显示
-//        self.tableView.reloadData()
-//    }
+
     
     // 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
