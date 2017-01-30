@@ -183,8 +183,10 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        if indexPath.section == 0 {
-            
+        if indexPath.section == 1 {
+            if indexPath.item == 0 {
+                
+            }
         }
     }
 

@@ -32,6 +32,8 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.frame = CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: UIScreen.main.bounds.width * 2, height: UIScreen.main.bounds.height)
+        
         // Do any additional setup after loading the view.
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
@@ -58,7 +60,6 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         //delegate table view
         mTableView.delegate = self
         mTableView.dataSource = self
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
