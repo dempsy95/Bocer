@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        mScroll.contentSize = CGSize(width: 640, height: 300)
+        mScroll.contentSize = CGSize(width: UIScreen.main.bounds.width * 2, height: 300)
         retrieveInfo()
     }
     
@@ -85,7 +85,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
     //点击页控件时事件处理
     @objc private func pageChanged(sender:UIPageControl) {
         //根据点击的页数，计算scrollView需要显示的偏移量
-        let point = CGPoint(x: 320*sender.currentPage, y: 0)
+        let point = CGPoint(x: UIScreen.main.bounds.width * CGFloat(sender.currentPage), y: 0)
         mScroll.setContentOffset(point, animated: true)
         if currentpage != sender.currentPage {
             currentpage = sender.currentPage
