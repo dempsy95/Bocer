@@ -17,6 +17,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     internal var search_text:String?
     
     var search_result:[Dictionary<String, String>] = []
+    var fetch_result:[Dictionary<String, String>] = []
+    
     internal var googld_id:String?
     
     
@@ -141,7 +143,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return self.search_result.count
         }
         else if(tableView == mResultTable) {
-            return self.result_row_num!
+            return self.fetch_result.count
         }
         else{
             return 0 //in case of more tables added
@@ -161,8 +163,19 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let mEdition = cell?.viewWithTag(105) as! UILabel?
             mAvatar?.layer.cornerRadius = 25
             mAvatar?.layer.masksToBounds = true
-        
-        
+            
+            //cell data source
+            mTitle?.text = self.fetch_result[indexPath.row]["title"]
+            mAuthor?.text = "By " + self.fetch_result[indexPath.row]["author"]!
+            mPrice?.text = "$" + self.fetch_result[indexPath.row]["real_price"]!
+            mEdition?.text = "Edition:" + self.fetch_result[indexPath.row]["edition"]!
+            var userimagedata = NSData(base64Encoded: self.fetch_result[indexPath.row]["userimage"]!, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)!
+            var userimage = UIImage(data:userimagedata as Data)
+            var bookimagedata = NSData(base64Encoded: self.fetch_result[indexPath.row]["smallimage"]!, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)!
+            var bookimage = UIImage(data:bookimagedata as Data)
+            mAvatar?.image = userimage
+            mImage?.image = bookimage
+            
             cell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
             return cell!
@@ -181,7 +194,46 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         mSearchBar.resignFirstResponder()
         if tableView == mMiddleTable {
             let cell = mMiddleTable.cellForRow(at: indexPath)
-            
+            let titleLabel = cell?.viewWithTag(100) as! UILabel?
+            let authorLabel = cell?.viewWithTag(101) as! UILabel?
+            var title = titleLabel?.text!
+            var author = authorLabel?.text!
+            Alamofire.request(
+                URL(string: "http://localhost:3000/fetch_listing_by_author")!,
+                method: .post,
+                parameters: ["title":title!,"author":author!,"school":"Vanderbilt University"])
+                .validate()
+                .responseJSON {response in
+                    var result = response.result.value
+                    var json = JSON(result)
+                    if(result != nil){
+                        if(json["Target Action"] == "fetchlistingbyauthorresult"){
+                            if(json["content"] != "fail"){
+                                if(json["content"] == "empty"){ //there is no data here
+                                    self.fetch_result.removeAll()
+                                    self.mResultTable.reloadData()
+                                }
+                                else{
+                                    self.fetch_result.removeAll()
+                                    for item in json["content"].array! {
+                                        var temp = [String:String]()
+                                        temp["listing_id"] = item["_id"].string!
+                                        temp["title"] = item["title"].string!
+                                        temp["author"] = item["author"].string!
+                                        temp["school"] = item["school"].string!
+                                        temp["edition"] = item["edition"].string!
+                                        temp["userimage"] = item["userimage"].string!
+                                        temp["smallimage"] = item["small_image"].string!
+                                        temp["real_price"] = item["real_price"].string!
+                                        temp["state"] = item["state"].string!
+                                        self.fetch_result.append(temp)
+                                    }
+                                    self.mResultTable.reloadData()
+                                }
+                            }
+                        }
+                    }
+            }
             UIView.transition(with: mMiddleTable, duration: 0.3, options: [UIViewAnimationOptions.transitionCrossDissolve, UIViewAnimationOptions.allowAnimatedContent], animations: {
                 self.mMiddleTable.isHidden = true
                 self.mResultTable.isHidden = false
