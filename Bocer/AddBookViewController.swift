@@ -78,7 +78,11 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     private func nextPerformed() {
-        
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "AddBook2") as! AddBook2ViewController
+        let transition = Constant().transitionFromRight()
+        view.window!.layer.add(transition, forKey: kCATransition)
+        self.present(vc, animated: false)
     }
 
     @IBAction func viewClicked(_ sender: UIView) {
