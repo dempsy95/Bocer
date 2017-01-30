@@ -11,6 +11,7 @@ import SideMenu
 
 class ProfileViewController: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var mConstranit: NSLayoutConstraint!
     @IBOutlet weak var mStackView: UIStackView!
     @IBOutlet weak var mTableView: UITableView!
     @IBOutlet weak var mScroll: UIScrollView!
@@ -33,8 +34,13 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.preferredContentSize = CGSize(width: UIScreen.main.bounds.width * 2, height: UIScreen.main.bounds.height)
         self.view.frame = CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: UIScreen.main.bounds.width * 2, height: UIScreen.main.bounds.height)
-        mStackView.frame = CGRect(x: mStackView.frame.minX, y: mStackView.frame.minY, width: UIScreen.main.bounds.width * 2, height: mStackView.frame.height)
+        mScroll.contentSize = CGSize(width: UIScreen.main.bounds.width * 2, height: 300)
+        mStackView.frame.size = CGSize(width: UIScreen.main.bounds.width * 2, height: 300)
+        mConstranit.constant = UIScreen.main.bounds.width * 2
+        print("width is \(UIScreen.main.bounds.size.width * 2)")
+        print("mStackView width is \(mStackView.frame.width)")
         
         // Do any additional setup after loading the view.
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
@@ -62,11 +68,12 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         //delegate table view
         mTableView.delegate = self
         mTableView.dataSource = self
+        print("width is \(UIScreen.main.bounds.width * 2)")
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        mScroll.contentSize = CGSize(width: UIScreen.main.bounds.width * 2, height: 300)
+        print("width is \(UIScreen.main.bounds.width * 2)")
         retrieveInfo()
     }
     

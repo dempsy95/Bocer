@@ -271,7 +271,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         alert.isModalInPopover = true
         
         //Create a frame (placeholder/wrapper) for the picker and then create the picker
-        let pickerFrame: CGRect = CGRect(x: 17, y: 52, width: UIScreen.main.bounds.width - 34, height: 120)// CGRectMake(left), top, width, height) - left and top are like margins
+        let pickerFrame: CGRect = CGRect(x: 17, y: 52, width: alert.view.bounds.width - 60, height: 120)// CGRectMake(left), top, width, height) - left and top are like margins
         let picker: UIPickerView = UIPickerView(frame: pickerFrame)
         
         picker.tag = 0
@@ -281,7 +281,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         alert.view.addSubview(picker);
 
         //Create the toolbar view - the view witch will hold our 2 buttons
-        let toolFrame = CGRect(x: 17, y: 5, width: UIScreen.main.bounds.width - 34, height: 45)
+        let toolFrame = CGRect(x: 17, y: 5, width: alert.view.bounds.width  - 60, height: 45)
         let toolView: UIView = UIView(frame: toolFrame);
         
         //add buttons to the view
@@ -297,7 +297,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         buttonCancel.addTarget(self, action: #selector(SearchViewController.cancelSelection), for: UIControlEvents.touchDown);
 
         //add buttons to the view
-        let buttonOkFrame: CGRect = CGRect(x: UIScreen.main.bounds.width - 104, y: 7, width: 70, height: 30); //size & position of the button as placed on the toolView
+        let buttonOkFrame: CGRect = CGRect(x: UIScreen.main.bounds.width - 120, y: 7, width: 70, height: 30); //size & position of the button as placed on the toolView
         
         //Create the Select button & set the title
         let buttonOk: UIButton = UIButton(frame: buttonOkFrame);
