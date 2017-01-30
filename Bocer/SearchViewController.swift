@@ -18,8 +18,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var search_result:[Dictionary<String, String>] = []
     var fetch_result:[Dictionary<String, String>] = []
-    
-    
     //end information from server
 
     private var mNavBar = Constant().makeNavBar()
