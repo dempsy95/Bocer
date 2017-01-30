@@ -725,6 +725,7 @@
                         <outlet property="mImage" destination="Hkh-22-0jj" id="ie0-Fs-u6t"/>
                         <outlet property="mPageControl" destination="b18-XS-InN" id="umm-6J-MWE"/>
                         <outlet property="mScroll" destination="d79-cQ-mw0" id="k1W-OZ-wlB"/>
+                        <outlet property="mStackView" destination="9dg-Tm-xS0" id="1dX-gh-EXw"/>
                         <outlet property="mTableView" destination="atP-5X-E36" id="v2M-cq-Qfp"/>
                         <outlet property="menuButton" destination="LiH-yv-c5L" id="4Hh-2J-X07"/>
                         <outlet property="nameLabel" destination="VZy-tq-TZB" id="OlB-IV-WFL"/>

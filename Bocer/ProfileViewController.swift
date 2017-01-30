@@ -11,6 +11,7 @@ import SideMenu
 
 class ProfileViewController: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var mStackView: UIStackView!
     @IBOutlet weak var mTableView: UITableView!
     @IBOutlet weak var mScroll: UIScrollView!
     @IBOutlet weak var mPageControl: UIPageControl!
@@ -33,6 +34,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         super.viewDidLoad()
 
         self.view.frame = CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: UIScreen.main.bounds.width * 2, height: UIScreen.main.bounds.height)
+        mStackView.frame = CGRect(x: mStackView.frame.minX, y: mStackView.frame.minY, width: UIScreen.main.bounds.width * 2, height: mStackView.frame.height)
         
         // Do any additional setup after loading the view.
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
