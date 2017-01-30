@@ -19,8 +19,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var search_result:[Dictionary<String, String>] = []
     var fetch_result:[Dictionary<String, String>] = []
     
-    internal var googld_id:String?
-    
     
     //end information from server
 
@@ -201,7 +199,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             Alamofire.request(
                 URL(string: "http://localhost:3000/fetch_listing_by_author")!,
                 method: .post,
-                parameters: ["title":title!,"author":author!,"school":"Vanderbilt University"])
+                parameters: ["title":title!,"author":author!,"school":schoolName!])
                 .validate()
                 .responseJSON {response in
                     var result = response.result.value
