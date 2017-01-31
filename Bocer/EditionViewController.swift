@@ -40,6 +40,7 @@ class EditionViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func viewClicked(_ sender: UIView) {
+        edition.resignFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {

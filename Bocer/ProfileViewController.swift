@@ -39,8 +39,6 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         mScroll.contentSize = CGSize(width: UIScreen.main.bounds.width * 2, height: 300)
         mStackView.frame.size = CGSize(width: UIScreen.main.bounds.width * 2, height: 300)
         mConstranit.constant = UIScreen.main.bounds.width * 2
-        print("width is \(UIScreen.main.bounds.size.width * 2)")
-        print("mStackView width is \(mStackView.frame.width)")
         
         // Do any additional setup after loading the view.
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
@@ -68,12 +66,10 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         //delegate table view
         mTableView.delegate = self
         mTableView.dataSource = self
-        print("width is \(UIScreen.main.bounds.width * 2)")
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("width is \(UIScreen.main.bounds.width * 2)")
         retrieveInfo()
     }
     

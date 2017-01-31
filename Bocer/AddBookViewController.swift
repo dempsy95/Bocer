@@ -42,6 +42,12 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         mTableView.isHidden = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        mResTable.deselectRow(at: IndexPath(item: 0, section: 1), animated: false)
+    }
+    
     //customize navigation item
     private func onMakeNavitem()->UINavigationItem{
         let mImage = UIImage(named: "back")
@@ -150,6 +156,14 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == mResTable && indexPath.section == 0 && indexPath.item == 0 {
+            return 70
+        } else {
+            return 44
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         mSearchBar.resignFirstResponder()
@@ -182,9 +196,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //fetch edition info back from child vc
     func fetchEditionBack(edition: String) {
-        print("fetch info success")
         myEdition = edition
-        print(myEdition)
         mResTable.reloadData()
     }
     
