@@ -132,7 +132,7 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
         if indexPath.section == 0 {
             if indexPath.item == 0 {
                 //show actionsheet picker for price
-                let picker = ActionSheetMultipleStringPicker(title: "Select Your Price", rows: [dollar, ["Dollar"], cent, ["Cent"]], initialSelection: [mDollar, 0, mCent, 0], doneBlock: {
+                let picker = ActionSheetMultipleStringPicker(title: "Select Your Price", rows: [dollar, ["Dollar"], cent, ["Cent  "]], initialSelection: [mDollar, 0, mCent, 0], doneBlock: {
                     picker, indexes, values in
                     self.mDollar = indexes?[0] as! Int
                     self.mCent = indexes?[2] as! Int
