@@ -79,6 +79,7 @@ class photoTableCell: UITableViewCell {
 
 class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CommentDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BookPhotoDelegate {
 
+    @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var mTableView: UITableView!
 
@@ -100,6 +101,8 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
         
         mTableView.delegate = self
         mTableView.dataSource = self
+        
+        nextBtn.layer.cornerRadius = CGFloat(Constant().buttonCornerRadius)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -134,10 +137,6 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
         view.window!.layer.add(transition, forKey: kCATransition)
         self.dismiss(animated: false, completion: nil)
     }
-    
-    @objc private func didNext() {
-    }
-    
     
     func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
@@ -312,7 +311,22 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func nextClicked(_ sender: UIButton) {
+        nextPerformed()
+    }
 
+    @objc private func didNext() {
+        nextPerformed()
+    }
+    
+    private func nextPerformed() {
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "AddBook3") as! AddBook3ViewController
+        let transition = Constant().transitionFromRight()
+        view.window!.layer.add(transition, forKey: kCATransition)
+        self.present(vc, animated: false)
+    }
+    
     /*
     // MARK: - Navigation
 
