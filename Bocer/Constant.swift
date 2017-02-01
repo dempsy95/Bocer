@@ -60,4 +60,13 @@ class Constant {
         return transition
     }
     
+    func transitionFromBottom() -> CATransition {
+        let transition = CATransition()
+        transition.duration = 0.4
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromBottom
+        return transition
+    }
+    
 }

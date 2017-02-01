@@ -90,7 +90,9 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func finishPerformed() {
-        
+        let transition = Constant().transitionFromBottom()
+        view.window!.layer.add(transition, forKey: kCATransition)
+        self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
     }
     
     func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int

@@ -114,9 +114,9 @@ class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     @objc private func didCancel() {
-        self.view.layer.speed = 0.7
-        self.modalTransitionStyle = .coverVertical
-        self.dismiss(animated: true, completion: nil)
+        let transition = Constant().transitionFromBottom()
+        view.window!.layer.add(transition, forKey: kCATransition)
+        self.dismiss(animated: false, completion: nil)
     }
 
     //go to the vc which shows the detail info about a card
