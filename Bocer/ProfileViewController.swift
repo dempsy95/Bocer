@@ -130,6 +130,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
             //Add a book
             let sb = UIStoryboard(name: "new-Qian", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "AddBook") as! AddBookViewController
+            vc.username = self.username!
             let transition = Constant().transitionFromRight()
             view.window!.layer.add(transition, forKey: kCATransition)
             self.present(vc, animated: false)

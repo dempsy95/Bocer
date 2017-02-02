@@ -102,6 +102,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     private func nextPerformed() {
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "AddBook2") as! AddBook2ViewController
+        vc.username = self.username!
         vc.book_title = self.myTitle
         vc.author = self.myAuthor
         vc.edition = self.myEdition

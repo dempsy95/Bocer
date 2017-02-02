@@ -166,6 +166,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         self.presentedViewController?.dismiss(animated: true, completion: nil)
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+        vc.username = self.username!
         vc.view.layer.speed = 0.7
         vc.modalTransitionStyle = .crossDissolve
         DispatchQueue.main.async {
