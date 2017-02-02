@@ -4,60 +4,100 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ActionSheetPicker-3.0.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>CountryPicker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>CreditCardValidator.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>FormTextField.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>Formatter.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>InputValidator.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>JSQMessagesViewController.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>JSQSystemSoundPlayer.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
 		</dict>
 		<key>Pods-Bocer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>Validation.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>YALSideMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>06DACF8DBF00078CC427153B4F5DE848</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>194A93D956F09C48269E44AB5BD150ED</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,12 +132,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>965699190112DDBD9B7864D091660DBC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9FD60300B8D95988AA4CDE1CD9F16729</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A54D330111B50CEF5D48B29E331083CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AB95EC496E59627D37C2625A7A8B055A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>ABB22700A27734F955F11687D5A50F2B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7DCF2B547F7871B9BFD74DE93B0E173</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D0581AF7BF4A6DA140D280B19ECC7BFF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

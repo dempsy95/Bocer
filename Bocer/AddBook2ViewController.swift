@@ -10,6 +10,7 @@ import UIKit
 import ActionSheetPicker_3_0
 
 class photoTableCell: UITableViewCell {
+    //end information used by server
     @IBOutlet weak var photo1: UIButton!
     @IBOutlet weak var photo2: UIButton!
     @IBOutlet weak var photo3: UIButton!
@@ -78,15 +79,24 @@ class photoTableCell: UITableViewCell {
 }
 
 class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CommentDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BookPhotoDelegate {
-
+    //information used by server
+    internal var book_title:String?
+    internal var author:String?
+    internal var edition:String?
+    
+    
+    internal var username:String?
+    
+    //end information used by server
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var mTableView: UITableView!
 
-    internal var photos = [UIImage](repeating: UIImage(), count: 8)
-    internal var photoCnt = 0
-    private var wellness: Int = 4
-    internal var myInfo: String? = nil
+    internal var coverPhoto: UIImage? //small image
+    internal var photos = [UIImage](repeating: UIImage(), count: 8) //raw uiimage
+    internal var photoCnt = 0 //photo number
+    private var wellness: Int = 4 //rating
+    internal var myInfo: String? = nil //description
     private let wellString = ["onestar", "twostar", "threestar", "fourstar", "fivestar"]
     private let mNavBar = Constant().makeNavBar()
     private var showedPhoto: Int?
@@ -272,6 +282,9 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
         }
         photos[7] = UIImage()
         photoCnt = photoCnt - 1
+        if photoCnt == 0 {
+            coverPhoto = nil
+        }
         self.mTableView.reloadData()
     }
     
@@ -299,6 +312,10 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
         let image  = (info[UIImagePickerControllerOriginalImage] as! UIImage?)!
         self.photos[self.photoCnt] = image
         self.photoCnt = self.photoCnt + 1
+        if self.photoCnt == 1 {
+            let imagedata = UIImageJPEGRepresentation(image, 0.25)!
+            self.coverPhoto = UIImage(data: imagedata)
+        }
         self.mTableView.reloadData()
     }
     
@@ -320,6 +337,24 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func nextPerformed() {
+        var photo_string:[String]?
+        var small_image:String? = ""
+        if(photoCnt != 0){
+            var smallimagedata = UIImageJPEGRepresentation(self.coverPhoto!, 1.0)
+            var smallimagestring = smallimagedata?.base64EncodedString()
+            small_image = smallimagestring
+            for item in self.photos{
+                var imagedata = UIImageJPEGRepresentation(item, 1.0)
+                var imagestring = imagedata?.base64EncodedString()
+                photo_string?.append(imagestring!)
+            }
+        }
+        var rate = self.wellness
+        var description = self.myInfo
+        
+        
+        
+        
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "AddBook3") as! AddBook3ViewController
         let transition = Constant().transitionFromRight()

@@ -10,13 +10,21 @@ import UIKit
 import ActionSheetPicker_3_0
 
 class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
-
+    //information used by server
+    private var sPrice, fPrice: Double?
+    internal var username:String?
+    internal var book_title:String?
+    
+    
+    
+    
+    
+    //end information used by server
     @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var mTableView: UITableView!
     
     private let mNavBar = Constant().makeNavBar()
-    private var sPrice, fPrice: Double?
     private var dollar = [String](repeating: String(), count: 1000)
     private var cent = [String](repeating: String(), count: 100)
     private var mDollar = 0

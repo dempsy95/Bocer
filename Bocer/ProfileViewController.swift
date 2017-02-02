@@ -10,7 +10,13 @@ import UIKit
 import SideMenu
 
 class ProfileViewController: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
+    //information used by server
+    internal var username:String?
+    
 
+    
+    
+    //end information used by server
     @IBOutlet weak var mConstranit: NSLayoutConstraint!
     @IBOutlet weak var mStackView: UIStackView!
     @IBOutlet weak var mTableView: UITableView!

@@ -7,18 +7,34 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, EditionDelegate {
-
+    //information used by server
+    
+    internal var username:String?
+    
+    //for search
+    internal var search_text:String?
+    internal var search_result:[Dictionary<String, String>] = []
+    
+    //for add
+    internal var google_id:Int?
+    private var myTitle: String? = ""
+    private var myAuthor: String? = ""
+    internal var myEdition: String?
+    
+    
+    
+    //end information used by server
     @IBOutlet weak var mResTable: UITableView!
     @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var mSearchBar: UISearchBar!
     @IBOutlet weak var mTableView: UITableView!
     
-    private var myTitle: String? = "Selected Stories of Lu Hsun"
-    private var myAuthor: String? = "Lu Hsun"
-    internal var myEdition: String?
+    
     private let mNavBar = Constant().makeNavBar()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +102,9 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     private func nextPerformed() {
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "AddBook2") as! AddBook2ViewController
+        vc.book_title = self.myTitle
+        vc.author = self.myAuthor
+        vc.edition = self.myEdition
         let transition = Constant().transitionFromRight()
         view.window!.layer.add(transition, forKey: kCATransition)
         self.present(vc, animated: false)
@@ -109,7 +128,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             //TODO: 
             //return number of cells for the search result
-            return 10
+            return self.search_result.count
         }
     }
     
@@ -129,13 +148,13 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
                     let identifier = "addBookTitle"
                     let cell=tableView.dequeueReusableCell(withIdentifier: identifier)
                     let mTitle = cell?.viewWithTag(100) as! UILabel?
-                    mTitle?.text? = myTitle!
+                    mTitle?.text? = self.myTitle!
                     return cell!
                 } else {
                     let identifier = "addBookAuthor"
                     let cell=tableView.dequeueReusableCell(withIdentifier: identifier)
                     let mAuthor = cell?.viewWithTag(100) as! UILabel?
-                    mAuthor?.text? = myAuthor!
+                    mAuthor?.text? = self.myAuthor!
                     return cell!
                 }
             } else {
@@ -152,6 +171,10 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             let identifier = "addBookCell"
             let cell=tableView.dequeueReusableCell(withIdentifier: identifier)
+            let mTitle = cell?.viewWithTag(100) as! UILabel?
+            let mAuthor = cell?.viewWithTag(101) as! UILabel?
+            mTitle?.text = self.search_result[indexPath.row]["title"]
+            mAuthor?.text = self.search_result[indexPath.row]["author"]
             return cell!
         }
     }
@@ -174,10 +197,9 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.mTableView.isHidden = true
                 self.mResTable.isHidden = false
                 self.nextBtn.isHidden = false
-                //TODO:
-                //get info of the BOOK
-                //myTitle, myAuthor, myEdition
-                //mResTable.reloadData()
+                self.myTitle = self.search_result[indexPath.row]["title"]
+                self.myAuthor = self.search_result[indexPath.row]["author"]
+                self.mResTable.reloadRows(at: [IndexPath(item: 0, section: 0), IndexPath(item: 1, section: 0)], with: .none)
             }, completion: nil)
         } else {
             if indexPath == IndexPath(item: 0, section: 1) {
@@ -201,6 +223,36 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @objc private func didSearch() {
+        Alamofire.request(
+            URL(string: "http://localhost:3000/searchBook")!,
+            method: .post,
+            parameters: ["field":self.search_text!])
+            .validate()
+            .responseJSON {response in
+                var result = response.result.value
+                var json = JSON(result)
+                if(result != nil){
+                    if(json["content"] != "fail"){
+                        self.search_result.removeAll()
+                        for item in json["content"].array! {
+                            var temp = [String:String]()
+                            temp["title"] = item["title"].string!
+                            if(item["authors"] == nil){
+                                temp["author"] = "no author for this book"
+                            }
+                            else{
+                                temp["author"] = item["authors"][0].string!
+                            }
+                            temp["google_id"] = item["id"].string!
+                            self.search_result.append(temp)
+                        }
+                        if(json["bookname"].string! == self.search_text!){
+                            self.mTableView.reloadData()
+                        }
+                    }
+                }
+        }
+        
         UIView.transition(with: mResTable, duration: 0.5, options: [UIViewAnimationOptions.transitionCrossDissolve, UIViewAnimationOptions.allowAnimatedContent], animations: {
             self.mTableView.isHidden = false
             self.mResTable.isHidden = true
@@ -210,7 +262,9 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //will added auto complete as one of the functionalities
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
+        self.search_text = searchText
+        [NSObject .cancelPreviousPerformRequests(withTarget: self, selector: #selector(didSearch), object: nil)]
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(didSearch), userInfo: nil, repeats: false)
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
