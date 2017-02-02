@@ -12,4 +12,5 @@ target ‘Bocer’ do
   pod “CountryPicker”
   pod 'SwiftyJSON'
   pod 'ActionSheetPicker-3.0'
+  pod 'JSQMessagesViewController'
 end

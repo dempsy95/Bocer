@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "803CCEC1658D5D8224E8EE8C2BE1757D"
+               BlueprintIdentifier = "AB95EC496E59627D37C2625A7A8B055A"
                BuildableName = "SideMenu.framework"
                BlueprintName = "YALSideMenu"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "803CCEC1658D5D8224E8EE8C2BE1757D"
+            BlueprintIdentifier = "AB95EC496E59627D37C2625A7A8B055A"
             BuildableName = "SideMenu.framework"
             BlueprintName = "YALSideMenu"
             ReferencedContainer = "container:Pods.xcodeproj">
