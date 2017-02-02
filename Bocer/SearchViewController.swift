@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import ActionSheetPicker_3_0
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     //informatino specific from server
@@ -27,7 +28,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var mResultTable: UITableView!
     @IBOutlet weak var mMiddleTable: UITableView!
     private var result = [String]()
-    private var schoolName: String? = "University of California, Los Angeles"
+    private var schoolName: String? = "Vanderbilt University"
     override func viewDidLoad() {
         super.viewDidLoad()
         //server part
@@ -265,68 +266,30 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBAction func schoolButtonFired(_ sender: UIButton) {
         mSearchBar.resignFirstResponder()
-        let title = ""
-        let message = "\n\n\n\n\n\n\n\n\n\n"
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
-        alert.isModalInPopover = true
+        //show actionsheet picker for School
+        let picker = ActionSheetStringPicker(title: "Select Your School", rows: SchoolList().School, initialSelection: getLoc(s: schoolName!), doneBlock: {
+            picker, indexes, values in
+            self.schoolName = values as! String?
+            self.schoolButton.setTitle(self.schoolName, for: .focused)
+            self.schoolButton.setTitle(self.schoolName, for: .highlighted)
+            self.schoolButton.setTitle(self.schoolName, for: .normal)
+            self.schoolButton.setTitle(self.schoolName, for: .selected)
+            return
+        }, cancel: { ActionMultipleStringCancelBlock in return }, origin: self.view)
+        picker?.toolbarButtonsColor = UIColor.black
         
-        //Create a frame (placeholder/wrapper) for the picker and then create the picker
-        let pickerFrame: CGRect = CGRect(x: 17, y: 52, width: alert.view.bounds.width - 60, height: 120)// CGRectMake(left), top, width, height) - left and top are like margins
-        let picker: UIPickerView = UIPickerView(frame: pickerFrame)
-        
-        picker.tag = 0
-        picker.delegate = self;
-        picker.dataSource = self;
-        
-        alert.view.addSubview(picker);
-
-        //Create the toolbar view - the view witch will hold our 2 buttons
-        let toolFrame = CGRect(x: 17, y: 5, width: alert.view.bounds.width  - 60, height: 45)
-        let toolView: UIView = UIView(frame: toolFrame);
-        
-        //add buttons to the view
-        let buttonCancelFrame: CGRect = CGRect(x: 0, y: 7, width: 70, height: 30) //size & position of the button as placed on the toolView
-
-        //Create the cancel button & set its title
-        let buttonCancel: UIButton = UIButton(frame: buttonCancelFrame);
-        buttonCancel.setTitle("Cancel", for: UIControlState.normal);
-        buttonCancel.setTitleColor(UIColor.black, for: UIControlState.normal);
-        toolView.addSubview(buttonCancel); //add it to the toolView
-        
-        //Add the target - target, function to call, the event witch will trigger the function call
-        buttonCancel.addTarget(self, action: #selector(SearchViewController.cancelSelection), for: UIControlEvents.touchDown);
-
-        //add buttons to the view
-        let buttonOkFrame: CGRect = CGRect(x: UIScreen.main.bounds.width - 120, y: 7, width: 70, height: 30); //size & position of the button as placed on the toolView
-        
-        //Create the Select button & set the title
-        let buttonOk: UIButton = UIButton(frame: buttonOkFrame);
-        buttonOk.setTitle("Select", for: UIControlState.normal);
-        buttonOk.setTitleColor(UIColor.black, for: UIControlState.normal);
-        toolView.addSubview(buttonOk); //add to the subview
-        
-        //Add the target - target, function to call, the event witch will trigger the function call
-        buttonOk.addTarget(self, action: #selector(SearchViewController.okSelection), for: UIControlEvents.touchDown);
-        
-        //add the toolbar to the alert controller
-        alert.view.addSubview(toolView);
-        
-        self.present(alert, animated: true, completion: nil);
+        picker?.show()
     }
     
-    @objc private func okSelection(sender: UIButton){
-        // Your code when select button is tapped
-        schoolButton.setTitle(schoolName, for: .focused)
-        schoolButton.setTitle(schoolName, for: .highlighted)
-        schoolButton.setTitle(schoolName, for: .normal)
-        schoolButton.setTitle(schoolName, for: .selected)
-        //schoolButton.contentHorizontalAlignment = .center
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc private func cancelSelection(sender: UIButton){
-        self.dismiss(animated: true, completion: nil);
-        // We dismiss the alert. Here you can add your additional code to execute when cancel is pressed
+    private func getLoc(s: String) -> Int {
+        var ans = 0
+        let schools = SchoolList().School
+        for name in 0 ... schools.count - 1 {
+            if s == schools[name] {
+                ans = name
+            }
+        }
+        return ans
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
