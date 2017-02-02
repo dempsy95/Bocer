@@ -11,4 +11,5 @@ target ‘Bocer’ do
   pod "CreditCardValidator"
   pod “CountryPicker”
   pod 'SwiftyJSON'
+  pod 'ActionSheetPicker-3.0'
 end

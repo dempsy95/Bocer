@@ -1,4 +1,5 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.2.0)
   - Alamofire (4.3.0)
   - CountryPicker (1.3)
   - CreditCardValidator (0.3.2)
@@ -6,6 +7,7 @@ PODS:
   - YALSideMenu (2.0.1)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0
   - Alamofire (~> 4.3)
   - CountryPicker
   - CreditCardValidator
@@ -13,12 +15,13 @@ DEPENDENCIES:
   - YALSideMenu (~> 2.0)
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   CountryPicker: 664c26411d833bb068c80beb15dc951eadde2911
   CreditCardValidator: f2e0fc0f273e3f303513d35745df23d336eb1d67
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   YALSideMenu: 4d6b90ea44dcdded18a99e46b676e4ad51d9c6bb
 
-PODFILE CHECKSUM: e9cff67ae1c2ab53dda3b246e607a56fe541278e
+PODFILE CHECKSUM: afe4445938e283e6a60b9525208a556911c72532
 
 COCOAPODS: 1.1.1
