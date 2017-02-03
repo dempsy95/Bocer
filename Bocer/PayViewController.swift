@@ -114,8 +114,6 @@ class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     @objc private func didCancel() {
-        self.view.layer.speed = 0.7
-        self.navigationController?.modalTransitionStyle = .crossDissolve
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
 

@@ -8,17 +8,28 @@
 
 import UIKit
 
-class MessengerViewController: UIViewController {
+class MessengerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var mTableView: UITableView!
+    @IBOutlet weak var mNavItem: UINavigationItem!
+
     private let mNavBar = Constant().makeNavBar()
+    
+    private var messengerNumber: Int? = 5 //number for table view
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.view.addSubview(mNavBar)
         mNavBar.pushItem(onMakeNavitem(), animated: true)
+        
+        //tableview UITableViewDelegate
+        mTableView.delegate = self
+        mTableView.dataSource = self
+        mTableView.tableFooterView = UIView()
+        mTableView.tableFooterView?.isHidden = true
+
     }
 
     private func onMakeNavitem()->UINavigationItem{
@@ -35,7 +46,28 @@ class MessengerViewController: UIViewController {
     }
     
     @objc private func didCancel() {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messengerNumber!
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let identify: String = "ChatCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: identify)
+
+        let mImage = cell?.viewWithTag(100) as! UIImageView?
+        mImage?.layer.cornerRadius = CGFloat(Constant().buttonCornerRadius)
+        let mName = cell?.viewWithTag(101) as! UILabel?
+        let mMessage = cell?.viewWithTag(102) as! UILabel?
+        let mTime = cell?.viewWithTag(103) as! UILabel?
+        
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
     }
     
     override func didReceiveMemoryWarning() {
