@@ -12,6 +12,7 @@ import SideMenu
 class ProfileViewController: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
     //information used by server
     internal var username:String?
+    internal var school:String? = "Vanderbilt University"
     
 
     
@@ -39,7 +40,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        collegeLabel.text = "Vanderbilt University" //!!!!!!
         self.preferredContentSize = CGSize(width: UIScreen.main.bounds.width * 2, height: UIScreen.main.bounds.height)
         self.view.frame = CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: UIScreen.main.bounds.width * 2, height: UIScreen.main.bounds.height)
         mScroll.contentSize = CGSize(width: UIScreen.main.bounds.width * 2, height: 300)
