@@ -128,9 +128,15 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         } else {
             //TODO:
             //Add a book
+            //encode image
+            var imagedata = UIImageJPEGRepresentation(self.mImage.image!, 0.25)
+            var imagestring = imagedata?.base64EncodedString()
             let sb = UIStoryboard(name: "new-Qian", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "AddBook") as! AddBookViewController
             vc.username = self.username!
+            vc.userimage = imagestring!
+            vc.school = self.collegeLabel.text!
+            
             let transition = Constant().transitionFromRight()
             view.window!.layer.add(transition, forKey: kCATransition)
             self.present(vc, animated: false)

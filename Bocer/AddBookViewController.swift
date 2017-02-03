@@ -14,13 +14,15 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     //information used by server
     
     internal var username:String?
+    internal var userimage:String?
+    internal var school:String?
     
     //for search
     internal var search_text:String?
     internal var search_result:[Dictionary<String, String>] = []
     
     //for add
-    internal var google_id:Int?
+    internal var google_id:String?
     private var myTitle: String? = ""
     private var myAuthor: String? = ""
     internal var myEdition: String?
@@ -103,9 +105,12 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "AddBook2") as! AddBook2ViewController
         vc.username = self.username!
-        vc.book_title = self.myTitle
-        vc.author = self.myAuthor
-        vc.edition = self.myEdition
+        vc.book_title = self.myTitle!
+        vc.author = self.myAuthor!
+        vc.edition = self.myEdition!
+        vc.google_id = self.google_id!
+        vc.userimage = self.userimage!
+        vc.school = self.school!
         let transition = Constant().transitionFromRight()
         view.window!.layer.add(transition, forKey: kCATransition)
         self.present(vc, animated: false)
@@ -176,6 +181,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
             let mAuthor = cell?.viewWithTag(101) as! UILabel?
             mTitle?.text = self.search_result[indexPath.row]["title"]
             mAuthor?.text = self.search_result[indexPath.row]["author"]
+            self.google_id = self.search_result[indexPath.row]["google_id"]
             return cell!
         }
     }

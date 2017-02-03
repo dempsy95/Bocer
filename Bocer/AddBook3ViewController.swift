@@ -8,14 +8,24 @@
 
 import UIKit
 import ActionSheetPicker_3_0
+import Alamofire
+import SwiftyJSON
 
 class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     //information used by server
     private var sPrice, fPrice: Double?
     internal var username:String?
+    internal var userimage:String?
     internal var book_title:String?
-    
-    
+    internal var google_id:String?
+    internal var school:String?
+    internal var author:String?
+    internal var edition:String?
+    internal var small_image:String?
+    internal var big_image:[String]?
+    internal var state:String?
+    internal var desc:String?
+    internal var price:String?
     
     
     
@@ -98,9 +108,34 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func finishPerformed() {
-        let transition = Constant().transitionFromBottom()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
+        Alamofire.request(
+            URL(string: "http://localhost:3000/createListing")!,
+            method: .post,
+            parameters: ["username":self.username!,"title":self.book_title!,"google_id":self.google_id!,"school":self.school!,"author":self.author!,"edition":self.edition!,"userimage":self.userimage!,"small_image":self.small_image!,"big_image":self.big_image!,"price":self.sPrice!,"real_price":self.fPrice!,"state":self.state!,"description":self.desc!])
+            .validate()
+            .responseJSON {response in
+                var result = response.result.value
+                var json = JSON(result)
+                if(result != nil){
+                    if(json["Target Action"] == "createListingresult"){
+                        if(json["content"] == "fail"){
+                            let alertController = UIAlertController(title: "Woops!", message: "Something bad happened!", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                            // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+                            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                                (result : UIAlertAction) -> Void in
+                            }
+                            alertController.addAction(okAction)
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                        else{
+                            let transition = Constant().transitionFromBottom()
+                            self.view.window!.layer.add(transition, forKey: kCATransition)
+                            self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
+                        }
+                    }
+                }
+        }
+        
     }
     
     func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int

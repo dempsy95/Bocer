@@ -83,9 +83,12 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     internal var book_title:String?
     internal var author:String?
     internal var edition:String?
+    internal var google_id:String?
+    internal var school:String?
     
     
     internal var username:String?
+    internal var userimage:String?
     
     //end information used by server
     @IBOutlet weak var nextBtn: UIButton!
@@ -337,26 +340,33 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func nextPerformed() {
-        var photo_string:[String]?
+        var photo_string:[String]? = []
         var small_image:String? = ""
         if(photoCnt != 0){
-            var smallimagedata = UIImageJPEGRepresentation(self.coverPhoto!, 1.0)
+            var smallimagedata = UIImageJPEGRepresentation(self.coverPhoto!, 0.6)
             var smallimagestring = smallimagedata?.base64EncodedString()
             small_image = smallimagestring
-            for item in self.photos{
-                var imagedata = UIImageJPEGRepresentation(item, 1.0)
+            for index in 0..<photoCnt{
+                var imagedata = UIImageJPEGRepresentation(self.photos[index], 0.6)
                 var imagestring = imagedata?.base64EncodedString()
                 photo_string?.append(imagestring!)
             }
         }
         var rate = self.wellness
         var description = self.myInfo
-        
-        
-        
-        
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "AddBook3") as! AddBook3ViewController
+        vc.username = self.username!
+        vc.book_title = self.book_title!
+        vc.google_id = self.google_id!
+        vc.author = self.author!
+        vc.edition = self.edition!
+        vc.userimage = self.userimage!
+        vc.big_image = photo_string!
+        vc.small_image = small_image!
+        vc.state = String(self.wellness)
+        vc.desc = self.myInfo!
+        vc.school = self.school!
         let transition = Constant().transitionFromRight()
         view.window!.layer.add(transition, forKey: kCATransition)
         self.present(vc, animated: false)
