@@ -27,6 +27,12 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     private var myAuthor: String? = ""
     internal var myEdition: String?
     
+    //for show book info
+    var authorCell: UITableViewCell?
+    var titleCell: UITableViewCell?
+    var mTitle: UILabel?
+    var mAuthor: UILabel?
+    
     
     
     //end information used by server
@@ -58,6 +64,11 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         mResTable.isHidden = true
         nextBtn.isHidden = true
         mTableView.isHidden = false
+        
+        titleCell = mResTable.dequeueReusableCell(withIdentifier: "addBookTitle")
+        mTitle = titleCell?.viewWithTag(100) as! UILabel?
+        authorCell = mResTable.dequeueReusableCell(withIdentifier: "addBookAuthor")
+        mAuthor = authorCell?.viewWithTag(100) as! UILabel?
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -151,19 +162,13 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         if (tableView == mResTable) {
             if indexPath.section == 0 {
                 if indexPath.item == 0 {
-                    let identifier = "addBookTitle"
-                    let cell=tableView.dequeueReusableCell(withIdentifier: identifier)
-                    let mTitle = cell?.viewWithTag(100) as! UILabel?
-                    mTitle?.text? = self.myTitle!
+                    self.mTitle?.text = self.myTitle
                     print("reload \(self.myTitle)   \(mTitle?.text)")
-                    return cell!
+                    return self.titleCell!
                 } else {
-                    let identifier = "addBookAuthor"
-                    let cell=tableView.dequeueReusableCell(withIdentifier: identifier)
-                    let mAuthor = cell?.viewWithTag(100) as! UILabel?
-                    mAuthor?.text? = self.myAuthor!
+                    self.mAuthor?.text = self.myAuthor
                     print("reload \(self.myAuthor)   \(mAuthor?.text)")
-                    return cell!
+                    return self.authorCell!
                 }
             } else {
                 let identifier = "addBookEdition"
