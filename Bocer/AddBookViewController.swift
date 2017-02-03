@@ -60,6 +60,8 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         mTableView.delegate = self
         mTableView.dataSource = self
         mSearchBar.delegate = self
+        self.mTableView.tableFooterView = UIView()
+        self.mTableView.tableFooterView?.isHidden = true
         
         mResTable.isHidden = true
         nextBtn.isHidden = true

@@ -40,6 +40,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         mResultTable.dataSource = self
         self.mMiddleTable.delegate = self
         self.mMiddleTable.dataSource = self
+        self.mMiddleTable.tableFooterView = UIView()
+        self.mMiddleTable.tableFooterView?.isHidden = true
         mSearchBar.backgroundImage = UIImage()
         mSearchBar.barTintColor = Constant().defaultColor
         mSearchBar.backgroundColor = UIColor.clear
