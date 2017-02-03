@@ -196,9 +196,7 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc private func didCancel() {
-        let transition = Constant().transitionFromLeft()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     //TODO:
@@ -261,9 +259,7 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
           //card expiary date: month year
           //card cvv: cvv
         }
-        let transition = Constant().transitionFromLeft()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 
     private func dateAlert() {

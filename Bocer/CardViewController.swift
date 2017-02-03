@@ -101,9 +101,7 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc private func didCancel() {
-        let transition = Constant().transitionFromLeft()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc private func didMenu() {
@@ -126,12 +124,8 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func didEdit() {
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "CardEdit") as! CardEditViewController
-        let transition = Constant().transitionFromRight()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        
         vc.mCardNumber = self.cardNumber
-        
-        self.present(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func didDelete() {

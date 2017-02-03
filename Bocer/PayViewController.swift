@@ -114,21 +114,18 @@ class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     @objc private func didCancel() {
-        let transition = Constant().transitionFromBottom()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.dismiss(animated: false, completion: nil)
+        self.view.layer.speed = 0.7
+        self.navigationController?.modalTransitionStyle = .crossDissolve
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
 
     //go to the vc which shows the detail info about a card
     private func showCardDetail(card: String) {
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Card") as! CardViewController
-        let transition = Constant().transitionFromRight()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        
         vc.cardNumber = card
         
-        self.present(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func secure(origin: String) -> String {
