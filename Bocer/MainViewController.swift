@@ -136,6 +136,8 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         case 2:
             showPay()
             break
+        case 4:
+            showMessenger()
         default:
             break
         }
@@ -179,12 +181,23 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         self.presentedViewController?.dismiss(animated: true, completion: nil)
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Pay") as! PayViewController
-        vc.view.layer.speed = 0.7
-        vc.modalTransitionStyle = .crossDissolve
+//        vc.view.layer.speed = 0.7
+//        vc.modalTransitionStyle = .crossDissolve
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)
         }
-        self.present(vc, animated: true, completion: nil)
+        let navCon = UINavigationController(rootViewController: vc)
+        navCon.setNavigationBarHidden(true, animated: true)
+        self.present(navCon, animated: true, completion: nil)
+    }
+    
+    private func showMessenger() {
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "Messenger") as! MessengerViewController
+        let navCon = UINavigationController(rootViewController: vc)
+        navCon.setNavigationBarHidden(true, animated: true)
+        self.present(navCon, animated: true, completion: nil)
     }
     
 

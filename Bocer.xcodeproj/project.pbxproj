@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		255BD7991E4180F4003E286A /* AddBook3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255BD7981E4180F4003E286A /* AddBook3ViewController.swift */; };
+		255BD7B71E4419A1003E286A /* MessengerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255BD7B61E4419A1003E286A /* MessengerViewController.swift */; };
 		25744AFE1E3AF1C200D34D88 /* SchoolList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25744AFD1E3AF1C200D34D88 /* SchoolList.swift */; };
 		259830841E3EE6A9009D73B2 /* AddBook2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259830831E3EE6A9009D73B2 /* AddBook2ViewController.swift */; };
 		259830861E402CB8009D73B2 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259830851E402CB8009D73B2 /* CommentViewController.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		12DE343053123281FDAD05E4 /* Pods-Bocer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bocer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bocer/Pods-Bocer.release.xcconfig"; sourceTree = "<group>"; };
 		255BD7981E4180F4003E286A /* AddBook3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBook3ViewController.swift; sourceTree = "<group>"; };
+		255BD7B61E4419A1003E286A /* MessengerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessengerViewController.swift; sourceTree = "<group>"; };
 		25744AFD1E3AF1C200D34D88 /* SchoolList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolList.swift; sourceTree = "<group>"; };
 		259830831E3EE6A9009D73B2 /* AddBook2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBook2ViewController.swift; sourceTree = "<group>"; };
 		259830851E402CB8009D73B2 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		255BD7B51E44197F003E286A /* Messenger */ = {
+			isa = PBXGroup;
+			children = (
+				255BD7B61E4419A1003E286A /* MessengerViewController.swift */,
+			);
+			name = Messenger;
+			sourceTree = "<group>";
+		};
 		25E9A9491E38914B00B259EF /* Pay */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +198,7 @@
 				25E9A94B1E38915F00B259EF /* Search */,
 				25E9A94A1E38915900B259EF /* Profile */,
 				25E9A9491E38914B00B259EF /* Pay */,
+				255BD7B51E44197F003E286A /* Messenger */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -351,6 +362,7 @@
 				259830841E3EE6A9009D73B2 /* AddBook2ViewController.swift in Sources */,
 				25E9A9481E38914700B259EF /* CardViewController.swift in Sources */,
 				25E102B01E32D70700363129 /* SearchViewController.swift in Sources */,
+				255BD7B71E4419A1003E286A /* MessengerViewController.swift in Sources */,
 				25F7B9C21E312E1900F056C4 /* ViewController.swift in Sources */,
 				25F7B9E01E312EAF00F056C4 /* MenuViewController.swift in Sources */,
 				25F7B9E21E312EAF00F056C4 /* PassThroughView.swift in Sources */,
