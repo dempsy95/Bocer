@@ -155,12 +155,14 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
                     let cell=tableView.dequeueReusableCell(withIdentifier: identifier)
                     let mTitle = cell?.viewWithTag(100) as! UILabel?
                     mTitle?.text? = self.myTitle!
+                    print("reload \(self.myTitle)   \(mTitle?.text)")
                     return cell!
                 } else {
                     let identifier = "addBookAuthor"
                     let cell=tableView.dequeueReusableCell(withIdentifier: identifier)
                     let mAuthor = cell?.viewWithTag(100) as! UILabel?
                     mAuthor?.text? = self.myAuthor!
+                    print("reload \(self.myAuthor)   \(mAuthor?.text)")
                     return cell!
                 }
             } else {
@@ -206,6 +208,10 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.nextBtn.isHidden = false
                 self.myTitle = self.search_result[indexPath.row]["title"]
                 self.myAuthor = self.search_result[indexPath.row]["author"]
+                print(self.search_result[indexPath.row]["title"])
+                print(self.search_result[indexPath.row]["author"])
+                
+                
                 self.mResTable.reloadRows(at: [IndexPath(item: 0, section: 0), IndexPath(item: 1, section: 0)], with: .none)
             }, completion: nil)
         } else {
