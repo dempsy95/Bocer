@@ -29,11 +29,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>JSQSystemSoundPlayer.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Bocer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,12 +52,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>194A93D956F09C48269E44AB5BD150ED</key>
+		<key>20B8D91A7066936C41028C8262F6D91B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>20B8D91A7066936C41028C8262F6D91B</key>
+		<key>88802FCFA6E5153AD30B820758206782</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,27 +67,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>905F347B29B20F657F79E2548BCA160C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>965699190112DDBD9B7864D091660DBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A54D330111B50CEF5D48B29E331083CA</key>
+		<key>AD8650B4F1089C3CDAF468268DAF8DA7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AB95EC496E59627D37C2625A7A8B055A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C7DCF2B547F7871B9BFD74DE93B0E173</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D0581AF7BF4A6DA140D280B19ECC7BFF</key>
+		<key>C5EE56BD20640CA71053D1824E09576E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

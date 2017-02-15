@@ -8,14 +8,13 @@
 
 import UIKit
 import CoreData
+import JSQMessagesViewController
 
 class MessengerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var mTableView: UITableView!
-    @IBOutlet weak var mNavItem: UINavigationItem!
 
     private var people = [NSManagedObject]()
-    private let mNavBar = Constant().makeNavBar()
     
     private var messengerNumber: Int? = 5 //number for table view
     
@@ -23,8 +22,7 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
         
         //tableview UITableViewDelegate
         mTableView.delegate = self
@@ -33,8 +31,13 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
         mTableView.tableFooterView?.isHidden = true
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        mTableView.reloadData()
+    }
 
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "cancel")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
@@ -42,9 +45,8 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
         btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
         
-        mNavItem.title = "Messenger"
-        mNavItem.setLeftBarButton(btnItem, animated: true)
-        return mNavItem
+        navigationItem.title = "Messenger"
+        navigationItem.leftBarButtonItem = btnItem
     }
     
     @objc private func didCancel() {
@@ -69,14 +71,17 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 69
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatView = ChatViewController()
         chatView.messages = makeNormalConversation()
-        let chatNavigationController = UINavigationController(rootViewController: chatView)
-        present(chatNavigationController, animated: true, completion: nil)
+        chatView.myUserID = "SomeIDForUser"
+        chatView.myDisplayName = "Lu Hsun"
+//        let chatNavigationController = UINavigationController(rootViewController: chatView)
+//        present(chatNavigationController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(chatView, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -84,6 +89,12 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
+    //TODO:
+    private func makeNormalConversation() -> [JSQMessage] {
+        let message = JSQMessage(senderId: "SomeSenderIDforHsunLu", displayName: "Lu Hsun", text: "Hello")
+        let conversation = [message]
+        return conversation as! [JSQMessage]
+    }
 
     /*
     // MARK: - Navigation

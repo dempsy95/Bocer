@@ -1,6 +1,6 @@
 # coding: utf-8
 # Uncomment this line to define a global platform for your project
-# platform :ios, '9.0'
+ platform :ios, '9.0'
 
 target ‘Bocer’ do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
@@ -12,5 +12,5 @@ target ‘Bocer’ do
   pod “CountryPicker”
   pod 'SwiftyJSON'
   pod 'ActionSheetPicker-3.0'
-  pod 'JSQMessagesViewController'
+  pod 'JSQMessagesViewController', :git => 'https://github.com/jessesquires/JSQMessagesViewController.git', :branch => 'develop'
 end

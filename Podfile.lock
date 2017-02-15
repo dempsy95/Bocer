@@ -3,9 +3,7 @@ PODS:
   - Alamofire (4.3.0)
   - CountryPicker (1.3)
   - CreditCardValidator (0.3.2)
-  - JSQMessagesViewController (7.3.4):
-    - JSQSystemSoundPlayer (~> 2.0.1)
-  - JSQSystemSoundPlayer (2.0.1)
+  - JSQMessagesViewController (7.3.4)
   - SwiftyJSON (3.1.4)
   - YALSideMenu (2.0.1)
 
@@ -14,20 +12,29 @@ DEPENDENCIES:
   - Alamofire (~> 4.3)
   - CountryPicker
   - CreditCardValidator
-  - JSQMessagesViewController
+  - JSQMessagesViewController (from `https://github.com/jessesquires/JSQMessagesViewController.git`, branch `develop`)
   - SwiftyJSON
   - YALSideMenu (~> 2.0)
+
+EXTERNAL SOURCES:
+  JSQMessagesViewController:
+    :branch: develop
+    :git: https://github.com/jessesquires/JSQMessagesViewController.git
+
+CHECKOUT OPTIONS:
+  JSQMessagesViewController:
+    :commit: 5aecf52126f4c89473b20fcbefcb3ffd6b2b7882
+    :git: https://github.com/jessesquires/JSQMessagesViewController.git
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   CountryPicker: 664c26411d833bb068c80beb15dc951eadde2911
   CreditCardValidator: f2e0fc0f273e3f303513d35745df23d336eb1d67
-  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
-  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  JSQMessagesViewController: c11b9e77372ab72c45c67311f6da7342e32df1e8
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   YALSideMenu: 4d6b90ea44dcdded18a99e46b676e4ad51d9c6bb
 
-PODFILE CHECKSUM: 317a582429a8618a068613c0570fa4230614a34c
+PODFILE CHECKSUM: ac1431c19b159d30dacab58a938b7710bb7a061d
 
 COCOAPODS: 1.1.1

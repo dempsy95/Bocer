@@ -196,7 +196,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Messenger") as! MessengerViewController
         let navCon = UINavigationController(rootViewController: vc)
-        navCon.setNavigationBarHidden(true, animated: true)
         self.present(navCon, animated: true, completion: nil)
     }
     
