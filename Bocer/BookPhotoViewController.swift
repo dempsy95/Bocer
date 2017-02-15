@@ -16,24 +16,21 @@ protocol  BookPhotoDelegate: NSObjectProtocol {
 class BookPhotoViewController: UIViewController {
 
     @IBOutlet weak var mImage: UIImageView!
-    @IBOutlet weak var mNavItem: UINavigationItem!
     
     internal weak var delegate: BookPhotoDelegate?
-    private let mNavBar = Constant().makeNavBar()
     internal var image: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         mImage.image = image
     }
 
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
@@ -48,16 +45,13 @@ class BookPhotoViewController: UIViewController {
         rightBtn.tintColor = UIColor.white
         let rightBtnItem = UIBarButtonItem(customView: rightBtn)
         
-        mNavItem.title = "PHOTO"
-        mNavItem.setLeftBarButton(btnItem, animated: true)
-        mNavItem.setRightBarButton(rightBtnItem, animated: true)
-        return mNavItem
+        navigationItem.title = "PHOTO"
+        navigationItem.leftBarButtonItem = btnItem
+        navigationItem.rightBarButtonItem = rightBtnItem
     }
     
     @objc private func didCancel() {
-        let transition = Constant().transitionFromLeft()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc private func didFinish() {
@@ -77,9 +71,7 @@ class BookPhotoViewController: UIViewController {
         if delegate != nil {
             delegate?.deletePhoto()
         }
-        let transition = Constant().transitionFromLeft()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {

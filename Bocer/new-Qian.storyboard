@@ -14,7 +14,7 @@
         <scene sceneID="dbR-Zm-FRm">
             <objects>
                 <navigationController id="Dqp-Mq-TcR" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="f3g-9a-YkO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f3g-9a-YkO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -749,12 +749,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Type in the title of the book" translatesAutoresizingMaskIntoConstraints="NO" id="uhC-3l-eLF">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <color key="barTintColor" red="0.15035015339999999" green="0.1471406072" blue="0.23209506269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NyQ-Nk-UOG">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addBookCell" textLabel="qAf-Lq-f1k" detailTextLabel="VMb-ss-YvA" style="IBUITableViewCellStyleSubtitle" id="Esz-gt-Lkv">
@@ -891,7 +891,7 @@
                             <constraint firstItem="uhC-3l-eLF" firstAttribute="leading" secondItem="uIG-ox-QRc" secondAttribute="leadingMargin" constant="-16" id="kHc-x5-rgo"/>
                             <constraint firstItem="NyQ-Nk-UOG" firstAttribute="leading" secondItem="uIG-ox-QRc" secondAttribute="leadingMargin" constant="-16" id="lEf-f0-TmG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NyQ-Nk-UOG" secondAttribute="trailing" constant="-16" id="lSq-ng-Xl2"/>
-                            <constraint firstItem="uhC-3l-eLF" firstAttribute="top" secondItem="dF5-sn-XJg" secondAttribute="bottom" constant="44" id="rOP-br-VyZ"/>
+                            <constraint firstItem="uhC-3l-eLF" firstAttribute="top" secondItem="dF5-sn-XJg" secondAttribute="bottom" id="rOP-br-VyZ"/>
                             <constraint firstItem="zhR-Lx-KBA" firstAttribute="top" secondItem="uhC-3l-eLF" secondAttribute="bottom" id="uwA-m2-2J1"/>
                             <constraint firstItem="zhR-Lx-KBA" firstAttribute="leading" secondItem="uIG-ox-QRc" secondAttribute="leadingMargin" constant="-16" id="xLd-yT-1ve"/>
                         </constraints>
@@ -899,9 +899,7 @@
                             <action selector="viewClicked:" destination="bCf-EX-gSB" eventType="touchUpInside" id="uZ7-VZ-MHL"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Zcj-zp-sfO"/>
                     <connections>
-                        <outlet property="mNavItem" destination="Zcj-zp-sfO" id="wfu-pJ-WWK"/>
                         <outlet property="mResTable" destination="zhR-Lx-KBA" id="YKM-Sz-CW4"/>
                         <outlet property="mSearchBar" destination="uhC-3l-eLF" id="tFL-52-sur"/>
                         <outlet property="mTableView" destination="NyQ-Nk-UOG" id="WeP-a1-01p"/>
@@ -925,7 +923,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Edition" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="teK-f5-Bhh" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="Bocer" customModuleProvider="target">
-                                <rect key="frame" x="26" y="90" width="323" height="60"/>
+                                <rect key="frame" x="26" y="46" width="323" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Ihr-DF-IBQ"/>
                                 </constraints>
@@ -937,17 +935,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="teK-f5-Bhh" secondAttribute="trailing" constant="10" id="RMj-QF-oaL"/>
-                            <constraint firstItem="teK-f5-Bhh" firstAttribute="top" secondItem="Mm5-9V-PJj" secondAttribute="bottom" constant="70" id="a1Z-h4-veK"/>
+                            <constraint firstItem="teK-f5-Bhh" firstAttribute="top" secondItem="Mm5-9V-PJj" secondAttribute="bottom" constant="26" id="a1Z-h4-veK"/>
                             <constraint firstItem="teK-f5-Bhh" firstAttribute="leading" secondItem="FOh-uP-EH8" secondAttribute="leadingMargin" constant="10" id="oAY-Jp-JmE"/>
                         </constraints>
                         <connections>
                             <action selector="viewClicked:" destination="jWd-yP-qPc" eventType="touchUpInside" id="cd0-Cx-8el"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="iZv-TV-cXP"/>
                     <connections>
                         <outlet property="edition" destination="teK-f5-Bhh" id="S02-5F-Bfh"/>
-                        <outlet property="mNavItem" destination="iZv-TV-cXP" id="0Kq-c9-9d8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qw-tA-wLk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -967,7 +963,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="181" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="EdF-Bc-eFe">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="bookPhotoCell" rowHeight="181" id="89H-3V-K0l" customClass="photoTableCell" customModule="Bocer" customModuleProvider="target">
@@ -1132,7 +1128,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="ic6-YA-LPh" secondAttribute="trailing" constant="10" id="Mr6-u2-dTr"/>
-                            <constraint firstItem="EdF-Bc-eFe" firstAttribute="top" secondItem="7YB-Ld-wwU" secondAttribute="bottom" constant="44" id="QgF-7X-qe6"/>
+                            <constraint firstItem="EdF-Bc-eFe" firstAttribute="top" secondItem="7YB-Ld-wwU" secondAttribute="bottom" id="QgF-7X-qe6"/>
                             <constraint firstItem="ic6-YA-LPh" firstAttribute="leading" secondItem="AhG-gU-0oo" secondAttribute="leadingMargin" constant="10" id="VRJ-kg-Z9M"/>
                             <constraint firstItem="EdF-Bc-eFe" firstAttribute="leading" secondItem="AhG-gU-0oo" secondAttribute="leadingMargin" constant="-16" id="aNy-C3-zij"/>
                             <constraint firstItem="04K-Fp-eLB" firstAttribute="top" secondItem="EdF-Bc-eFe" secondAttribute="bottom" id="aXZ-CF-LlS"/>
@@ -1140,9 +1136,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="EdF-Bc-eFe" secondAttribute="trailing" constant="-16" id="phM-bK-N0G"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="5fk-T7-gPF"/>
                     <connections>
-                        <outlet property="mNavItem" destination="5fk-T7-gPF" id="Dtx-aW-cU8"/>
                         <outlet property="mTableView" destination="EdF-Bc-eFe" id="bhC-x8-apC"/>
                         <outlet property="nextBtn" destination="ic6-YA-LPh" id="ShC-eg-mIn"/>
                     </connections>
@@ -1193,7 +1187,7 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="FT7-Md-AS0" firstAttribute="top" secondItem="fB3-4R-9wz" secondAttribute="bottom" constant="44" id="Iuw-ob-4e3"/>
+                            <constraint firstItem="FT7-Md-AS0" firstAttribute="top" secondItem="fB3-4R-9wz" secondAttribute="bottom" id="Iuw-ob-4e3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FT7-Md-AS0" secondAttribute="trailing" constant="-20" id="opf-Kt-bpd"/>
                             <constraint firstItem="FT7-Md-AS0" firstAttribute="leading" secondItem="myn-OB-6Um" secondAttribute="leadingMargin" constant="-20" id="zlY-QN-alV"/>
                         </constraints>
@@ -1201,11 +1195,9 @@
                             <action selector="viewClikced:" destination="fRe-1H-ceD" eventType="touchUpInside" id="ifX-cn-naC"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="pSL-Q4-a9Z"/>
                     <connections>
                         <outlet property="mComment" destination="1yK-lE-KJw" id="aVl-qa-mH6"/>
                         <outlet property="mLabel" destination="d7U-Pq-pqO" id="Oqn-5g-H9p"/>
-                        <outlet property="mNavItem" destination="pSL-Q4-a9Z" id="7l5-2D-P5l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1XL-6z-TK3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1225,21 +1217,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2jz-A6-BnH">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2jz-A6-BnH" firstAttribute="top" secondItem="4Ju-ag-rgh" secondAttribute="bottom" constant="44" id="Zxn-Zz-7lP"/>
+                            <constraint firstItem="2jz-A6-BnH" firstAttribute="top" secondItem="4Ju-ag-rgh" secondAttribute="bottom" id="Zxn-Zz-7lP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2jz-A6-BnH" secondAttribute="trailing" constant="-16" id="mBm-DL-m29"/>
                             <constraint firstItem="2jz-A6-BnH" firstAttribute="leading" secondItem="Jik-CL-HyG" secondAttribute="leadingMargin" constant="-16" id="uMr-mk-EDe"/>
                             <constraint firstItem="zl1-q1-fTp" firstAttribute="top" secondItem="2jz-A6-BnH" secondAttribute="bottom" id="zqc-3P-F5y"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="cTm-0C-dRx"/>
                     <connections>
                         <outlet property="mImage" destination="2jz-A6-BnH" id="b3T-Pb-tmH"/>
-                        <outlet property="mNavItem" destination="cTm-0C-dRx" id="8M8-zk-qFK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mId-FS-lPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1259,7 +1249,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HDR-yN-2no">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sellPriceCell" textLabel="SRx-iZ-gNT" detailTextLabel="jbO-Dz-InA" style="IBUITableViewCellStyleValue1" id="Idh-GV-QSz">
@@ -1336,13 +1326,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="rc1-Yg-UeR" secondAttribute="trailing" constant="10" id="epQ-Mt-XPR"/>
                             <constraint firstItem="HDR-yN-2no" firstAttribute="leading" secondItem="7zX-sV-hWB" secondAttribute="leadingMargin" constant="-16" id="f9Y-3c-VTQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HDR-yN-2no" secondAttribute="trailing" constant="-16" id="rE8-Pi-As6"/>
-                            <constraint firstItem="HDR-yN-2no" firstAttribute="top" secondItem="C1w-gs-yNu" secondAttribute="bottom" constant="44" id="yuY-Vr-bcs"/>
+                            <constraint firstItem="HDR-yN-2no" firstAttribute="top" secondItem="C1w-gs-yNu" secondAttribute="bottom" id="yuY-Vr-bcs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="AbY-KU-AuQ"/>
                     <connections>
                         <outlet property="addBtn" destination="rc1-Yg-UeR" id="QHq-7d-wiU"/>
-                        <outlet property="mNavItem" destination="AbY-KU-AuQ" id="wLN-cs-OyF"/>
                         <outlet property="mTableView" destination="HDR-yN-2no" id="BUu-mF-Z1Z"/>
                     </connections>
                 </viewController>
@@ -1664,15 +1652,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="ahY-Zb-zYs" secondAttribute="trailing" constant="-16" id="1GG-Yj-gdS"/>
-                            <constraint firstItem="ahY-Zb-zYs" firstAttribute="top" secondItem="n7C-gx-5uj" secondAttribute="bottom" constant="44" id="9e9-Zl-Pb8"/>
+                            <constraint firstItem="ahY-Zb-zYs" firstAttribute="top" secondItem="n7C-gx-5uj" secondAttribute="bottom" id="9e9-Zl-Pb8"/>
                             <constraint firstItem="mIS-zl-hmH" firstAttribute="top" secondItem="ahY-Zb-zYs" secondAttribute="bottom" id="F7s-O6-PYo"/>
                             <constraint firstItem="ahY-Zb-zYs" firstAttribute="centerX" secondItem="BMZ-qm-n53" secondAttribute="centerX" id="J91-7X-njU"/>
                             <constraint firstItem="ahY-Zb-zYs" firstAttribute="leading" secondItem="BMZ-qm-n53" secondAttribute="leadingMargin" constant="-16" id="jSX-WR-piQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="GLx-rt-p61"/>
                     <connections>
-                        <outlet property="mNavItem" destination="GLx-rt-p61" id="r3H-wH-tQF"/>
                         <outlet property="mTableView" destination="ahY-Zb-zYs" id="3EP-GD-5NU"/>
                     </connections>
                 </viewController>
@@ -1780,7 +1766,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="60" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="vPT-6K-S6X">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cardNumberCell" id="A7P-Ky-EKc">
@@ -1850,16 +1836,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vPT-6K-S6X" firstAttribute="top" secondItem="wP6-ah-dca" secondAttribute="bottom" constant="44" id="EAX-gO-ySr"/>
+                            <constraint firstItem="vPT-6K-S6X" firstAttribute="top" secondItem="wP6-ah-dca" secondAttribute="bottom" id="EAX-gO-ySr"/>
                             <constraint firstItem="vPT-6K-S6X" firstAttribute="leading" secondItem="qap-IS-J59" secondAttribute="leadingMargin" constant="-16" id="X5U-32-kiH"/>
                             <constraint firstItem="vPT-6K-S6X" firstAttribute="centerX" secondItem="qap-IS-J59" secondAttribute="centerX" id="Yz8-Hf-VuV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vPT-6K-S6X" secondAttribute="trailing" constant="-16" id="ctU-OF-2C9"/>
                             <constraint firstItem="bbr-68-Mq2" firstAttribute="top" secondItem="vPT-6K-S6X" secondAttribute="bottom" id="hZs-3g-wDt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="gEj-B9-LnP"/>
                     <connections>
-                        <outlet property="mNavItem" destination="gEj-B9-LnP" id="U7K-qv-jHr"/>
                         <outlet property="mTableView" destination="vPT-6K-S6X" id="m5u-Z7-okP"/>
                     </connections>
                 </viewController>
@@ -1932,18 +1916,16 @@
                             <constraint firstItem="8bF-dC-3aE" firstAttribute="leading" secondItem="eQH-lI-rnb" secondAttribute="leadingMargin" constant="5" id="mTy-O4-eh0"/>
                             <constraint firstItem="pdH-gg-IhH" firstAttribute="top" secondItem="8bF-dC-3aE" secondAttribute="bottom" constant="10" id="p3Q-vs-DVu"/>
                             <constraint firstItem="pdH-gg-IhH" firstAttribute="width" secondItem="DOe-Tx-beP" secondAttribute="width" id="qUD-f3-hEr"/>
-                            <constraint firstItem="8bF-dC-3aE" firstAttribute="top" secondItem="PR2-Vg-djw" secondAttribute="bottom" constant="60" id="vly-MX-Cwx"/>
+                            <constraint firstItem="8bF-dC-3aE" firstAttribute="top" secondItem="PR2-Vg-djw" secondAttribute="bottom" constant="16" id="vly-MX-Cwx"/>
                         </constraints>
                         <connections>
                             <action selector="viewClicked:" destination="np2-AG-NR0" eventType="touchUpInside" id="3jV-5x-qq1"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="n9o-cP-SRw"/>
                     <connections>
                         <outlet property="mCVV" destination="DOe-Tx-beP" id="NhC-tD-hpE"/>
                         <outlet property="mDate" destination="pdH-gg-IhH" id="3wT-8K-vCv"/>
                         <outlet property="mImage" destination="vIc-cD-t9x" id="l6a-JP-WXr"/>
-                        <outlet property="mNavItem" destination="n9o-cP-SRw" id="uKS-j0-vif"/>
                         <outlet property="mNumber" destination="8bF-dC-3aE" id="Y5m-yn-9NY"/>
                     </connections>
                 </viewController>
@@ -2080,7 +2062,7 @@
                             <constraint firstItem="qAq-mJ-euA" firstAttribute="top" secondItem="vIf-Ri-gs3" secondAttribute="bottom" constant="10" id="G8h-sf-zbV"/>
                             <constraint firstItem="kSs-ID-UXv" firstAttribute="leading" secondItem="QBy-YN-Tnn" secondAttribute="leadingMargin" constant="80" id="UAq-Gy-UDk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vIf-Ri-gs3" secondAttribute="trailing" constant="10" id="UYD-gg-AW5"/>
-                            <constraint firstItem="vIf-Ri-gs3" firstAttribute="top" secondItem="NR4-H4-FYC" secondAttribute="bottom" constant="70" id="VjY-pn-eCA"/>
+                            <constraint firstItem="vIf-Ri-gs3" firstAttribute="top" secondItem="NR4-H4-FYC" secondAttribute="bottom" constant="26" id="VjY-pn-eCA"/>
                             <constraint firstItem="kSs-ID-UXv" firstAttribute="centerX" secondItem="QBy-YN-Tnn" secondAttribute="centerX" id="Wyb-2t-0FB"/>
                             <constraint firstItem="vIf-Ri-gs3" firstAttribute="leading" secondItem="QBy-YN-Tnn" secondAttribute="leadingMargin" constant="10" id="c6A-Wk-sUu"/>
                             <constraint firstItem="qAq-mJ-euA" firstAttribute="width" secondItem="vIf-Ri-gs3" secondAttribute="width" id="fIc-oB-hgF"/>
@@ -2096,12 +2078,8 @@
                             <action selector="viewClicked:" destination="4W8-1b-PiL" eventType="touchUpInside" id="n4D-ez-ZMw"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Sign In" id="lDN-5a-ROx">
-                        <barButtonItem key="backBarButtonItem" title="Cancel" id="ekn-m1-1dV"/>
-                    </navigationItem>
                     <connections>
                         <outlet property="emailTF" destination="vIf-Ri-gs3" id="lKW-xU-wUT"/>
-                        <outlet property="mNavItem" destination="lDN-5a-ROx" id="mot-um-3ia"/>
                         <outlet property="pwTF" destination="qAq-mJ-euA" id="wDF-Hb-9Ls"/>
                         <outlet property="resetPw" destination="kSs-ID-UXv" id="JSp-YT-otp"/>
                         <outlet property="signIn" destination="ff4-D7-qYV" id="UkJ-HQ-zcn"/>
@@ -2162,7 +2140,7 @@
                         <constraints>
                             <constraint firstItem="PDv-Ta-hnR" firstAttribute="leading" secondItem="fwB-A0-GgS" secondAttribute="leading" id="0a5-ue-xZW"/>
                             <constraint firstItem="FSQ-Vd-YFW" firstAttribute="leading" secondItem="h7m-Mb-zae" secondAttribute="leadingMargin" constant="10" id="5u6-YV-5yg"/>
-                            <constraint firstItem="FSQ-Vd-YFW" firstAttribute="top" secondItem="qNP-Vj-ZJD" secondAttribute="bottom" constant="70" id="9wc-9r-MB2"/>
+                            <constraint firstItem="FSQ-Vd-YFW" firstAttribute="top" secondItem="qNP-Vj-ZJD" secondAttribute="bottom" constant="26" id="9wc-9r-MB2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FSQ-Vd-YFW" secondAttribute="trailing" constant="10" id="A2n-7q-JTJ"/>
                             <constraint firstItem="fwB-A0-GgS" firstAttribute="width" secondItem="FSQ-Vd-YFW" secondAttribute="width" id="IDz-Ux-VJ1"/>
                             <constraint firstItem="PDv-Ta-hnR" firstAttribute="top" secondItem="fwB-A0-GgS" secondAttribute="bottom" constant="20" id="IiH-y7-14d"/>
@@ -2176,10 +2154,8 @@
                             <action selector="keyboardShouldResign:" destination="HZY-rA-0dE" eventType="touchUpInside" id="3va-Dt-dck"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Sign Up" id="c1y-Ne-0fJ"/>
                     <connections>
                         <outlet property="emailTF" destination="FSQ-Vd-YFW" id="qLP-aX-z8Y"/>
-                        <outlet property="mNavItem" destination="c1y-Ne-0fJ" id="0Z1-C2-mZi"/>
                         <outlet property="nextBtn" destination="PDv-Ta-hnR" id="ZjR-Wn-flR"/>
                         <outlet property="pwTF" destination="fwB-A0-GgS" id="GF1-kZ-ieL"/>
                     </connections>
@@ -2264,7 +2240,7 @@
                             <constraint firstItem="DbP-5d-1sW" firstAttribute="top" secondItem="RZA-Do-SGb" secondAttribute="bottom" constant="10" id="dr0-DJ-M94"/>
                             <constraint firstItem="DbP-5d-1sW" firstAttribute="leading" secondItem="RZA-Do-SGb" secondAttribute="leading" id="gzc-mo-jEy"/>
                             <constraint firstItem="Pj2-Qc-hjz" firstAttribute="top" secondItem="DbP-5d-1sW" secondAttribute="bottom" constant="20" id="hWX-Zr-yNz"/>
-                            <constraint firstItem="RZA-Do-SGb" firstAttribute="top" secondItem="WY5-PZ-khb" secondAttribute="bottom" constant="70" id="iwd-0X-u8C"/>
+                            <constraint firstItem="RZA-Do-SGb" firstAttribute="top" secondItem="WY5-PZ-khb" secondAttribute="bottom" constant="26" id="iwd-0X-u8C"/>
                             <constraint firstItem="Pj2-Qc-hjz" firstAttribute="leading" secondItem="DbP-5d-1sW" secondAttribute="leading" id="xCk-v1-JrO"/>
                             <constraint firstItem="RZA-Do-SGb" firstAttribute="centerY" secondItem="0dR-os-c4k" secondAttribute="centerY" id="xcJ-2m-NZZ"/>
                         </constraints>
@@ -2272,13 +2248,11 @@
                             <action selector="viewClicked:" destination="t72-yK-kyx" eventType="touchUpInside" id="Bbw-w9-MTY"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="SIGN UP" id="stk-AK-Esb"/>
                     <connections>
                         <outlet property="collegeTF" destination="DbP-5d-1sW" id="OE5-zy-1nr"/>
                         <outlet property="enterBtn" destination="Pj2-Qc-hjz" id="kox-1f-Er3"/>
                         <outlet property="firstNameTF" destination="RZA-Do-SGb" id="LHf-KZ-Iu1"/>
                         <outlet property="lastNameTF" destination="0dR-os-c4k" id="5eF-bi-nBF"/>
-                        <outlet property="mNavItem" destination="stk-AK-Esb" id="CYe-bN-2Mj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e6X-Al-uDS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2355,7 +2329,7 @@
                             <constraint firstItem="sQe-Gp-BLN" firstAttribute="bottom" secondItem="pDp-R8-PTJ" secondAttribute="bottom" id="ldI-vd-Cjm"/>
                             <constraint firstItem="VFm-gQ-wWt" firstAttribute="trailing" secondItem="pDp-R8-PTJ" secondAttribute="trailing" id="lrR-FI-RgV"/>
                             <constraint firstItem="VFm-gQ-wWt" firstAttribute="top" secondItem="sQe-Gp-BLN" secondAttribute="bottom" constant="20" id="mJn-JT-T3e"/>
-                            <constraint firstItem="8UH-2H-hEn" firstAttribute="top" secondItem="7kT-Fc-syG" secondAttribute="bottom" constant="70" id="mbC-mp-zxp"/>
+                            <constraint firstItem="8UH-2H-hEn" firstAttribute="top" secondItem="7kT-Fc-syG" secondAttribute="bottom" constant="26" id="mbC-mp-zxp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8UH-2H-hEn" secondAttribute="trailing" constant="10" id="nqF-48-68P"/>
                             <constraint firstItem="sQe-Gp-BLN" firstAttribute="height" secondItem="8UH-2H-hEn" secondAttribute="height" id="uwf-0l-6qH"/>
                         </constraints>
@@ -2363,11 +2337,9 @@
                             <action selector="viewClicked:" destination="1Ga-5D-Y03" eventType="touchUpInside" id="sKV-9X-zFC"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Reset Password" id="YwJ-Ml-djN"/>
                     <connections>
                         <outlet property="emailTF" destination="8UH-2H-hEn" id="lNy-3J-Oqn"/>
                         <outlet property="enter" destination="VFm-gQ-wWt" id="SL2-dO-999"/>
-                        <outlet property="mNavItem" destination="YwJ-Ml-djN" id="waY-Cm-5T1"/>
                         <outlet property="pwTF" destination="sQe-Gp-BLN" id="IB1-9f-NeT"/>
                         <outlet property="send" destination="pDp-R8-PTJ" id="gHO-hz-ZWS"/>
                     </connections>
@@ -2423,7 +2395,7 @@
                         <constraints>
                             <constraint firstItem="vML-dZ-CaH" firstAttribute="centerX" secondItem="1UK-aq-6KH" secondAttribute="centerX" id="5Uy-7H-sWy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1UK-aq-6KH" secondAttribute="trailing" constant="10" id="73W-JK-HjB"/>
-                            <constraint firstItem="1UK-aq-6KH" firstAttribute="top" secondItem="9eJ-Vz-zfE" secondAttribute="bottom" constant="70" id="9yv-hh-i9k"/>
+                            <constraint firstItem="1UK-aq-6KH" firstAttribute="top" secondItem="9eJ-Vz-zfE" secondAttribute="bottom" constant="26" id="9yv-hh-i9k"/>
                             <constraint firstItem="vtf-tD-l78" firstAttribute="top" secondItem="vML-dZ-CaH" secondAttribute="bottom" constant="20" id="A1i-oE-vQc"/>
                             <constraint firstItem="vtf-tD-l78" firstAttribute="leading" secondItem="vML-dZ-CaH" secondAttribute="leading" id="Yzd-aA-fpv"/>
                             <constraint firstItem="1UK-aq-6KH" firstAttribute="centerX" secondItem="KYG-NL-eWp" secondAttribute="centerX" id="de5-64-Rg2"/>
@@ -2437,10 +2409,8 @@
                             <action selector="viewClicked:" destination="h9I-5D-MNB" eventType="touchUpInside" id="cz6-DG-hcs"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="RESET PASSWORD" id="NdR-cP-1Ec"/>
                     <connections>
                         <outlet property="confirmBtn" destination="vtf-tD-l78" id="O5f-iu-yeT"/>
-                        <outlet property="mNavItem" destination="NdR-cP-1Ec" id="ZBJ-TB-DQ5"/>
                         <outlet property="pw1TF" destination="1UK-aq-6KH" id="UMc-y7-G78"/>
                         <outlet property="pw2TF" destination="vML-dZ-CaH" id="VuZ-cU-VLe"/>
                     </connections>

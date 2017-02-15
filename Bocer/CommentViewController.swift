@@ -15,19 +15,16 @@ protocol  CommentDelegate: NSObjectProtocol {
 class CommentViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var mLabel: UILabel!
-    @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var mComment: UITextView!
     
     internal weak var delegate: CommentDelegate?
-    private let mNavBar = Constant().makeNavBar()
     internal var myInfo: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         mComment.delegate = self
@@ -37,7 +34,7 @@ class CommentViewController: UIViewController, UITextViewDelegate {
         }
     }
 
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
@@ -52,16 +49,14 @@ class CommentViewController: UIViewController, UITextViewDelegate {
         rightBtn.tintColor = UIColor.white
         let rightBtnItem = UIBarButtonItem(customView: rightBtn)
         
-        mNavItem.title = "COMMENT"
-        mNavItem.setLeftBarButton(btnItem, animated: true)
-        mNavItem.setRightBarButton(rightBtnItem, animated: true)
-        return mNavItem
+        navigationItem.title = "COMMENT"
+        navigationItem.leftBarButtonItem = btnItem
+        navigationItem.rightBarButtonItem = rightBtnItem
     }
     
     @objc private func didCancel() {
-        let transition = Constant().transitionFromLeft()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+
     }
     
     @objc private func didFinish() {
@@ -69,9 +64,7 @@ class CommentViewController: UIViewController, UITextViewDelegate {
         if delegate != nil {
             delegate?.fetchCommentBack(edition: myInfo!)
         }
-        let transition = Constant().transitionFromLeft()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 
     

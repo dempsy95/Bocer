@@ -77,7 +77,13 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         retrieveInfo()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     //UIScrollViewDelegate方法，每次滚动结束后调用
@@ -138,9 +144,10 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
             vc.userimage = imagestring!
             vc.school = self.collegeLabel.text!
             
-            let transition = Constant().transitionFromRight()
-            view.window!.layer.add(transition, forKey: kCATransition)
-            self.present(vc, animated: false)
+//            let transition = Constant().transitionFromRight()
+//            view.window!.layer.add(transition, forKey: kCATransition)
+//            self.present(vc, animated: false)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -166,9 +173,9 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
     
     //go to the other vcs
     private func showMain() {
-        let transition = Constant().transitionFromBottom()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.dismiss(animated: false, completion: nil)
+//        let transition = Constant().transitionFromBottom()
+//        view.window!.layer.add(transition, forKey: kCATransition)
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     //TODO:

@@ -12,11 +12,9 @@ import CreditCardValidator
 class CardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var mTableView: UITableView!
-    @IBOutlet weak var mNavItem: UINavigationItem!
     
     var cardNumber: String?
     private var month = "08", year = "2018"
-    private let mNavBar = Constant().makeNavBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +23,7 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
         mTableView.delegate = self
         mTableView.dataSource = self
         
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -79,7 +76,7 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     }
     
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
@@ -94,10 +91,9 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
         rbtn.tintColor = UIColor.white
         let rbtnItem = UIBarButtonItem(customView: rbtn)
         
-        mNavItem.title = "MASTERCARD"
-        mNavItem.setLeftBarButton(btnItem, animated: true)
-        mNavItem.setRightBarButton(rbtnItem, animated: true)
-        return mNavItem
+        navigationItem.title = "MASTERCARD"
+        navigationItem.leftBarButtonItem = btnItem
+        navigationItem.rightBarButtonItem = rbtnItem
     }
     
     @objc private func didCancel() {

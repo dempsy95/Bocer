@@ -12,19 +12,16 @@ import SwiftyJSON
 
 class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate {
 
-    private let mNavBar = Constant().makeNavBar()
     
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var resetPw: UIButton!
-    @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var emailTF: SkyFloatingLabelTextFieldWithIcon!
     @IBOutlet weak var pwTF: SkyFloatingLabelTextFieldWithIcon!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //customize status bar
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         //delegate and customize textfields
@@ -62,16 +59,15 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
     }
     
     //customize navigation item
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
         btn.addTarget(self, action: #selector(SignInViewController.onCancel), for: .touchUpInside)
         btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
-        mNavItem.title = "SIGN IN"
-        mNavItem.setLeftBarButton(btnItem, animated: true)
-        return mNavItem
+        navigationItem.title = "SIGN IN"
+        navigationItem.leftBarButtonItem = btnItem
     }
     
     //return by swiping back

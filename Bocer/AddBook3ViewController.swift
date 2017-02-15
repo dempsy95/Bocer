@@ -30,11 +30,9 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     //end information used by server
-    @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var mTableView: UITableView!
     
-    private let mNavBar = Constant().makeNavBar()
     private var dollar = [String](repeating: String(), count: 1000)
     private var cent = [String](repeating: String(), count: 100)
     private var mDollar = 0
@@ -44,8 +42,7 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         mTableView.delegate = self
@@ -77,7 +74,7 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     //customize navigation item
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
@@ -91,16 +88,13 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
         rightBtn.addTarget(self, action: #selector(AddBook3ViewController.didFinish), for: .touchUpInside)
         rightBtn.tintColor = UIColor.white
         let rightBtnItem = UIBarButtonItem(customView: rightBtn)
-        mNavItem.title = "YOUR PRICE"
-        mNavItem.setLeftBarButton(btnItem, animated: true)
-        mNavItem.setRightBarButton(rightBtnItem, animated: true)
-        return mNavItem
+        navigationItem.title = "YOUR PRICE"
+        navigationItem.leftBarButtonItem = btnItem
+        navigationItem.rightBarButtonItem = rightBtnItem
     }
     
     @objc private func didCancel() {
-        let transition = Constant().transitionFromLeft()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc private func didFinish() {
@@ -128,9 +122,12 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
                             self.present(alertController, animated: true, completion: nil)
                         }
                         else{
-                            let transition = Constant().transitionFromBottom()
-                            self.view.window!.layer.add(transition, forKey: kCATransition)
-                            self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
+                            //TODO:
+                            //Check pop to root vc functionality 
+//                            let transition = Constant().transitionFromBottom()
+//                            self.view.window!.layer.add(transition, forKey: kCATransition)
+//                            self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
+                            self.navigationController?.popToRootViewController(animated: true)
                         }
                     }
                 }

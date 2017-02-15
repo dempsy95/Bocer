@@ -30,6 +30,11 @@ class InitialViewController: UIViewController, UIGestureRecognizerDelegate {
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -11,10 +11,8 @@ import CreditCardValidator
 
 class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var mTableView: UITableView!
     
-    private let mNavBar = Constant().makeNavBar()
     private var cards : [String]? = ["1234567812345678", "1234567812345678", "1234567812345678"]
     private var numOfCards = 3
     
@@ -25,8 +23,7 @@ class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         mTableView.delegate = self
         mTableView.dataSource = self
         
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -100,7 +97,7 @@ class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "cancel")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
@@ -108,9 +105,8 @@ class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
         
-        mNavItem.title = "PAYMENT"
-        mNavItem.setLeftBarButton(btnItem, animated: true)
-        return mNavItem
+        navigationItem.title = "PAYMENT"
+        navigationItem.leftBarButtonItem = btnItem
     }
 
     @objc private func didCancel() {

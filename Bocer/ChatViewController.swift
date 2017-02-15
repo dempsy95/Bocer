@@ -35,6 +35,9 @@ class ChatViewController: JSQMessagesViewController {
         //TODO:
         //add right button for the navigation btnItem
         
+        //MARK: beta feature, may not stable
+//        collectionView?.collectionViewLayout.springinessEnabled = false
+        
         //to be decided
         automaticallyScrollsToMostRecentMessage = true
         
@@ -93,7 +96,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     private func setupNavButton() {
-        let mImage = UIImage(named: "cancel")
+        let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
         btn.addTarget(self, action: #selector(ChatViewController.didCancel), for: .touchUpInside)

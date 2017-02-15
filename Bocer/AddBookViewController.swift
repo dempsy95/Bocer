@@ -37,19 +37,16 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //end information used by server
     @IBOutlet weak var mResTable: UITableView!
-    @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var mSearchBar: UISearchBar!
     @IBOutlet weak var mTableView: UITableView!
     
     
-    private let mNavBar = Constant().makeNavBar()
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         nextBtn.layer.cornerRadius = CGFloat(Constant().buttonCornerRadius)
@@ -80,7 +77,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     //customize navigation item
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
@@ -94,16 +91,13 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         rightBtn.addTarget(self, action: #selector(AddBookViewController.didNext), for: .touchUpInside)
         rightBtn.tintColor = UIColor.white
         let rightBtnItem = UIBarButtonItem(customView: rightBtn)
-        mNavItem.title = "ADD BOOK"
-        mNavItem.setLeftBarButton(btnItem, animated: true)
-        mNavItem.setRightBarButton(rightBtnItem, animated: true)
-        return mNavItem
+        navigationItem.title = "ADD BOOK"
+        navigationItem.leftBarButtonItem = btnItem
+        navigationItem.rightBarButtonItem = rightBtnItem
     }
 
     @objc private func didCancel() {
-        let transition = Constant().transitionFromLeft()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc private func didNext() {
@@ -115,6 +109,13 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     private func nextPerformed() {
+        if google_id == nil {
+            let alert = UIAlertController(title: "Warning", message: "You need to find the book you want to sell first", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "AddBook2") as! AddBook2ViewController
         vc.username = self.username!
@@ -124,9 +125,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         vc.google_id = self.google_id!
         vc.userimage = self.userimage!
         vc.school = self.school!
-        let transition = Constant().transitionFromRight()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.present(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction func viewClicked(_ sender: UIView) {
@@ -229,9 +228,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
                     vc.myEdition = myEdition
                 }
                 vc.delegate = self
-                let transition = Constant().transitionFromRight()
-                view.window!.layer.add(transition, forKey: kCATransition)
-                self.present(vc, animated: false)
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }

@@ -92,7 +92,6 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     
     //end information used by server
     @IBOutlet weak var nextBtn: UIButton!
-    @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var mTableView: UITableView!
 
     internal var coverPhoto: UIImage? //small image
@@ -101,15 +100,13 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     private var wellness: Int = 4 //rating
     internal var myInfo: String? = nil //description
     private let wellString = ["onestar", "twostar", "threestar", "fourstar", "fivestar"]
-    private let mNavBar = Constant().makeNavBar()
     private var showedPhoto: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         mTableView.delegate = self
@@ -125,7 +122,7 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     //customize navigation item
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
@@ -139,16 +136,13 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
         rightBtn.addTarget(self, action: #selector(AddBook2ViewController.didNext), for: .touchUpInside)
         rightBtn.tintColor = UIColor.white
         let rightBtnItem = UIBarButtonItem(customView: rightBtn)
-        mNavItem.title = "ADD BOOK"
-        mNavItem.setLeftBarButton(btnItem, animated: true)
-        mNavItem.setRightBarButton(rightBtnItem, animated: true)
-        return mNavItem
+        navigationItem.title = "ADD BOOK"
+        navigationItem.leftBarButtonItem = btnItem
+        navigationItem.rightBarButtonItem = rightBtnItem
     }
     
     @objc private func didCancel() {
-        let transition = Constant().transitionFromLeft()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
@@ -235,9 +229,7 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
                     vc.myInfo = myInfo
                 }
                 vc.delegate = self
-                let transition = Constant().transitionFromRight()
-                view.window!.layer.add(transition, forKey: kCATransition)
-                self.present(vc, animated: false)
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
@@ -272,9 +264,7 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
         let vc = sb.instantiateViewController(withIdentifier: "BookPhoto") as! BookPhotoViewController
         vc.delegate = self
         vc.image = photos[x]
-        let transition = Constant().transitionFromRight()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.present(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func deletePhoto() {
@@ -367,9 +357,7 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
         vc.state = String(self.wellness)
         vc.desc = self.myInfo!
         vc.school = self.school!
-        let transition = Constant().transitionFromRight()
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.present(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     /*

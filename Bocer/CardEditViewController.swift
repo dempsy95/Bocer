@@ -15,10 +15,8 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mCVV: SkyFloatingLabelTextFieldWithIcon!
     @IBOutlet weak var mDate: SkyFloatingLabelTextFieldWithIcon!
     @IBOutlet weak var mNumber: SkyFloatingLabelTextFieldWithIcon!
-    @IBOutlet weak var mNavItem: UINavigationItem!
     internal var mCardNumber: String?
     internal var mCardTitle: String? = "ADD CARD"
-    private let mNavBar = Constant().makeNavBar()
     private var firstChange = true
     private var cvvLimit = 3
 
@@ -52,8 +50,7 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
         Constant().customizeSFLTextField(tf: mCVV)
         
         //customize nav bar
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -174,7 +171,7 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
@@ -189,10 +186,9 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
         rbtn.tintColor = UIColor.white
         let rbtnItem = UIBarButtonItem(customView: rbtn)
         
-        mNavItem.title = mCardTitle
-        mNavItem.setLeftBarButton(btnItem, animated: true)
-        mNavItem.setRightBarButton(rbtnItem, animated: true)
-        return mNavItem
+        navigationItem.title = mCardTitle
+        navigationItem.leftBarButtonItem = btnItem
+        navigationItem.rightBarButtonItem = rbtnItem
     }
     
     @objc private func didCancel() {

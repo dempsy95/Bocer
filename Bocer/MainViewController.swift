@@ -169,12 +169,14 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
         vc.username = self.username!
-        vc.view.layer.speed = 0.7
-        vc.modalTransitionStyle = .crossDissolve
+//        vc.view.layer.speed = 0.7
+//        vc.modalTransitionStyle = .crossDissolve
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)
         }
-        self.present(vc, animated: true, completion: nil)
+        let navCon = UINavigationController(rootViewController: vc)
+        self.present(navCon, animated: true, completion: nil)
+//        self.present(vc, animated: true, completion: nil)
     }
     
     private func showPay() {
@@ -187,7 +189,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
             self.dismiss(animated: true, completion: nil)
         }
         let navCon = UINavigationController(rootViewController: vc)
-        navCon.setNavigationBarHidden(true, animated: true)
         self.present(navCon, animated: true, completion: nil)
     }
     

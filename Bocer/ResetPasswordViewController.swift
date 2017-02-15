@@ -12,12 +12,10 @@ import SwiftyJSON
 
 class ResetPasswordViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate {
 
-    private let mNavBar = Constant().makeNavBar()
     private var countdownTimer: Timer?
     
     @IBOutlet weak var send: UIButton!
     @IBOutlet weak var enter: UIButton!
-    @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var emailTF: SkyFloatingLabelTextFieldWithIcon!
     @IBOutlet weak var pwTF: SkyFloatingLabelTextFieldWithIcon!
     override func viewDidLoad() {
@@ -25,8 +23,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate, UITabl
 
         // Do any additional setup after loading the view.
         //customize status bar
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         //delegate and customize textfields
@@ -62,16 +59,15 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate, UITabl
     }
     
     //customize navigation item
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
         btn.addTarget(self, action: #selector(ResetPasswordViewController.onCancel), for: .touchUpInside)
         btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
-        mNavItem.title = "RESET PASSWORD"
-        mNavItem.setLeftBarButton(btnItem, animated: true)
-        return mNavItem
+        navigationItem.title = "RESET PASSWORD"
+        navigationItem.leftBarButtonItem = btnItem
     }
     
     //return by swiping back

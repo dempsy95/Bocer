@@ -19,13 +19,10 @@ class SignUp2ViewController: UIViewController, UITextFieldDelegate {
     internal var lastname:String?
     
     //UI elements
-    @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var firstNameTF: SkyFloatingLabelTextFieldWithIcon!
     @IBOutlet weak var lastNameTF: SkyFloatingLabelTextFieldWithIcon!
     @IBOutlet weak var collegeTF: SkyFloatingLabelTextFieldWithIcon!
     @IBOutlet weak var enterBtn: UIButton!
-    
-    private let mNavBar = Constant().makeNavBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +49,7 @@ class SignUp2ViewController: UIViewController, UITextFieldDelegate {
         firstNameTF.iconMarginBottom = 10
         lastNameTF.iconMarginBottom = 10
         //customize status bar
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         //增加右滑返回
@@ -96,16 +92,15 @@ class SignUp2ViewController: UIViewController, UITextFieldDelegate {
     }
     
     //customize navigation item
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
         btn.addTarget(self, action: #selector(SignUp2ViewController.onCancel), for: .touchUpInside)
         btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
-        mNavItem.title = "SIGN UP"
-        mNavItem.setLeftBarButton(btnItem, animated: true)
-        return mNavItem
+        navigationItem.title = "SIGN UP"
+        navigationItem.leftBarButtonItem = btnItem
     }
     
     //return by swiping back

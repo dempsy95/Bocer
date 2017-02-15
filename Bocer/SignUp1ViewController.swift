@@ -11,10 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class SignUp1ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, NSURLConnectionDataDelegate {
-
-    private let mNavBar = Constant().makeNavBar()
     
-    @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var pwTF: SkyFloatingLabelTextFieldWithIcon!
     @IBOutlet weak var emailTF: SkyFloatingLabelTextFieldWithIcon!
@@ -22,8 +19,7 @@ class SignUp1ViewController: UIViewController, UITextFieldDelegate, UITableViewD
         super.viewDidLoad()
 
         //customize status bar
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         //delegate and customize textfields
@@ -62,16 +58,15 @@ class SignUp1ViewController: UIViewController, UITextFieldDelegate, UITableViewD
     }
     
     //customize navigation item
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
         btn.addTarget(self, action: #selector(SignUp1ViewController.onCancel), for: .touchUpInside)
         btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
-        mNavItem.title = "SIGN UP"
-        mNavItem.setLeftBarButton(btnItem, animated: true)
-        return mNavItem
+        navigationItem.title = "SIGN UP"
+        navigationItem.leftBarButtonItem = btnItem
     }
     
     //return by swiping back
