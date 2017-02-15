@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		254ACC831E44397B00A321A0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 254ACC811E44397B00A321A0 /* Model.xcdatamodeld */; };
+		254ACC831E44397B00A321A0 /* Messenger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 254ACC811E44397B00A321A0 /* Messenger.xcdatamodeld */; };
 		254ACC851E443B2300A321A0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254ACC841E443B2300A321A0 /* CoreData.framework */; };
 		255BD7991E4180F4003E286A /* AddBook3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255BD7981E4180F4003E286A /* AddBook3ViewController.swift */; };
 		255BD7B71E4419A1003E286A /* MessengerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255BD7B61E4419A1003E286A /* MessengerViewController.swift */; };
@@ -21,6 +21,7 @@
 		25E9A9461E38769F00B259EF /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E9A9451E38769F00B259EF /* PayViewController.swift */; };
 		25E9A9481E38914700B259EF /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E9A9471E38914700B259EF /* CardViewController.swift */; };
 		25E9A96E1E39AD7000B259EF /* CardEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E9A96D1E39AD7000B259EF /* CardEditViewController.swift */; };
+		25EDAE621E4965A200990D83 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDAE611E4965A200990D83 /* ChatViewController.swift */; };
 		25F7B9C01E312E1900F056C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7B9BF1E312E1900F056C4 /* AppDelegate.swift */; };
 		25F7B9C21E312E1900F056C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F7B9C11E312E1900F056C4 /* ViewController.swift */; };
 		25F7B9C51E312E1900F056C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F7B9C31E312E1900F056C4 /* Main.storyboard */; };
@@ -47,7 +48,7 @@
 
 /* Begin PBXFileReference section */
 		12DE343053123281FDAD05E4 /* Pods-Bocer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bocer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bocer/Pods-Bocer.release.xcconfig"; sourceTree = "<group>"; };
-		254ACC821E44397B00A321A0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		254ACC821E44397B00A321A0 /* Messenger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Messenger.xcdatamodel; sourceTree = "<group>"; };
 		254ACC841E443B2300A321A0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		255BD7981E4180F4003E286A /* AddBook3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBook3ViewController.swift; sourceTree = "<group>"; };
 		255BD7B61E4419A1003E286A /* MessengerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessengerViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +62,7 @@
 		25E9A9451E38769F00B259EF /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		25E9A9471E38914700B259EF /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		25E9A96D1E39AD7000B259EF /* CardEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardEditViewController.swift; sourceTree = "<group>"; };
+		25EDAE611E4965A200990D83 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		25F7B9BC1E312E1900F056C4 /* Bocer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bocer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F7B9BF1E312E1900F056C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F7B9C11E312E1900F056C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				255BD7B61E4419A1003E286A /* MessengerViewController.swift */,
+				25EDAE611E4965A200990D83 /* ChatViewController.swift */,
 			);
 			name = Messenger;
 			sourceTree = "<group>";
@@ -211,7 +214,7 @@
 		25F7B9F61E315F4300F056C4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				254ACC811E44397B00A321A0 /* Model.xcdatamodeld */,
+				254ACC811E44397B00A321A0 /* Messenger.xcdatamodeld */,
 				25F7B9D61E312EAF00F056C4 /* PassThroughView.swift */,
 			);
 			name = "Supporting Files";
@@ -389,7 +392,8 @@
 				25E8DBAA1E3EB8E000702041 /* EditionViewController.swift in Sources */,
 				25F7B9E51E312EAF00F056C4 /* SignInViewController.swift in Sources */,
 				25F7B9DF1E312EAF00F056C4 /* MainViewController.swift in Sources */,
-				254ACC831E44397B00A321A0 /* Model.xcdatamodeld in Sources */,
+				25EDAE621E4965A200990D83 /* ChatViewController.swift in Sources */,
+				254ACC831E44397B00A321A0 /* Messenger.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,13 +568,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		254ACC811E44397B00A321A0 /* Model.xcdatamodeld */ = {
+		254ACC811E44397B00A321A0 /* Messenger.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				254ACC821E44397B00A321A0 /* Model.xcdatamodel */,
+				254ACC821E44397B00A321A0 /* Messenger.xcdatamodel */,
 			);
-			currentVersion = 254ACC821E44397B00A321A0 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			currentVersion = 254ACC821E44397B00A321A0 /* Messenger.xcdatamodel */;
+			path = Messenger.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

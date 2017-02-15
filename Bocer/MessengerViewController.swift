@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class MessengerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var mTableView: UITableView!
     @IBOutlet weak var mNavItem: UINavigationItem!
 
+    private var people = [NSManagedObject]()
     private let mNavBar = Constant().makeNavBar()
     
     private var messengerNumber: Int? = 5 //number for table view
@@ -68,6 +70,13 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let chatView = ChatViewController()
+        chatView.messages = makeNormalConversation()
+        let chatNavigationController = UINavigationController(rootViewController: chatView)
+        present(chatNavigationController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
