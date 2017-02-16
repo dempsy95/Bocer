@@ -28,6 +28,10 @@ class BookPhotoViewController: UIViewController {
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         mImage.image = image
+        
+        //增加右滑返回
+        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
+
     }
 
     private func onMakeNavitem(){

@@ -9,7 +9,7 @@
 import UIKit
 import CreditCardValidator
 
-class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var mTableView: UITableView!
     
@@ -24,6 +24,9 @@ class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         mTableView.dataSource = self
         
         onMakeNavitem()
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
     }
 
     override func viewWillAppear(_ animated: Bool) {

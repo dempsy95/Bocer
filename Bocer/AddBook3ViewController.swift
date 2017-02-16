@@ -62,6 +62,10 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
                 cent[i] = String(i)
             }
         }
+        
+        //增加右滑返回
+        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
+
     }
 
     override func didReceiveMemoryWarning() {

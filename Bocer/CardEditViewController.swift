@@ -51,6 +51,10 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
         
         //customize nav bar
         onMakeNavitem()
+        
+        //增加右滑返回
+        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
+
     }
 
     override func didReceiveMemoryWarning() {

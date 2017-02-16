@@ -9,7 +9,7 @@
 import UIKit
 import SideMenu
 
-class ProfileViewController: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
     //information used by server
     internal var username:String?
     internal var school:String? = "Vanderbilt University"
@@ -73,6 +73,10 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         //delegate table view
         mTableView.delegate = self
         mTableView.dataSource = self
+        
+        //delegate the gesture recognizer 
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = false
     }
 
     override func viewWillAppear(_ animated: Bool) {

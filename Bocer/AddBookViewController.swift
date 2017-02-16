@@ -68,6 +68,9 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         mTitle = titleCell?.viewWithTag(100) as! UILabel?
         authorCell = mResTable.dequeueReusableCell(withIdentifier: "addBookAuthor")
         mAuthor = authorCell?.viewWithTag(100) as! UILabel?
+        
+        //增加右滑返回
+        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

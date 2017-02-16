@@ -24,6 +24,10 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
         mTableView.dataSource = self
         
         onMakeNavitem()
+        
+        //增加右滑返回
+        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
+
     }
 
     override func viewWillAppear(_ animated: Bool) {

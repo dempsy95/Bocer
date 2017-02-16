@@ -32,6 +32,10 @@ class CommentViewController: UIViewController, UITextViewDelegate {
             mComment.text = myInfo
             mLabel.alpha = 0
         }
+        
+        //增加右滑返回
+        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
+
     }
 
     private func onMakeNavitem(){

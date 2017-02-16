@@ -33,7 +33,11 @@ class EditionViewController: UIViewController, UITextFieldDelegate {
         Constant().customizeSFLTextField(tf: edition)
         if myEdition != nil {
             edition.text = myEdition
-        }        
+        }
+        
+        //增加右滑返回
+        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
+
     }
     
     @IBAction func viewClicked(_ sender: UIView) {

@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import JSQMessagesViewController
 
-class MessengerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MessengerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var mTableView: UITableView!
 
@@ -31,6 +31,10 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //Mark: used to set up core data
         setupData()
+        
+        //delegate the gesture recognizer
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

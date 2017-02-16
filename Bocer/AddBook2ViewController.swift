@@ -113,6 +113,10 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
         mTableView.dataSource = self
         
         nextBtn.layer.cornerRadius = CGFloat(Constant().buttonCornerRadius)
+        
+        //增加右滑返回
+        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

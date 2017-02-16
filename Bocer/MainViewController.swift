@@ -138,6 +138,10 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
             break
         case 4:
             showMessenger()
+            break
+        case 5:
+            showSettings()
+            break
         default:
             break
         }
@@ -169,22 +173,17 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
         vc.username = self.username!
-//        vc.view.layer.speed = 0.7
-//        vc.modalTransitionStyle = .crossDissolve
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)
         }
         let navCon = UINavigationController(rootViewController: vc)
         self.present(navCon, animated: true, completion: nil)
-//        self.present(vc, animated: true, completion: nil)
     }
     
     private func showPay() {
         self.presentedViewController?.dismiss(animated: true, completion: nil)
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Pay") as! PayViewController
-//        vc.view.layer.speed = 0.7
-//        vc.modalTransitionStyle = .crossDissolve
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)
         }
@@ -196,6 +195,17 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         self.presentedViewController?.dismiss(animated: true, completion: nil)
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Messenger") as! MessengerViewController
+        let navCon = UINavigationController(rootViewController: vc)
+        self.present(navCon, animated: true, completion: nil)
+    }
+    
+    private func showSettings() {
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
+        }
         let navCon = UINavigationController(rootViewController: vc)
         self.present(navCon, animated: true, completion: nil)
     }
