@@ -4,12 +4,33 @@
 //
 //  Created by Dan Leonard on 5/11/16.
 //  Copyright © 2016 MacMeDan. All rights reserved.
-//
+// MARK: 
+// senderID is different from senderDisplayName
+// senderID is the user's ID
+// senderDisplayName is the name of the friend who the user is talking to
 
 import UIKit
 import JSQMessagesViewController
 
 class ChatViewController: JSQMessagesViewController {
+    var friend: Friend? {
+        didSet {
+            //import data from core data
+            var mMessages = friend?.messages?.allObjects as! [Message]
+            mMessages = mMessages.sorted(by: {$0.date!.compare($1.date! as Date) == .orderedAscending})
+            for message in mMessages {
+                var currentID = "", currentName = ""
+                if message.toFriend == false {
+                    currentID = (friend?.id)!
+                    currentName = (friend?.name)!
+                } else {
+                    currentID = self.senderId()
+                    currentName = self.senderDisplayName()
+                }
+                messages.append(JSQMessage(senderId: currentID, senderDisplayName: currentName, date: message.date as! Date, text: message.text!))
+            }
+        }
+    }
     var messages = [JSQMessage]()
     private var incomingBubble: JSQMessagesBubbleImage!
     private var outgoingBubble: JSQMessagesBubbleImage!
@@ -32,8 +53,6 @@ class ChatViewController: JSQMessagesViewController {
         collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
         
-        //TODO:
-        //add right button for the navigation btnItem
         
         //MARK: beta feature, may not stable
 //        collectionView?.collectionViewLayout.springinessEnabled = false
@@ -69,6 +88,7 @@ class ChatViewController: JSQMessagesViewController {
         
         let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
         self.messages.append(message)
+        createMessageWithText(text: text, friend: friend!, date: date)
         self.finishSendingMessage(animated: true)
         
             //Mark: This part is only for NSAttributedString?        
@@ -110,7 +130,6 @@ class ChatViewController: JSQMessagesViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
-    //MARK: JSQMessages CollectionView DataSource
     //MARK: JSQMessages CollectionView DataSource
     
     override func senderId() -> String {
@@ -157,7 +176,7 @@ class ChatViewController: JSQMessagesViewController {
         if (indexPath.item % 3 == 0) {
             let message = self.messages[indexPath.item]
             
-            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
+            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: (message.date))
         }
         
         return nil

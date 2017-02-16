@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bocer/ChatViewController.swift"
-            timestampString = "508834787.158487"
+            timestampString = "508918565.624308"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -33,6 +33,179 @@
             endingLineNumber = "92"
             landmarkName = "onMakeNavitem()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bocer/AppDelegate.swift"
+            timestampString = "508911319.795001"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bocer/MessengerHelper.swift"
+            timestampString = "508916640.352915"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "loadData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bocer/ChatViewController.swift"
+            timestampString = "508916185.398258"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "ChatViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bocer.ChatViewController.__deallocating_deinit"
+                  moduleName = "Bocer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dempsy/Bocer/Bocer/ChatViewController.swift"
+                  timestampString = "508916185.444851"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bocer.ChatViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; Bocer.ChatViewController"
+                  moduleName = "Bocer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dempsy/Bocer/Bocer/ChatViewController.swift"
+                  timestampString = "508916185.446244"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bocer.ChatViewController.__allocating_init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; Bocer.ChatViewController"
+                  moduleName = "Bocer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dempsy/Bocer/Bocer/ChatViewController.swift"
+                  timestampString = "508916185.447512"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bocer.ChatViewController.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Bocer.ChatViewController&gt;"
+                  moduleName = "Bocer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dempsy/Bocer/Bocer/ChatViewController.swift"
+                  timestampString = "508916185.448854"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bocer.ChatViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Bocer.ChatViewController&gt;"
+                  moduleName = "Bocer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dempsy/Bocer/Bocer/ChatViewController.swift"
+                  timestampString = "508916185.450159"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bocer/ChatViewController.swift"
+            timestampString = "508918565.624308"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "collectionView(_:attributedTextForCellTopLabelAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bocer.ChatViewController.collectionView (__ObjC.JSQMessagesCollectionView, attributedTextForCellTopLabelAt : Foundation.IndexPath) -&gt; Swift.Optional&lt;__ObjC.NSAttributedString&gt;"
+                  moduleName = "Bocer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dempsy/Bocer/Bocer/ChatViewController.swift"
+                  timestampString = "508916218.010064"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bocer.ChatViewController.collectionView (__ObjC.JSQMessagesCollectionView, attributedTextForCellTopLabelAt : Foundation.IndexPath) -&gt; Swift.Optional&lt;__ObjC.NSAttributedString&gt;"
+                  moduleName = "Bocer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dempsy/Bocer/Bocer/ChatViewController.swift"
+                  timestampString = "508916218.01215"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "632">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

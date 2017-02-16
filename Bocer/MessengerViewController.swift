@@ -14,10 +14,9 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet weak var mTableView: UITableView!
 
+    internal var messages : [Message]?
     private var people = [NSManagedObject]()
-    
-    private var messengerNumber: Int? = 5 //number for table view
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,11 +28,14 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
         mTableView.dataSource = self
         mTableView.tableFooterView = UIView()
         mTableView.tableFooterView?.isHidden = true
-
+        
+        //Mark: used to set up core data
+        setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadData()
         mTableView.reloadData()
     }
 
@@ -54,7 +56,10 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messengerNumber!
+        if let count = messages?.count {
+            return count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,7 +72,20 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
         let mMessage = cell?.viewWithTag(102) as! UILabel?
         let mTime = cell?.viewWithTag(103) as! UILabel?
         
+        //date formatter
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        
+        //for loading info
+        let message = messages?[indexPath.item]
+        mName?.text = message?.friend?.name
+        mImage?.image = UIImage(named: (message?.friend?.profileImageName)!)
+        mMessage?.text = message?.text
+        mTime?.text = String(describing: dateFormatter.string(from: (message?.date)! as Date))
         return cell!
+        
+        //TODO:
+        //Make the name of friend bold if there is/are unread message(s)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -76,9 +94,11 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatView = ChatViewController()
-        chatView.messages = makeNormalConversation()
-        chatView.myUserID = "SomeIDForUser"
-        chatView.myDisplayName = "Lu Hsun"
+//        chatView.messages = makeNormalConversation()
+        let friend = messages?[indexPath.item].friend
+        chatView.myUserID = "someid"
+        chatView.myDisplayName = friend?.name
+        chatView.friend = friend
 //        let chatNavigationController = UINavigationController(rootViewController: chatView)
 //        present(chatNavigationController, animated: true, completion: nil)
         self.navigationController?.pushViewController(chatView, animated: true)
@@ -89,12 +109,12 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
-    //TODO:
-    private func makeNormalConversation() -> [JSQMessage] {
-        let message = JSQMessage(senderId: "SomeSenderIDforHsunLu", displayName: "Lu Hsun", text: "Hello")
-        let conversation = [message]
-        return conversation as! [JSQMessage]
-    }
+//    //TODO:
+//    private func makeNormalConversation() -> [JSQMessage] {
+//        let message = JSQMessage(senderId: "SomeSenderIDforHsunLu", displayName: "Lu Hsun", text: "Hello")
+//        let conversation = [message]
+//        return conversation as! [JSQMessage]
+//    }
 
     /*
     // MARK: - Navigation
@@ -105,5 +125,7 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //helper method to test functionality
 
 }
