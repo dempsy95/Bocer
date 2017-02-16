@@ -74,7 +74,16 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func addClicked(_ sender: UIButton) {
-        finishPerformed()
+        if(self.sPrice == nil){
+            let alert = UIAlertController(title: "Warning", message: "You must provide some number for edition", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        else{
+            finishPerformed()
+        }
     }
     
     //customize navigation item
@@ -102,7 +111,16 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc private func didFinish() {
-        finishPerformed()
+        if(self.sPrice == nil){
+            let alert = UIAlertController(title: "Warning", message: "You must provide some number for edition", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        else{
+            finishPerformed()
+        }
     }
     
     private func finishPerformed() {

@@ -104,11 +104,29 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @objc private func didNext() {
-        nextPerformed()
+        if(self.myEdition == nil || self.myEdition == ""){
+            let alert = UIAlertController(title: "Warning", message: "You must provide some number for edition", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        else{
+            nextPerformed()
+        }
     }
     
     @IBAction func nextFired(_ sender: UIButton) {
-        nextPerformed()
+        if(self.myEdition == nil || self.myEdition == ""){
+            let alert = UIAlertController(title: "Warning", message: "You must provide some number for edition", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        else{
+            nextPerformed()
+        }
     }
     
     private func nextPerformed() {

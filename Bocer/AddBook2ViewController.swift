@@ -326,11 +326,29 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func nextClicked(_ sender: UIButton) {
-        nextPerformed()
+        if(self.myInfo == nil || self.myInfo == ""){
+            let alert = UIAlertController(title: "Warning", message: "You must provide some number for edition", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        else{
+            nextPerformed()
+        }
     }
 
     @objc private func didNext() {
-        nextPerformed()
+        if(self.myInfo == nil || self.myInfo == ""){
+            let alert = UIAlertController(title: "Warning", message: "You must provide some number for edition", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        else{
+            nextPerformed()
+        }
     }
     
     private func nextPerformed() {
