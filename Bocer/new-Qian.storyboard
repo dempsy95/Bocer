@@ -693,6 +693,13 @@
                                 <color key="pageIndicatorTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </pageControl>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kK5-j9-z9a">
+                                <rect key="frame" x="255" y="55" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1341265291" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="ete-J8-Oon"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -707,13 +714,16 @@
                             <constraint firstItem="LiH-yv-c5L" firstAttribute="top" secondItem="Pt3-HL-t6E" secondAttribute="bottom" constant="8" id="MIO-JP-qXY"/>
                             <constraint firstItem="VZy-tq-TZB" firstAttribute="leading" secondItem="UzS-PZ-7Jg" secondAttribute="leadingMargin" id="Pbn-0A-64L"/>
                             <constraint firstItem="o5G-Pu-azq" firstAttribute="top" secondItem="VZy-tq-TZB" secondAttribute="bottom" constant="5" id="X6x-Zi-sQC"/>
+                            <constraint firstItem="kK5-j9-z9a" firstAttribute="leading" secondItem="Hkh-22-0jj" secondAttribute="leading" id="YPZ-KJ-Rc2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="d79-cQ-mw0" secondAttribute="trailing" constant="-16" id="Ym5-Wf-Wfu"/>
                             <constraint firstItem="QiQ-wx-nwg" firstAttribute="trailing" secondItem="Hkh-22-0jj" secondAttribute="trailing" id="Zfa-np-K0e"/>
                             <constraint firstItem="o5G-Pu-azq" firstAttribute="centerY" secondItem="QiQ-wx-nwg" secondAttribute="centerY" id="nPK-sA-qZg"/>
                             <constraint firstItem="d79-cQ-mw0" firstAttribute="leading" secondItem="UzS-PZ-7Jg" secondAttribute="leadingMargin" constant="-16" id="nsh-S1-ylq"/>
                             <constraint firstItem="Hkh-22-0jj" firstAttribute="centerX" secondItem="UzS-PZ-7Jg" secondAttribute="centerX" id="oL8-vC-OA8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="o5G-Pu-azq" secondAttribute="trailing" constant="30" id="pqV-xi-ebO"/>
+                            <constraint firstItem="kK5-j9-z9a" firstAttribute="trailing" secondItem="Hkh-22-0jj" secondAttribute="trailing" id="wND-0f-16S"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Hkh-22-0jj" secondAttribute="trailing" constant="-16" id="wrv-hr-e6w"/>
+                            <constraint firstItem="kK5-j9-z9a" firstAttribute="top" secondItem="Hkh-22-0jj" secondAttribute="top" id="yXC-rm-UsU"/>
                             <constraint firstItem="QiQ-wx-nwg" firstAttribute="leading" secondItem="Hkh-22-0jj" secondAttribute="leading" id="ynd-a6-Mnj"/>
                         </constraints>
                     </view>

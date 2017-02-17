@@ -123,8 +123,126 @@ class UserInfoHelper {
                 print(err)
             }
         }
-
     }
     
+    func saveFirstName(name: String) {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        var info: UserInfo?
+        
+        if let context = delegate?.managedObjectContext {
+            
+            do {
+                
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UserInfo")
+                
+                let objects = try(context.fetch(fetchRequest)) as? [UserInfo]
+                
+                for object in objects! {
+                    info = object
+                }
+            } catch let err {
+                print(err)
+            }
+            
+            info?.firstname = name
+            
+            do {
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+        }
+    }
+
+    func saveLastName(name: String) {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        var info: UserInfo?
+        
+        if let context = delegate?.managedObjectContext {
+            
+            do {
+                
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UserInfo")
+                
+                let objects = try(context.fetch(fetchRequest)) as? [UserInfo]
+                
+                for object in objects! {
+                    info = object
+                }
+            } catch let err {
+                print(err)
+            }
+            
+            info?.lastname = name
+            
+            do {
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+        }
+    }
+    
+    func saveAddress(name: String) {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        var info: UserInfo?
+        
+        if let context = delegate?.managedObjectContext {
+            
+            do {
+                
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UserInfo")
+                
+                let objects = try(context.fetch(fetchRequest)) as? [UserInfo]
+                
+                for object in objects! {
+                    info = object
+                }
+            } catch let err {
+                print(err)
+            }
+            
+            info?.address = name
+            
+            do {
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+        }
+    }
+    
+    func saveCollege(name: String) {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        var info: UserInfo?
+        
+        if let context = delegate?.managedObjectContext {
+            
+            do {
+                
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UserInfo")
+                
+                let objects = try(context.fetch(fetchRequest)) as? [UserInfo]
+                
+                for object in objects! {
+                    info = object
+                }
+            } catch let err {
+                print(err)
+            }
+            
+            info?.college = name
+            
+            do {
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+        }
+    }
     
 }

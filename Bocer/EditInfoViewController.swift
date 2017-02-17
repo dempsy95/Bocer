@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ActionSheetPicker_3_0
 
-class EditInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate,  UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var mTableView: UITableView!
 
@@ -34,6 +35,7 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
                 mTableView.deselectRow(at: indexPath, animated: true)
             }
         }
+        mTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,17 +45,14 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
     
     //customize navigation item
     private func onMakeNavitem(){
-        let mImage = UIImage(named: "back")
+        let mImage = UIImage()
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
-        btn.setImage(mImage, for: .normal)
-        btn.addTarget(self, action: #selector(EditInfoViewController.didCancel), for: .touchUpInside)
-        btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
         
         let mRightImage = UIImage(named: "finish")
         let rightBtn = UIButton(frame: CGRect(x: self.view.bounds.maxX - 55, y: 30, width: 20, height: 20))
         rightBtn.setImage(mRightImage, for: .normal)
-        rightBtn.addTarget(self, action: #selector(EditInfoViewController.didFinish), for: .touchUpInside)
+        rightBtn.addTarget(self, action: #selector(EditInfoViewController.didCancel), for: .touchUpInside)
         rightBtn.tintColor = UIColor.white
         let rightBtnItem = UIBarButtonItem(customView: rightBtn)
         navigationItem.title = "EDIT USER INFO"
@@ -65,9 +64,6 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc private func didFinish() {
-        
-    }
     
     func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
@@ -98,7 +94,7 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
             let identifier = "edit_first_name_cell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier)
             let label = cell?.viewWithTag(100) as! UILabel?
-            if info.avatar == nil {
+            if info.firstname == nil {
                 label?.text = "MyFirstName"
             } else {
                 label?.text = info.firstname
@@ -109,7 +105,7 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
             let identifier = "edit_last_name_cell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier)
             let label = cell?.viewWithTag(100) as! UILabel?
-            if info.avatar == nil {
+            if info.lastname == nil {
                 label?.text = "MyLastName"
             } else {
                 label?.text = info.lastname
@@ -120,7 +116,7 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
             let identifier = "edit_email_cell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier)
             let label = cell?.viewWithTag(100) as! UILabel?
-            if info.avatar == nil {
+            if info.email == nil {
                 label?.text = "MyEmail"
             } else {
                 label?.text = info.email
@@ -131,7 +127,7 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
             let identifier = "edit_college_cell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier)
             let label = cell?.viewWithTag(100) as! UILabel?
-            if info.avatar == nil {
+            if info.college == nil {
                 label?.text = "MyCollege"
             } else {
                 label?.text = info.college
@@ -142,7 +138,7 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
             let identifier = "edit_address_cell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier)
             let label = cell?.viewWithTag(100) as! UILabel?
-            if info.avatar == nil {
+            if info.address == nil {
                 label?.text = "MyAddress"
             } else {
                 label?.text = info.address
@@ -157,7 +153,7 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath == IndexPath(item: 0, section: 0) || indexPath == IndexPath(item: 2, section: 2)) {
+        if (indexPath == IndexPath(item: 0, section: 0) || indexPath == IndexPath(item: 2, section: 1)) {
             return 80
         } else {
             return 50
@@ -176,12 +172,27 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
             self.navigationController?.pushViewController(vc, animated: true)
             break
         case IndexPath(item: 2, section: 0):
-            break
-        case IndexPath(item: 0, section: 1):
+            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "EditLastName") as! EditLastNameViewController
+            self.navigationController?.pushViewController(vc, animated: true)
             break
         case IndexPath(item: 1, section: 1):
+            //show actionsheet picker for School
+            let info = UserInfoHelper().loadData()
+            let picker = ActionSheetStringPicker(title: "Select Your School", rows: SchoolList().School, initialSelection: getLoc(s: info.college!), doneBlock: {
+                picker, indexes, values in
+                UserInfoHelper().saveCollege(name: values as! String)
+                self.mTableView.reloadData()
+                return
+            }, cancel: { ActionMultipleStringCancelBlock in return }, origin: self.view)
+            picker?.toolbarButtonsColor = UIColor.black
+            
+            picker?.show()
             break
         case IndexPath(item: 2, section: 1):
+            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "EditAddress") as! EditAddressViewController
+            self.navigationController?.pushViewController(vc, animated: true)
             break
 
         default:
@@ -236,9 +247,54 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.mTableView.deselectRow(at: IndexPath(item: 0, section: 0), animated: true)
         self.dismiss(animated: true, completion: nil)
     }
 
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // returns number of rows in each component..
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        return SchoolList().School.count
+    }
+    
+    // Return the title of each row in your picker ... In my case that will be the profile name or the username string
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return SchoolList().School[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        UserInfoHelper().saveCollege(name: SchoolList().School[row])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var pickerLabel = view as? UILabel;
+        
+        if (pickerLabel == nil)
+        {
+            pickerLabel = UILabel()
+            
+            pickerLabel?.font = UIFont(name: "Montserrat", size: 12)
+            pickerLabel?.textAlignment = NSTextAlignment.center
+        }
+        
+        pickerLabel?.text = SchoolList().School[row]
+        
+        return pickerLabel!;
+    }
+    
+    private func getLoc(s: String) -> Int {
+        var ans = 0
+        let schools = SchoolList().School
+        for name in 0 ... schools.count - 1 {
+            if s == schools[name] {
+                ans = name
+            }
+        }
+        return ans
+    }
 
     /*
     // MARK: - Navigation

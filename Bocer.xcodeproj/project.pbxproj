@@ -159,6 +159,17 @@
 			name = Book;
 			sourceTree = "<group>";
 		};
+		25D7393A1E56CB27002A2D47 /* Edit User Info */ = {
+			isa = PBXGroup;
+			children = (
+				25D739311E56AD1B002A2D47 /* EditInfoViewController.swift */,
+				25D739341E56C3C4002A2D47 /* EditFirstNameViewController.swift */,
+				25D739361E56C3CE002A2D47 /* EditLastNameViewController.swift */,
+				25D739381E56C3D8002A2D47 /* EditAddressViewController.swift */,
+			);
+			name = "Edit User Info";
+			sourceTree = "<group>";
+		};
 		25E9A9491E38914B00B259EF /* Pay */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,10 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				25F7B9F21E31592900F056C4 /* ProfileViewController.swift */,
-				25D739311E56AD1B002A2D47 /* EditInfoViewController.swift */,
-				25D739341E56C3C4002A2D47 /* EditFirstNameViewController.swift */,
-				25D739361E56C3CE002A2D47 /* EditLastNameViewController.swift */,
-				25D739381E56C3D8002A2D47 /* EditAddressViewController.swift */,
+				25D7393A1E56CB27002A2D47 /* Edit User Info */,
 				25D739331E56AD27002A2D47 /* Book */,
 			);
 			name = Profile;
