@@ -28,6 +28,12 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        for i in 0 ... 1 {
+            for j in 0 ... 2 {
+                let indexPath = IndexPath(item: j, section: i)
+                mTableView.deselectRow(at: indexPath, animated: true)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -165,6 +171,9 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
             pickPhotos()
             break
         case IndexPath(item: 1, section: 0):
+            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "EditFirstName") as! EditFirstNameViewController
+            self.navigationController?.pushViewController(vc, animated: true)
             break
         case IndexPath(item: 2, section: 0):
             break

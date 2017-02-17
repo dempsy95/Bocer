@@ -10,6 +10,8 @@ import UIKit
 
 class EditAddressViewController: UIViewController {
 
+    @IBOutlet weak var mLabel: UILabel!
+    @IBOutlet weak var mTextView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +23,8 @@ class EditAddressViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func viewClicked(_ sender: UIView) {
+    }
 
     /*
     // MARK: - Navigation
