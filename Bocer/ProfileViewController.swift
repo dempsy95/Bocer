@@ -173,7 +173,8 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         //bid = userInfo(uid).getBook
         let info = UserInfoHelper().loadData()
         if (uid == info.id) {
-            nameLabel.text = info.firstname! + " " + info.lastname!
+            let s = info.firstname! + " " + info.lastname!
+            nameLabel.text = s.uppercased()
             emailLabel.text = info.email
             collegeLabel.text = info.college
             if info.address != nil {

@@ -25,8 +25,10 @@ class EditAddressViewController: UIViewController, UITextViewDelegate {
         if info.address != nil {
             mTextView.text = info.address
             mLabel.alpha = 0
+            mTextView.becomeFirstResponder()
         }
         
+
         //增加右滑返回
         self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
         

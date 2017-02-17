@@ -25,7 +25,9 @@ class EditLastNameViewController: UIViewController, UITextViewDelegate {
         if info.lastname != nil {
             mTextView.text = info.lastname
             mLabel.alpha = 0
+            mTextView.becomeFirstResponder()
         }
+        
         
         //增加右滑返回
         self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true

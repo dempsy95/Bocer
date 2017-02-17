@@ -25,7 +25,10 @@ class EditFirstNameViewController: UIViewController , UITextViewDelegate{
         if info.firstname != nil {
             mTextView.text = info.firstname
             mLabel.alpha = 0
+            mTextView.becomeFirstResponder()
+
         }
+        
         
         //增加右滑返回
         self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true

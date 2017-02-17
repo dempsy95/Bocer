@@ -139,7 +139,7 @@ class EditInfoViewController: UIViewController, UITableViewDelegate, UITableView
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier)
             let label = cell?.viewWithTag(100) as! UILabel?
             if info.address == nil {
-                label?.text = "MyAddress"
+                label?.text = "None"
             } else {
                 label?.text = info.address
             }

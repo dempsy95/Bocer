@@ -88,7 +88,7 @@ class UserInfoHelper {
     }
     
     func storeImage(image: UIImage) {
-        let mImage = Constant().rotateCameraImageToProperOrientation(imageSource: image, maxResolution: 1000)
+        let mImage = image.fixOrientation()
         let size = mImage.size.width < mImage.size.height ? mImage.size.width : mImage.size.height
         let x = (mImage.size.width - size) / 2.0;
         let y = (mImage.size.height - size) / 2.0;

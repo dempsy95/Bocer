@@ -12,10 +12,10 @@ protocol  EditionDelegate: NSObjectProtocol {
     func fetchEditionBack(edition: String)
 }
 
-class EditionViewController: UIViewController, UITextFieldDelegate {
+class EditionViewController: UIViewController, UITextViewDelegate {
 
-    @IBOutlet weak var edition: SkyFloatingLabelTextFieldWithIcon!
-
+    @IBOutlet weak var mLabel: UILabel!
+    @IBOutlet weak var mTextView: UITextView!
     internal weak var delegate: EditionDelegate?
     internal var myEdition: String?
     
@@ -26,13 +26,10 @@ class EditionViewController: UIViewController, UITextFieldDelegate {
         onMakeNavitem()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
-        edition.delegate = self
-        edition.title = "Edition Number"
-        edition.iconFont = UIFont(name: "FontAwesome", size: 20)
-        edition.iconText = "\u{f187}"
-        Constant().customizeSFLTextField(tf: edition)
+        mTextView.delegate = self
         if myEdition != nil {
-            edition.text = myEdition
+            mTextView.text = myEdition
+            mTextView.becomeFirstResponder()
         }
         
         //增加右滑返回
@@ -40,8 +37,13 @@ class EditionViewController: UIViewController, UITextFieldDelegate {
 
     }
     
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        mLabel.alpha = 0
+        return true
+    }
+    
     @IBAction func viewClicked(_ sender: UIView) {
-        edition.resignFirstResponder()
+        mTextView.resignFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,7 +77,7 @@ class EditionViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc private func didFinish() {
-        myEdition = edition.text
+        myEdition = mTextView.text
         if myEdition == nil {
             let alertController = UIAlertController(title: "Woops!", message: "Edition cannot be empty", preferredStyle: UIAlertControllerStyle.alert)
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {

@@ -922,46 +922,6 @@
             </objects>
             <point key="canvasLocation" x="1314" y="902"/>
         </scene>
-        <!--Edition-->
-        <scene sceneID="sbm-YZ-5hc">
-            <objects>
-                <viewController storyboardIdentifier="Edition" title="Edition" id="jWd-yP-qPc" customClass="EditionViewController" customModule="Bocer" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Mm5-9V-PJj"/>
-                        <viewControllerLayoutGuide type="bottom" id="wzS-CA-GiK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="FOh-uP-EH8" customClass="UIControl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Edition" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="teK-f5-Bhh" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="Bocer" customModuleProvider="target">
-                                <rect key="frame" x="26" y="46" width="323" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Ihr-DF-IBQ"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="teK-f5-Bhh" secondAttribute="trailing" constant="10" id="RMj-QF-oaL"/>
-                            <constraint firstItem="teK-f5-Bhh" firstAttribute="top" secondItem="Mm5-9V-PJj" secondAttribute="bottom" constant="26" id="a1Z-h4-veK"/>
-                            <constraint firstItem="teK-f5-Bhh" firstAttribute="leading" secondItem="FOh-uP-EH8" secondAttribute="leadingMargin" constant="10" id="oAY-Jp-JmE"/>
-                        </constraints>
-                        <connections>
-                            <action selector="viewClicked:" destination="jWd-yP-qPc" eventType="touchUpInside" id="cd0-Cx-8el"/>
-                        </connections>
-                    </view>
-                    <connections>
-                        <outlet property="edition" destination="teK-f5-Bhh" id="S02-5F-Bfh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9qw-tA-wLk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1937" y="902"/>
-        </scene>
         <!--AddBook2-->
         <scene sceneID="JNh-2T-ATF">
             <objects>
@@ -2836,6 +2796,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pA9-TA-SR1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1937" y="2309"/>
+        </scene>
+        <!--Edition-->
+        <scene sceneID="aSR-qN-QOu">
+            <objects>
+                <viewController storyboardIdentifier="Edition" title="Edition" id="HnY-TF-0Y6" customClass="EditionViewController" customModule="Bocer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GQ7-We-2se"/>
+                        <viewControllerLayoutGuide type="bottom" id="cwv-Yd-y6J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QB8-kd-Vct" customClass="UIControl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAR-yq-v0Y">
+                                <rect key="frame" x="-8" y="60" width="383" height="150"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1hT-DJ-q1T">
+                                        <rect key="frame" x="97" y="13" width="189" height="124"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Enter the edition of your book here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVr-e2-XeO">
+                                        <rect key="frame" x="27" y="13" width="285" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="1hT-DJ-q1T" firstAttribute="centerX" secondItem="cAR-yq-v0Y" secondAttribute="centerX" id="1EQ-dz-B7K"/>
+                                    <constraint firstItem="uVr-e2-XeO" firstAttribute="top" secondItem="1hT-DJ-q1T" secondAttribute="top" id="GTi-08-3K8"/>
+                                    <constraint firstItem="uVr-e2-XeO" firstAttribute="leading" secondItem="1hT-DJ-q1T" secondAttribute="leading" id="JjS-Jk-cG7"/>
+                                    <constraint firstItem="1hT-DJ-q1T" firstAttribute="top" secondItem="cAR-yq-v0Y" secondAttribute="top" constant="10" id="cOA-2c-Rqf"/>
+                                    <constraint firstAttribute="height" constant="50" id="n4v-02-b2m"/>
+                                    <constraint firstItem="1hT-DJ-q1T" firstAttribute="centerY" secondItem="cAR-yq-v0Y" secondAttribute="centerY" id="pKO-Hp-yBi"/>
+                                    <constraint firstItem="1hT-DJ-q1T" firstAttribute="leading" secondItem="cAR-yq-v0Y" secondAttribute="leading" constant="20" id="ytU-rM-C7g"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cAR-yq-v0Y" firstAttribute="top" secondItem="GQ7-We-2se" secondAttribute="bottom" constant="10" id="0eW-hI-SF9"/>
+                            <constraint firstItem="cAR-yq-v0Y" firstAttribute="leading" secondItem="QB8-kd-Vct" secondAttribute="leadingMargin" constant="-20" id="DDI-qK-hF6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cAR-yq-v0Y" secondAttribute="trailing" constant="-20" id="yJG-Xh-Kko"/>
+                        </constraints>
+                        <connections>
+                            <action selector="viewClicked:" destination="HnY-TF-0Y6" eventType="touchUpInside" id="CuO-lA-H2S"/>
+                            <action selector="viewClikced:" destination="HnY-TF-0Y6" eventType="touchUpInside" id="K4a-Pm-T8g"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="mLabel" destination="uVr-e2-XeO" id="e6r-8y-n66"/>
+                        <outlet property="mTextView" destination="1hT-DJ-q1T" id="Pya-eF-97I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xf2-yh-ddn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1937" y="902"/>
         </scene>
     </scenes>
     <resources>
