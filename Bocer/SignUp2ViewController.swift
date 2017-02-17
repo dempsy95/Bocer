@@ -180,6 +180,10 @@ class SignUp2ViewController: UIViewController, UITextFieldDelegate {
                                 var json = JSON(result)
                                 if(json["Target Action"] == "loginresult"){
                                     if(json["content"] == "success"){
+                                        
+                                        //Mark: used to set up core data
+                                        DatabaseHelper().setupData()
+                                        
                                         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
                                         let vc = sb.instantiateViewController(withIdentifier: "Main") as! MainViewController
                                         vc.username = self.username!

@@ -151,6 +151,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
                 if(json["Target Action"] == "loginresult"){ //ok let's login in!
                     if(json["content"] == "success"){
         */
+                        //Mark: used to set up core data
+                        DatabaseHelper().setupData()
+        
                         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
                         let vc = sb.instantiateViewController(withIdentifier: "Main") as! MainViewController
                         vc.username = username!

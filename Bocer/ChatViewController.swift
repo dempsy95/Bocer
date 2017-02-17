@@ -29,6 +29,7 @@ class ChatViewController: JSQMessagesViewController {
                 }
                 messages.append(JSQMessage(senderId: currentID, senderDisplayName: currentName, date: message.date as! Date, text: message.text!))
             }
+            DatabaseHelper().readMessage(id: (friend?.id)!)
         }
     }
     var messages = [JSQMessage]()
@@ -88,7 +89,7 @@ class ChatViewController: JSQMessagesViewController {
         
         let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
         self.messages.append(message)
-        createMessageWithText(text: text, friend: friend!, date: date)
+        DatabaseHelper().createMessageWithText(text: text, friend: friend!, date: date)
         self.finishSendingMessage(animated: true)
         
             //Mark: This part is only for NSAttributedString?        
@@ -173,10 +174,17 @@ class ChatViewController: JSQMessagesViewController {
          *
          *  Show a timestamp for every 3rd message
          */
-        if (indexPath.item % 3 == 0) {
+        if (indexPath.item == 0) {
             let message = self.messages[indexPath.item]
             
             return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: (message.date))
+        }
+        
+        let messageNow = self.messages[indexPath.item]
+        let messagePre = self.messages[indexPath.item - 1]
+        let elapsed = messageNow.date.timeIntervalSince(messagePre.date)
+        if (elapsed > 120) {
+            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: (messageNow.date))
         }
         
         return nil
@@ -208,7 +216,14 @@ class ChatViewController: JSQMessagesViewController {
          *
          *  Show a timestamp for every 3rd message
          */
-        if indexPath.item % 3 == 0 {
+        if indexPath.item  == 0 {
+            return kJSQMessagesCollectionViewCellLabelHeightDefault
+        }
+        
+        let messageNow = self.messages[indexPath.item]
+        let messagePre = self.messages[indexPath.item - 1]
+        let elapsed = messageNow.date.timeIntervalSince(messagePre.date)
+        if (elapsed > 120) {
             return kJSQMessagesCollectionViewCellLabelHeightDefault
         }
         

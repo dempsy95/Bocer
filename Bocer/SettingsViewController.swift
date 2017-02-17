@@ -48,6 +48,7 @@ class SettingsViewController: UIViewController {
         while ((vc?.presentingViewController) != nil) {
             vc = vc?.presentingViewController
         }
+        DatabaseHelper().clearData()
         vc?.dismiss(animated: true, completion: nil)
     }
 

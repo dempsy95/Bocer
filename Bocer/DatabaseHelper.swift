@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
+import Foundation
 
-extension MessengerViewController {
+class DatabaseHelper {
     func clearData() {
         let delegate = UIApplication.shared.delegate as? AppDelegate
         
@@ -56,6 +57,7 @@ extension MessengerViewController {
             message.friend = mark
             message.text = "Hello, my name is Mark. Nice to meet you..."
             message.toFriend = false
+            message.hasRead = false
             message.date = NSDate()
             
             let steve = NSEntityDescription.insertNewObject(forEntityName: "Friend", into: context) as! Friend
@@ -90,12 +92,14 @@ extension MessengerViewController {
         message.friend = friend
         message.text = text
         message.toFriend = toFriend
+        message.hasRead = true
         message.date = NSDate().addingTimeInterval(-minutesAgo * 60)
     }
     
-    func loadData() {
+    func loadData() -> [Message]? {
         let delegate = UIApplication.shared.delegate as? AppDelegate
-        
+        var messages : [Message]?
+
         if let context = delegate?.managedObjectContext {
             
             if let friends = fetchFriends() {
@@ -124,6 +128,7 @@ extension MessengerViewController {
                 
             }
         }
+        return messages
     }
     
     private func fetchFriends() -> [Friend]? {
@@ -144,5 +149,74 @@ extension MessengerViewController {
         
         return nil
     }
-
+    
+    func createMessageWithText(text: String, friend: Friend, date: Date) {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        if let context = delegate?.managedObjectContext {
+            let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
+            message.friend = friend
+            message.text = text
+            message.toFriend = true
+            message.hasRead = true
+            message.date = date as NSDate?
+            
+            do {
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+        }
+    }
+    
+    func deleteFriend(id: String) {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        if let context = delegate?.managedObjectContext {
+            
+            do {
+                let fetchMessageRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Message")
+                let messages = try(context.fetch(fetchMessageRequest)) as? [Message]
+                for message in messages! {
+                    if message.friend?.id == id {
+                        context.delete(message)
+                    }
+                }
+                
+                let fetchFriendRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Friend")
+                let friends = try(context.fetch(fetchFriendRequest)) as? [Friend]
+                for friend in friends! {
+                    if friend.id == id {
+                        context.delete(friend)
+                    }
+                    break
+                }
+                
+                try(context.save())
+                
+                
+            } catch let err {
+                print(err)
+            }
+        }
+    }
+    
+    func readMessage(id: String) {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        if let context = delegate?.managedObjectContext {
+            
+            do {
+                
+                let fetchMessageRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Message")
+                let messages = try(context.fetch(fetchMessageRequest)) as? [Message]
+                for message in messages! {
+                    if message.friend?.id == id {
+                        message.hasRead = true
+                    }
+                }
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+        }
+    }
 }

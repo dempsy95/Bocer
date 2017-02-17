@@ -19,8 +19,7 @@
 		25C0E60B1E554AAF000C6316 /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C0E6071E554AAF000C6316 /* Message+CoreDataProperties.swift */; };
 		25C0E60C1E554AAF000C6316 /* Friend+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C0E6081E554AAF000C6316 /* Friend+CoreDataClass.swift */; };
 		25C0E60D1E554AAF000C6316 /* Friend+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C0E6091E554AAF000C6316 /* Friend+CoreDataProperties.swift */; };
-		25C0E60F1E554DA9000C6316 /* MessengerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C0E60E1E554DA9000C6316 /* MessengerHelper.swift */; };
-		25C0E6111E557514000C6316 /* ChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C0E6101E557514000C6316 /* ChatHelper.swift */; };
+		25C0E60F1E554DA9000C6316 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C0E60E1E554DA9000C6316 /* DatabaseHelper.swift */; };
 		25D739251E561236002A2D47 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D739241E561236002A2D47 /* SettingsViewController.swift */; };
 		25E102B01E32D70700363129 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E102AF1E32D70700363129 /* SearchViewController.swift */; };
 		25E8DBA81E3E9CD300702041 /* AddBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E8DBA71E3E9CD300702041 /* AddBookViewController.swift */; };
@@ -67,8 +66,7 @@
 		25C0E6071E554AAF000C6316 /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		25C0E6081E554AAF000C6316 /* Friend+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataClass.swift"; sourceTree = "<group>"; };
 		25C0E6091E554AAF000C6316 /* Friend+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		25C0E60E1E554DA9000C6316 /* MessengerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessengerHelper.swift; sourceTree = "<group>"; };
-		25C0E6101E557514000C6316 /* ChatHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatHelper.swift; sourceTree = "<group>"; };
+		25C0E60E1E554DA9000C6316 /* DatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		25D739241E561236002A2D47 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		25E102AF1E32D70700363129 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		25E8DBA71E3E9CD300702041 /* AddBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookViewController.swift; sourceTree = "<group>"; };
@@ -122,8 +120,6 @@
 			children = (
 				255BD7B61E4419A1003E286A /* MessengerViewController.swift */,
 				25EDAE611E4965A200990D83 /* ChatViewController.swift */,
-				25C0E6101E557514000C6316 /* ChatHelper.swift */,
-				25C0E60E1E554DA9000C6316 /* MessengerHelper.swift */,
 			);
 			name = Messenger;
 			sourceTree = "<group>";
@@ -245,6 +241,7 @@
 				25C0E6071E554AAF000C6316 /* Message+CoreDataProperties.swift */,
 				25C0E6081E554AAF000C6316 /* Friend+CoreDataClass.swift */,
 				25C0E6091E554AAF000C6316 /* Friend+CoreDataProperties.swift */,
+				25C0E60E1E554DA9000C6316 /* DatabaseHelper.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -411,8 +408,7 @@
 				25F7B9C01E312E1900F056C4 /* AppDelegate.swift in Sources */,
 				25F7B9E31E312EAF00F056C4 /* ResetPassword2ViewController.swift in Sources */,
 				25F7B9EC1E31346A00F056C4 /* SkyFloatingLabelTextField.swift in Sources */,
-				25C0E60F1E554DA9000C6316 /* MessengerHelper.swift in Sources */,
-				25C0E6111E557514000C6316 /* ChatHelper.swift in Sources */,
+				25C0E60F1E554DA9000C6316 /* DatabaseHelper.swift in Sources */,
 				25F7B9DD1E312EAF00F056C4 /* Constant.swift in Sources */,
 				25744AFE1E3AF1C200D34D88 /* SchoolList.swift in Sources */,
 				25F7B9ED1E31346A00F056C4 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,

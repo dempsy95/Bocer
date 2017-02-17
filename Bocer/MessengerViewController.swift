@@ -29,17 +29,15 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
         mTableView.tableFooterView = UIView()
         mTableView.tableFooterView?.isHidden = true
         
-        //Mark: used to set up core data
-        setupData()
-        
         //delegate the gesture recognizer
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData()
+        messages = DatabaseHelper().loadData()
         mTableView.reloadData()
     }
 
@@ -86,6 +84,16 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
         mImage?.image = UIImage(named: (message?.friend?.profileImageName)!)
         mMessage?.text = message?.text
         mTime?.text = String(describing: dateFormatter.string(from: (message?.date)! as Date))
+        
+        //set text attributes for read message
+        if message?.hasRead == false {
+            mName?.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
+            mMessage?.font = UIFont(name: "HelveticaNeue-Medium", size: 13)
+        } else {
+            mName?.font = UIFont(name: "HelveticaNeue", size: 15)
+            mMessage?.font = UIFont(name: "HelveticaNeue", size: 13)
+        }
+        
         return cell!
         
         //TODO:
@@ -106,6 +114,20 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
 //        let chatNavigationController = UINavigationController(rootViewController: chatView)
 //        present(chatNavigationController, animated: true, completion: nil)
         self.navigationController?.pushViewController(chatView, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            DatabaseHelper().deleteFriend(id: (messages?[indexPath.item].friend?.id)!)
+            messages = DatabaseHelper().loadData()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.endUpdates()
+        }
     }
     
     override func didReceiveMemoryWarning() {
