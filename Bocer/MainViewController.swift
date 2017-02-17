@@ -122,9 +122,10 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     @objc private func searchFired() {
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Search") as! SearchViewController
+        let navCon = UINavigationController(rootViewController: vc)
         let transition = Constant().transitionFromRight()
         view.window!.layer.add(transition, forKey: kCATransition)
-        self.present(vc, animated: false)
+        self.present(navCon, animated: false, completion: nil)
     }
     
     //conform to protocol menuviewcontrollerdelegate

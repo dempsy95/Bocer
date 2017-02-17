@@ -81,7 +81,11 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
         //for loading info
         let message = messages?[indexPath.item]
         mName?.text = message?.friend?.name
-        mImage?.image = UIImage(named: (message?.friend?.profileImageName)!)
+        if message?.friend?.profileImage == nil {
+            mImage?.image = UIImage(named: "sample_avatar")
+        } else {
+            mImage?.image = UIImage(data: (message?.friend?.profileImage)! as Data)
+        }
         mMessage?.text = message?.text
         mTime?.text = String(describing: dateFormatter.string(from: (message?.date)! as Date))
         

@@ -50,7 +50,7 @@ class DatabaseHelper {
             
             let mark = NSEntityDescription.insertNewObject(forEntityName: "Friend", into: context) as! Friend
             mark.name = "Mark Zuckerberg"
-            mark.profileImageName = "sample_avatar"
+            mark.profileImage = nil
             mark.id = "mark"
             
             let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
@@ -62,7 +62,7 @@ class DatabaseHelper {
             
             let steve = NSEntityDescription.insertNewObject(forEntityName: "Friend", into: context) as! Friend
             steve.name = "Steve Jobs"
-            steve.profileImageName = "sample_avatar"
+            steve.profileImage = nil
             steve.id = "steve"
             
             createMessageWithText(text: "Good morning..", friend: steve, minutesAgo: 3, toFriend: true, context: context)
@@ -71,7 +71,7 @@ class DatabaseHelper {
             
             let donald = NSEntityDescription.insertNewObject(forEntityName: "Friend", into: context) as! Friend
             donald.name = "Donald Trump"
-            donald.profileImageName = "sample_avatar"
+            donald.profileImage = nil
             donald.id = "donald"
             
             createMessageWithText(text: "You're fired", friend: donald, minutesAgo: 5, toFriend: false, context: context)

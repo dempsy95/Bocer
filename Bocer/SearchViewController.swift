@@ -21,10 +21,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var fetch_result:[Dictionary<String, String>] = []
     //end information from server
 
-    private var mNavBar = Constant().makeNavBar()
     @IBOutlet weak var mSearchBar: UISearchBar!
     @IBOutlet weak var schoolButton: UIButton!
-    @IBOutlet weak var mNavItem: UINavigationItem!
     @IBOutlet weak var mResultTable: UITableView!
     @IBOutlet weak var mMiddleTable: UITableView!
     private var result = [String]()
@@ -45,7 +43,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         mSearchBar.backgroundImage = UIImage()
         mSearchBar.barTintColor = Constant().defaultColor
         mSearchBar.backgroundColor = UIColor.clear
-        mSearchBar.isTranslucent = true
+        mSearchBar.isTranslucent = false
         
         schoolButton.layer.cornerRadius = CGFloat(Constant().buttonCornerRadius)
         schoolButton.layer.borderWidth = 1
@@ -57,8 +55,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         
         // Do any additional setup after loading the view.
-        self.view.addSubview(mNavBar)
-        mNavBar.pushItem(onMakeNavitem(), animated: true)
+        onMakeNavitem()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         //
         mResultTable.isHidden = true
@@ -73,14 +70,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         mSearchBar.resignFirstResponder() 
     }
     
-    private func onMakeNavitem()->UINavigationItem{
+    private func onMakeNavitem(){
         let mImage = UIImage(named: "back")
         let btn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
         btn.setImage(mImage, for: .normal)
         btn.addTarget(self, action: #selector(SearchViewController.didCancel), for: .touchUpInside)
         btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
-        mNavItem.setLeftBarButton(btnItem, animated: true)
+        navigationItem.leftBarButtonItem = btnItem
         
         let mrImage = UIImage(named: "search")
         let rbtn = UIButton(frame: CGRect(x: 30, y: 30, width: 20, height: 20))
@@ -88,9 +85,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         rbtn.addTarget(self, action: #selector(SearchViewController.didSearch), for: .touchUpInside)
         rbtn.tintColor = UIColor.white
         let rbtnItem = UIBarButtonItem(customView: rbtn)
-        mNavItem.setRightBarButton(rbtnItem, animated: true)
-        mNavItem.title = "SEARCH"
-        return mNavItem
+        navigationItem.rightBarButtonItem = rbtnItem
+        navigationItem.title = "SEARCH"
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+
     }
     
     @objc private func didSearch() {
