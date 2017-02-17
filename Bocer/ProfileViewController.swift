@@ -31,8 +31,8 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
     @IBOutlet weak var collegeLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
 
-    var uid: Int?
-    private var bid: [Int]?
+    var uid: String?
+    private var bid: [String]?
     private var currentpage = 0
     private var imageofbutton: [String] = ["pencil", "book"]
     private var cancelAction: UIAlertAction?
@@ -58,6 +58,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         bookButton.layer.shadowOffset = CGSize(width: 0, height: 0.8)
         bookButton.layer.shadowOpacity = 1
         bookButton.layer.cornerRadius = 25
+        nameLabel.layer.cornerRadius = CGFloat(Constant().buttonCornerRadius)
         
         //customize scroll view
         mScroll.showsHorizontalScrollIndicator = false
@@ -77,6 +78,8 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         //delegate the gesture recognizer 
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationController!.interactivePopGestureRecognizer!.isEnabled = false
+        
+        //
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -136,6 +139,9 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         if currentpage == 0 {
             //TODO:
             //Edit personal info
+            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "EditInfo") as! EditInfoViewController
+            self.navigationController?.pushViewController(vc, animated: true)
         } else {
             //TODO:
             //Add a book
@@ -147,10 +153,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
             vc.username = self.username!
             vc.userimage = imagestring!
             vc.school = self.collegeLabel.text!
-            
-//            let transition = Constant().transitionFromRight()
-//            view.window!.layer.add(transition, forKey: kCATransition)
-//            self.present(vc, animated: false)
+
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -168,6 +171,23 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         //collegeLabel.text = userInfo(uid).getCollege
         //addressLabel.text = userInfo(uid).getAddress
         //bid = userInfo(uid).getBook
+        let info = UserInfoHelper().loadData()
+        if (uid == info.id) {
+            nameLabel.text = info.firstname! + " " + info.lastname!
+            emailLabel.text = info.email
+            collegeLabel.text = info.college
+            if info.address != nil {
+                addressLabel.text = info.address
+            } else {
+                addressLabel.text = "None"
+            }
+            if info.full_avatar == nil {
+                mImage.image = UIImage(named: "sample_big_avatar")
+            } else {
+                mImage.image = UIImage(data: info.full_avatar as Data!)
+            }
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {

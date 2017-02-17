@@ -153,6 +153,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
         */
                         //Mark: used to set up core data
                         DatabaseHelper().setupData()
+                        UserInfoHelper().setupData()
         
                         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
                         let vc = sb.instantiateViewController(withIdentifier: "Main") as! MainViewController

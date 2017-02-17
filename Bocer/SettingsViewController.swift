@@ -33,7 +33,7 @@ class SettingsViewController: UIViewController {
         btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
         
-        navigationItem.title = "PAYMENT"
+        navigationItem.title = "SETTINGS"
         navigationItem.leftBarButtonItem = btnItem
     }
     

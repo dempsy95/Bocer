@@ -288,7 +288,7 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     //调用照片方法
     private func library(){
         let pick:UIImagePickerController = UIImagePickerController()
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+//        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         pick.delegate = self
         pick.sourceType = UIImagePickerControllerSourceType.photoLibrary
         self.present(pick, animated: true, completion: nil)

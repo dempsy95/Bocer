@@ -173,6 +173,8 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
         vc.username = self.username!
+        let info = UserInfoHelper().loadData()
+        vc.uid = info.id
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)
         }
