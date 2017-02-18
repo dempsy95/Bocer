@@ -17,10 +17,15 @@ extension Book {
     }
 
     @NSManaged public var bookID: String?
-    @NSManaged public var ownerID: String?
     @NSManaged public var comment: String?
-    @NSManaged public var wellness: Int16
     @NSManaged public var edition: Int16
+    @NSManaged public var ownerID: String?
+    @NSManaged public var wellness: Int16
+    @NSManaged public var googleID: String?
+    @NSManaged public var title: String?
+    @NSManaged public var author: String?
+    @NSManaged public var publisher: String?
+    @NSManaged public var forMain: Bool
     @NSManaged public var photos: NSSet?
 
 }

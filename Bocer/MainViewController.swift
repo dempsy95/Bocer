@@ -40,6 +40,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        myTableView.reloadData()
     }
     
     //Table View Functions
@@ -83,6 +84,13 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "Book") as! BookViewController
+        vc.right = .profile
+        
+        let info = UserInfoHelper().loadData()
+        let navCon = UINavigationController(rootViewController: vc)
+        self.present(navCon, animated: true, completion: nil)
         
     }
     

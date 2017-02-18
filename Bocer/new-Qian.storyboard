@@ -14,7 +14,7 @@
         <scene sceneID="dbR-Zm-FRm">
             <objects>
                 <navigationController id="Dqp-Mq-TcR" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f3g-9a-YkO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="f3g-9a-YkO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1963,9 +1963,9 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QYM-BH-Kpq">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="book_title_cell" textLabel="lqK-uI-XLA" detailTextLabel="YBd-mi-XbN" style="IBUITableViewCellStyleValue1" id="BDw-XI-xQ1">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="book_title_cell" textLabel="lqK-uI-XLA" detailTextLabel="YBd-mi-XbN" style="IBUITableViewCellStyleValue1" id="BDw-XI-xQ1">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BDw-XI-xQ1" id="Rzm-AL-zcn">
@@ -1989,7 +1989,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="book_author_cell" textLabel="CMp-hm-gZh" detailTextLabel="j1Z-dd-Yd5" style="IBUITableViewCellStyleValue1" id="ONJ-C1-s8K">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="book_author_cell" textLabel="CMp-hm-gZh" detailTextLabel="j1Z-dd-Yd5" style="IBUITableViewCellStyleValue1" id="ONJ-C1-s8K">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ONJ-C1-s8K" id="tMO-G9-vL7">
@@ -2013,7 +2013,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="book_edition_cell" textLabel="OtT-t5-QiD" detailTextLabel="5uc-gJ-TWR" style="IBUITableViewCellStyleValue1" id="ANl-8r-jPc">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="book_edition_cell" textLabel="OtT-t5-QiD" detailTextLabel="5uc-gJ-TWR" style="IBUITableViewCellStyleValue1" id="ANl-8r-jPc">
                                         <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ANl-8r-jPc" id="W2O-On-9VK">
@@ -2037,7 +2037,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="book_publisher_cell" textLabel="Oab-DO-9Mm" detailTextLabel="ggY-Yu-wUs" style="IBUITableViewCellStyleValue1" id="Iga-AI-mtL">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="book_publisher_cell" textLabel="Oab-DO-9Mm" detailTextLabel="ggY-Yu-wUs" style="IBUITableViewCellStyleValue1" id="Iga-AI-mtL">
                                         <rect key="frame" x="0.0" y="160" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Iga-AI-mtL" id="xUQ-Cb-niu">
@@ -2061,8 +2061,32 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="book_rating_cell" rowHeight="50" id="0ug-wk-51W">
-                                        <rect key="frame" x="0.0" y="204" width="375" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="book_price_cell" textLabel="xGB-BY-vdh" detailTextLabel="uTN-bg-Z4N" style="IBUITableViewCellStyleValue1" id="Zu3-mq-jbQ">
+                                        <rect key="frame" x="0.0" y="204" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zu3-mq-jbQ" id="Zwu-aP-pLn">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xGB-BY-vdh">
+                                                    <rect key="frame" x="15" y="13" width="35" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" tag="100" contentMode="left" text="$15" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uTN-bg-Z4N">
+                                                    <rect key="frame" x="336" y="14" width="24" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="book_rating_cell" rowHeight="50" id="0ug-wk-51W">
+                                        <rect key="frame" x="0.0" y="248" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0ug-wk-51W" id="dZF-h6-ozy">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -2090,11 +2114,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="book_description_cell" textLabel="4A4-6d-io4" detailTextLabel="Uyn-Dp-7O2" rowHeight="94" style="IBUITableViewCellStyleValue1" id="ion-uQ-mzi">
-                                        <rect key="frame" x="0.0" y="254" width="375" height="94"/>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="book_description_cell" textLabel="4A4-6d-io4" detailTextLabel="Uyn-Dp-7O2" rowHeight="94" style="IBUITableViewCellStyleValue1" id="ion-uQ-mzi">
+                                        <rect key="frame" x="0.0" y="298" width="375" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ion-uQ-mzi" id="HEC-sL-SX7">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="93"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4A4-6d-io4">
@@ -2105,7 +2129,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" tag="100" contentMode="left" text="E.g. for which course, content, wellness, etc..   " textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uyn-Dp-7O2">
-                                                    <rect key="frame" x="139" y="30" width="201" height="34"/>
+                                                    <rect key="frame" x="100" y="30" width="260" height="34"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2115,7 +2139,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="book_photo_cell" rowHeight="80" id="TGe-FI-2CM">
-                                        <rect key="frame" x="0.0" y="348" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="392" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TGe-FI-2CM" id="E5n-ta-yjO">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="79"/>
@@ -2127,7 +2151,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lze-Yo-lX0">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="book_image" translatesAutoresizingMaskIntoConstraints="NO" id="lze-Yo-lX0">
                                                     <rect key="frame" x="235" y="8" width="71" height="68"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="68" id="SlF-ZP-4iZ"/>
@@ -2138,7 +2162,7 @@
                                             <constraints>
                                                 <constraint firstItem="lze-Yo-lX0" firstAttribute="centerY" secondItem="E5n-ta-yjO" secondAttribute="centerY" id="9S7-Re-W95"/>
                                                 <constraint firstItem="vnV-WC-9aT" firstAttribute="leading" secondItem="E5n-ta-yjO" secondAttribute="leadingMargin" constant="5" id="FAS-cX-Jbb"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="lze-Yo-lX0" secondAttribute="trailing" constant="5" id="YaR-Cg-aaJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="lze-Yo-lX0" secondAttribute="trailing" id="YaR-Cg-aaJ"/>
                                                 <constraint firstItem="vnV-WC-9aT" firstAttribute="centerY" secondItem="E5n-ta-yjO" secondAttribute="centerY" id="eyG-V5-3HF"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -2146,7 +2170,6 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="QYM-BH-Kpq" secondAttribute="trailing" constant="-16" id="GTZ-9Q-O0s"/>
                             <constraint firstItem="QYM-BH-Kpq" firstAttribute="leading" secondItem="y52-Ay-rvF" secondAttribute="leadingMargin" constant="-16" id="JYa-IC-GZc"/>
@@ -2154,6 +2177,9 @@
                             <constraint firstItem="VOn-Y5-Ni6" firstAttribute="top" secondItem="QYM-BH-Kpq" secondAttribute="bottom" id="vB4-lq-Fqi"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mTableView" destination="QYM-BH-Kpq" id="yn6-PE-iBv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IEK-a2-L9g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2186,7 +2212,7 @@
                                                     <rect key="frame" x="21" y="8" width="137" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Card Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0X-0b-MYw">
-                                                            <rect key="frame" x="0.0" y="0.0" width="87" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="86.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
