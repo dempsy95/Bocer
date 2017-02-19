@@ -60,6 +60,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //
         mResultTable.isHidden = true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        mMiddleTable.reloadData()
+        mResultTable.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -237,6 +243,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.mMiddleTable.isHidden = true
                 self.mResultTable.isHidden = false
             }, completion: nil)
+        } else {
+            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "Book") as! BookViewController
+            vc.right = .profile
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

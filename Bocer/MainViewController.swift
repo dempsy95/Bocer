@@ -86,7 +86,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     {
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Book") as! BookViewController
-        vc.right = .profile
+        vc.right = .main
         
         let info = UserInfoHelper().loadData()
         let navCon = UINavigationController(rootViewController: vc)

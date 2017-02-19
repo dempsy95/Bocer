@@ -85,6 +85,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        mTableView.reloadData()
         retrieveInfo()
     }
     
@@ -225,6 +226,13 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         cell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "Book") as! BookViewController
+        vc.right = .edit
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     /*
