@@ -165,11 +165,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bocer/ChatViewController.swift"
-            timestampString = "508990612.612664"
+            timestampString = "509255775.47582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "collectionView(_:attributedTextForCellTopLabelAt:)"
             landmarkType = "7">
             <Locations>
@@ -245,11 +245,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bocer/DatabaseHelper.swift"
-            timestampString = "508990612.612664"
+            timestampString = "509255775.47582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "deleteFriend(id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -299,6 +299,38 @@
             startingLineNumber = "183"
             endingLineNumber = "183"
             landmarkName = "isValidEmail(s:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bocer/DatabaseHelper.swift"
+            timestampString = "509255775.47582"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "createMessageWithText(text:friend:toFriend:hasRead:date:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bocer/ChatViewController.swift"
+            timestampString = "509255649.493091"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "handleCallMessageUpdateNotification(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

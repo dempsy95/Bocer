@@ -8,6 +8,7 @@
 
 import Foundation
 import SocketIO
+import JSQMessagesViewController
 
 class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
@@ -16,8 +17,19 @@ class SocketIOManager: NSObject {
     override init() {
         super.init()
         
-        socket.on("test") { dataArray, ack in
-            print(dataArray)
+        socket.on("message") { dataArray, ack in
+            let data = dataArray[0] as? [String: AnyObject]
+            let fromid = data?["from"] as! String?
+            let friend = DatabaseHelper().findFriend(id: fromid)
+            let message = data?["message"] as! String?
+            let image = data?["image"] as! String?
+            let dateString = data?["date"] as! String?
+            let dateFormat = DateFormatter()
+            dateFormat.setLocalizedDateFormatFromTemplate("yyyy MM dd-HH:mm:ss")
+            let date = dateFormat.date(from: dateString!)
+            DatabaseHelper().createMessageWithText(text: message!, friend: friend!, toFriend: false, hasRead: false, date: date!)
+            NotificationCenter.default
+                .post(name: Notification.Name(rawValue: "callMessageUpdateNotification"), object: [friend])
         }
     }
     

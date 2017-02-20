@@ -63,6 +63,9 @@ class ChatViewController: JSQMessagesViewController {
         
         self.collectionView?.reloadData()
         self.collectionView?.layoutIfNeeded()
+        
+        //add notification listener for socket
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleCallMessageUpdateNotification(_:)), name: NSNotification.Name(rawValue: "callMessageUpdateNotification"), object: nil)
     }
     
     //TODO:
@@ -89,7 +92,7 @@ class ChatViewController: JSQMessagesViewController {
         
         let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
         self.messages.append(message)
-        DatabaseHelper().createMessageWithText(text: text, friend: friend!, date: date)
+        DatabaseHelper().createMessageWithText(text: text, friend: friend!, toFriend: true, hasRead: true, date: date)
         self.finishSendingMessage(animated: true)
         
             //Mark: This part is only for NSAttributedString?        
@@ -258,4 +261,18 @@ class ChatViewController: JSQMessagesViewController {
 //        
 //        return kJSQMessagesCollectionViewCellLabelHeightDefault;
     }
+    
+    func handleCallMessageUpdateNotification(_ notification: Notification) {
+        if let data = notification.object as? Friend {
+            if data == friend {
+                let newMessages = DatabaseHelper().catchUnreadMessages(friend: friend!)
+                for message in newMessages {
+                    let newMessage = JSQMessage(senderId: (friend?.id)!, senderDisplayName: (friend?.name)!, date: message.date as! Date, text: message.text!)
+                    self.messages.append(newMessage)
+                }
+                self.finishReceivingMessage(animated: true)
+            }
+        }
+    }
+
 }
