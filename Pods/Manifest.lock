@@ -4,6 +4,7 @@ PODS:
   - CountryPicker (1.3)
   - CreditCardValidator (0.3.2)
   - JSQMessagesViewController (7.3.4)
+  - Socket.IO-Client-Swift (8.2.0)
   - SwiftyJSON (3.1.4)
   - YALSideMenu (2.0.1)
 
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - CountryPicker
   - CreditCardValidator
   - JSQMessagesViewController (from `https://github.com/jessesquires/JSQMessagesViewController.git`, branch `develop`)
+  - Socket.IO-Client-Swift (~> 8.2.0)
   - SwiftyJSON
   - YALSideMenu (~> 2.0)
 
@@ -32,9 +34,10 @@ SPEC CHECKSUMS:
   CountryPicker: 664c26411d833bb068c80beb15dc951eadde2911
   CreditCardValidator: f2e0fc0f273e3f303513d35745df23d336eb1d67
   JSQMessagesViewController: c11b9e77372ab72c45c67311f6da7342e32df1e8
+  Socket.IO-Client-Swift: 900cf511777045c80d1ce1f11f71261e87765dd1
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   YALSideMenu: 4d6b90ea44dcdded18a99e46b676e4ad51d9c6bb
 
-PODFILE CHECKSUM: ac1431c19b159d30dacab58a938b7710bb7a061d
+PODFILE CHECKSUM: 00db3c6e140d4e3f0bddc68c962d3cf6b7e417b5
 
 COCOAPODS: 1.1.1

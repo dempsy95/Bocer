@@ -49,6 +49,7 @@ class SettingsViewController: UIViewController {
             vc = vc?.presentingViewController
         }
         DatabaseHelper().clearData()
+        SocketIOManager.sharedInstance.closeConnection()
         vc?.dismiss(animated: true, completion: nil)
     }
 

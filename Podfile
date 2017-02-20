@@ -13,4 +13,5 @@ target ‘Bocer’ do
   pod 'SwiftyJSON'
   pod 'ActionSheetPicker-3.0'
   pod 'JSQMessagesViewController', :git => 'https://github.com/jessesquires/JSQMessagesViewController.git', :branch => 'develop'
+ pod 'Socket.IO-Client-Swift', '~> 8.2.0'
 end

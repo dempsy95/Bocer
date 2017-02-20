@@ -78,21 +78,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
         self.view.addGestureRecognizer(swipeRecognizer)
     }
     
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        if let text = textField.text {
-//            if let floatingLabelTextField = textField as? SkyFloatingLabelTextField {
-//                if(textField == emailTF && (isValidEmail(s: text))) {
-//                    floatingLabelTextField.errorMessage = "Invalid email"
-//                }
-//                else {
-//                    // The error message will only disappear when we reset it to nil or empty string
-//                    floatingLabelTextField.errorMessage = ""
-//                }
-//            }
-//        }
-//        return true
-//    }
-    
     @IBAction func viewClicked(_ sender: Any) {
         emailTF.resignFirstResponder()
         pwTF.resignFirstResponder()
@@ -103,12 +88,20 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
         if textField == emailTF {
             pwTF.becomeFirstResponder()
         } else {
-            signInPerformed()
+            signInClicked(UIButton())
         }
         return true
     }
 
     @IBAction func signInClicked(_ sender: UIButton) {
+        if (!isValidEmail(s: emailTF.text!)) {
+            let alertController = UIAlertController(title: "Woops!", message: "Your email should be a college email", preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                (result : UIAlertAction) -> Void in
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
         if(emailTF.text == nil || emailTF.text == "" || pwTF.text == nil || pwTF.text == ""){
             let alertController = UIAlertController(title: "Woops!", message: "Both email and password can not be empty", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
             // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
@@ -137,7 +130,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
     It is used to call the sign in request to the back end
     */
     private func signInPerformed() {
-        var username = emailTF.text
+        var username = emailTF.text?.lowercased()
         var password = pwTF.text
         /*
         Alamofire.request(
@@ -154,6 +147,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
                         //Mark: used to set up core data
                         DatabaseHelper().setupData()
                         UserInfoHelper().setupData()
+        
+                        //connect socketio
+                        SocketIOManager.sharedInstance.establishConnection()
         
                         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
                         let vc = sb.instantiateViewController(withIdentifier: "Main") as! MainViewController
@@ -184,7 +180,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
     input an email and check whether it is a valid college email or not
     */
     private func isValidEmail(s: String) -> Bool {
-        return true
+        var testStr = "" as String
+        for c in s.characters {
+            if c != " " {
+                testStr.append(c)
+            }
+        }
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.edu"
+        testStr.lowercased()
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
     }
     
     override func didReceiveMemoryWarning() {
