@@ -21,12 +21,21 @@ class SocketIOManager: NSObject {
             let data = dataArray[0] as? [String: AnyObject]
             let fromid = data?["from"] as! String?
             let friend = DatabaseHelper().findFriend(id: fromid)
+            
+            print("fromid: \(fromid), friend: \(friend)")
+            
             let message = data?["message"] as! String?
             let image = data?["image"] as! String?
             let dateString = data?["date"] as! String?
             let dateFormat = DateFormatter()
-            dateFormat.setLocalizedDateFormatFromTemplate("yyyy MM dd-HH:mm:ss")
+            
+            print("message: \(message)")
+            print("dataString: \(dateString)")
+            dateFormat.dateFormat = "yyyyMMddhhmmss"
             let date = dateFormat.date(from: dateString!)
+            
+            print("date: \(date)")
+            
             DatabaseHelper().createMessageWithText(text: message!, friend: friend!, toFriend: false, hasRead: false, date: date!)
             NotificationCenter.default
                 .post(name: Notification.Name(rawValue: "callMessageUpdateNotification"), object: [friend])
