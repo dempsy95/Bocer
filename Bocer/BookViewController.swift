@@ -207,6 +207,20 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
         return section == 0 ? 0.0001 : 18
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath {
+        case IndexPath(item: 0, section: 3):
+            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "BookPhotoPage") as! BookPhotoPageViewController
+            vc.startIndex = 0
+            vc.images = [UIImage(named: "book_image")!, UIImage(named: "book_image_2")!, UIImage(named: "book_image_3")!]
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+        default:
+            break
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

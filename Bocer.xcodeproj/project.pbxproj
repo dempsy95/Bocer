@@ -10,6 +10,8 @@
 		254ACC831E44397B00A321A0 /* LocalData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 254ACC811E44397B00A321A0 /* LocalData.xcdatamodeld */; };
 		254ACC851E443B2300A321A0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254ACC841E443B2300A321A0 /* CoreData.framework */; };
 		254E24821E5A838F00994105 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254E24811E5A838F00994105 /* SocketIOManager.swift */; };
+		255A56861E5E8C4B00E24752 /* BookPhotoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A56851E5E8C4B00E24752 /* BookPhotoPageViewController.swift */; };
+		255A56881E5E8CC600E24752 /* BookPhotoPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A56871E5E8CC600E24752 /* BookPhotoPageContentViewController.swift */; };
 		255BD7991E4180F4003E286A /* AddBook3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255BD7981E4180F4003E286A /* AddBook3ViewController.swift */; };
 		255BD7B71E4419A1003E286A /* MessengerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255BD7B61E4419A1003E286A /* MessengerViewController.swift */; };
 		25744AFE1E3AF1C200D34D88 /* SchoolList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25744AFD1E3AF1C200D34D88 /* SchoolList.swift */; };
@@ -70,6 +72,8 @@
 		254ACC821E44397B00A321A0 /* LocalData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalData.xcdatamodel; sourceTree = "<group>"; };
 		254ACC841E443B2300A321A0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		254E24811E5A838F00994105 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		255A56851E5E8C4B00E24752 /* BookPhotoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPhotoPageViewController.swift; sourceTree = "<group>"; };
+		255A56871E5E8CC600E24752 /* BookPhotoPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPhotoPageContentViewController.swift; sourceTree = "<group>"; };
 		255BD7981E4180F4003E286A /* AddBook3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBook3ViewController.swift; sourceTree = "<group>"; };
 		255BD7B61E4419A1003E286A /* MessengerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessengerViewController.swift; sourceTree = "<group>"; };
 		25744AFD1E3AF1C200D34D88 /* SchoolList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolList.swift; sourceTree = "<group>"; };
@@ -205,7 +209,9 @@
 		25D739451E57B4CE002A2D47 /* BookInfo */ = {
 			isa = PBXGroup;
 			children = (
+				255A56871E5E8CC600E24752 /* BookPhotoPageContentViewController.swift */,
 				25D739431E57B4C5002A2D47 /* BookViewController.swift */,
+				255A56851E5E8C4B00E24752 /* BookPhotoPageViewController.swift */,
 			);
 			name = BookInfo;
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 				259830881E404FDD009D73B2 /* BookPhotoViewController.swift in Sources */,
 				25F7B9E71E312EAF00F056C4 /* SignUp2ViewController.swift in Sources */,
 				25E8DBA81E3E9CD300702041 /* AddBookViewController.swift in Sources */,
+				255A56861E5E8C4B00E24752 /* BookPhotoPageViewController.swift in Sources */,
 				25D739351E56C3C4002A2D47 /* EditFirstNameViewController.swift in Sources */,
 				259830841E3EE6A9009D73B2 /* AddBook2ViewController.swift in Sources */,
 				25E9A9481E38914700B259EF /* CardViewController.swift in Sources */,
@@ -490,6 +497,7 @@
 				25F7B9DD1E312EAF00F056C4 /* Constant.swift in Sources */,
 				25744AFE1E3AF1C200D34D88 /* SchoolList.swift in Sources */,
 				25F7B9ED1E31346A00F056C4 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
+				255A56881E5E8CC600E24752 /* BookPhotoPageContentViewController.swift in Sources */,
 				25C0E60A1E554AAF000C6316 /* Message+CoreDataClass.swift in Sources */,
 				25E9A96E1E39AD7000B259EF /* CardEditViewController.swift in Sources */,
 				25D739251E561236002A2D47 /* SettingsViewController.swift in Sources */,
