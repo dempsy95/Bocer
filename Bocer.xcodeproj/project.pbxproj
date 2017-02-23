@@ -12,6 +12,8 @@
 		254E24821E5A838F00994105 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254E24811E5A838F00994105 /* SocketIOManager.swift */; };
 		255A56861E5E8C4B00E24752 /* BookPhotoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A56851E5E8C4B00E24752 /* BookPhotoPageViewController.swift */; };
 		255A56881E5E8CC600E24752 /* BookPhotoPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A56871E5E8CC600E24752 /* BookPhotoPageContentViewController.swift */; };
+		255A568A1E5EA03900E24752 /* EditBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A56891E5EA03900E24752 /* EditBookViewController.swift */; };
+		255A568C1E5EA2C300E24752 /* BookInfoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A568B1E5EA2C300E24752 /* BookInfoHelper.swift */; };
 		255BD7991E4180F4003E286A /* AddBook3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255BD7981E4180F4003E286A /* AddBook3ViewController.swift */; };
 		255BD7B71E4419A1003E286A /* MessengerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255BD7B61E4419A1003E286A /* MessengerViewController.swift */; };
 		25744AFE1E3AF1C200D34D88 /* SchoolList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25744AFD1E3AF1C200D34D88 /* SchoolList.swift */; };
@@ -74,6 +76,8 @@
 		254E24811E5A838F00994105 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		255A56851E5E8C4B00E24752 /* BookPhotoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPhotoPageViewController.swift; sourceTree = "<group>"; };
 		255A56871E5E8CC600E24752 /* BookPhotoPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPhotoPageContentViewController.swift; sourceTree = "<group>"; };
+		255A56891E5EA03900E24752 /* EditBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookViewController.swift; sourceTree = "<group>"; };
+		255A568B1E5EA2C300E24752 /* BookInfoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookInfoHelper.swift; sourceTree = "<group>"; };
 		255BD7981E4180F4003E286A /* AddBook3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBook3ViewController.swift; sourceTree = "<group>"; };
 		255BD7B61E4419A1003E286A /* MessengerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessengerViewController.swift; sourceTree = "<group>"; };
 		25744AFD1E3AF1C200D34D88 /* SchoolList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolList.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				25C0E6091E554AAF000C6316 /* Friend+CoreDataProperties.swift */,
 				25D7392F1E56A00B002A2D47 /* UserInfoHelper.swift */,
 				25C0E60E1E554DA9000C6316 /* DatabaseHelper.swift */,
+				255A568B1E5EA2C300E24752 /* BookInfoHelper.swift */,
 				25D7393B1E57A739002A2D47 /* Book+CoreDataClass.swift */,
 				25D7393C1E57A739002A2D47 /* Book+CoreDataProperties.swift */,
 				25D7393D1E57A739002A2D47 /* BookPhoto+CoreDataClass.swift */,
@@ -211,6 +216,7 @@
 			children = (
 				255A56871E5E8CC600E24752 /* BookPhotoPageContentViewController.swift */,
 				25D739431E57B4C5002A2D47 /* BookViewController.swift */,
+				255A56891E5EA03900E24752 /* EditBookViewController.swift */,
 				255A56851E5E8C4B00E24752 /* BookPhotoPageViewController.swift */,
 			);
 			name = BookInfo;
@@ -506,6 +512,7 @@
 				25E9A9461E38769F00B259EF /* PayViewController.swift in Sources */,
 				25F7B9E61E312EAF00F056C4 /* SignUp1ViewController.swift in Sources */,
 				25C0E60C1E554AAF000C6316 /* Friend+CoreDataClass.swift in Sources */,
+				255A568A1E5EA03900E24752 /* EditBookViewController.swift in Sources */,
 				25D739301E56A00B002A2D47 /* UserInfoHelper.swift in Sources */,
 				255BD7991E4180F4003E286A /* AddBook3ViewController.swift in Sources */,
 				25F7B9DE1E312EAF00F056C4 /* InitialViewController.swift in Sources */,
@@ -518,6 +525,7 @@
 				25D739441E57B4C5002A2D47 /* BookViewController.swift in Sources */,
 				25EDAE621E4965A200990D83 /* ChatViewController.swift in Sources */,
 				254ACC831E44397B00A321A0 /* LocalData.xcdatamodeld in Sources */,
+				255A568C1E5EA2C300E24752 /* BookInfoHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

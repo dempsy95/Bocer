@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
     @IBOutlet weak var addressLabel: UILabel!
 
     var uid: String?
-    private var bid: [String]?
+    private var books: [Book]?
     private var currentpage = 0
     private var imageofbutton: [String] = ["pencil", "book"]
     private var cancelAction: UIAlertAction?
@@ -79,12 +79,15 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationController!.interactivePopGestureRecognizer!.isEnabled = false
         
-        //
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        //load book data from database
+        books = BookInfoHelper().loadData()
+        
         mTableView.reloadData()
         retrieveInfo()
     }
@@ -147,8 +150,8 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
             //TODO:
             //Add a book
             //encode image
-            var imagedata = UIImageJPEGRepresentation(self.mImage.image!, 0.25)
-            var imagestring = imagedata?.base64EncodedString()
+            let imagedata = UIImageJPEGRepresentation(self.mImage.image!, 0.25)
+            let imagestring = imagedata?.base64EncodedString()
             let sb = UIStoryboard(name: "new-Qian", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "AddBook") as! AddBookViewController
             vc.username = self.username!
@@ -208,7 +211,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
     //TODO:
     //Table View delegate for books
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return books!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -217,13 +220,22 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         
         let cell = tableView.dequeueReusableCell(withIdentifier: identify)
         let mImage = cell?.viewWithTag(100) as! UIImageView? //photo of the book
-        let mTitle = cell?.viewWithTag(101)
-        let mAuthor = cell?.viewWithTag(102)
-        let mPrice = cell?.viewWithTag(103)
-        let mEdition = cell?.viewWithTag(104)
+        var mTitle = cell?.viewWithTag(101) as! UILabel?
+        let mAuthor = cell?.viewWithTag(102) as! UILabel?
+        let mPrice = cell?.viewWithTag(103) as!UILabel?
+        let mEdition = cell?.viewWithTag(104) as! UILabel?
+        
+        let book = books?[indexPath.item]
         
         //TODO:
         //retrieve bookinfo by using book id
+        let imagedata = BookInfoHelper().getFirstImage(book: book!)?.photo
+        mImage?.image = UIImage(data: imagedata as! Data)
+        mTitle?.text = book?.title
+        mAuthor?.text = "By" + (book?.author)!
+        mPrice?.text = "$" + String(format: "%.2f", (book?.buyerPrice)!)
+        mEdition?.text = "Edition: " + String(format: "%d", (book?.edition)!)
+        
         cell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell!
@@ -233,6 +245,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Book") as! BookViewController
         vc.right = .edit
+        vc.bookID = books?[indexPath.item].bookID
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

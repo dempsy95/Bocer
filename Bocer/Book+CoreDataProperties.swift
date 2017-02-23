@@ -2,7 +2,7 @@
 //  Book+CoreDataProperties.swift
 //  Bocer
 //
-//  Created by Dempsy on 2/17/17.
+//  Created by Dempsy on 2/22/17.
 //  Copyright © 2017 Bocer. All rights reserved.
 //
 
@@ -16,16 +16,18 @@ extension Book {
         return NSFetchRequest<Book>(entityName: "Book");
     }
 
+    @NSManaged public var author: String?
     @NSManaged public var bookID: String?
     @NSManaged public var comment: String?
     @NSManaged public var edition: Int16
-    @NSManaged public var ownerID: String?
-    @NSManaged public var wellness: Int16
-    @NSManaged public var googleID: String?
-    @NSManaged public var title: String?
-    @NSManaged public var author: String?
-    @NSManaged public var publisher: String?
     @NSManaged public var forMain: Bool
+    @NSManaged public var googleID: String?
+    @NSManaged public var ownerID: String?
+    @NSManaged public var publisher: String?
+    @NSManaged public var title: String?
+    @NSManaged public var wellness: Int16
+    @NSManaged public var sellerPrice: Double
+    @NSManaged public var buyerPrice: Double
     @NSManaged public var photos: NSSet?
 
 }

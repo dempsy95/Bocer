@@ -2,7 +2,7 @@
 //  BookPhoto+CoreDataProperties.swift
 //  Bocer
 //
-//  Created by Dempsy on 2/17/17.
+//  Created by Dempsy on 2/22/17.
 //  Copyright © 2017 Bocer. All rights reserved.
 //
 
@@ -17,6 +17,7 @@ extension BookPhoto {
     }
 
     @NSManaged public var photo: NSData?
+    @NSManaged public var nth: Int16
     @NSManaged public var book: Book?
 
 }

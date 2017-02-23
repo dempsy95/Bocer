@@ -11,7 +11,7 @@ import UIKit
 class BookPhotoPageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
     internal var startIndex = 0
-    internal var images: [UIImage]?
+    internal var images: [BookPhoto]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,9 @@ class BookPhotoPageViewController: UIPageViewController, UIPageViewControllerDat
         self.setViewControllers([getViewControllerAtIndex(index: startIndex)] as [UIViewController], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
         
         onMakeNavitem()
+        
+        //增加右滑返回
+        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
     }
 
     private func onMakeNavitem(){
@@ -50,7 +53,7 @@ class BookPhotoPageViewController: UIPageViewController, UIPageViewControllerDat
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "BookPhotoPageContent") as! BookPhotoPageContentViewController
         vc.index = index
-        vc.photo = images?[index]
+        vc.photo = UIImage(data: images?[index].photo as Data!)
         return vc
     }
     

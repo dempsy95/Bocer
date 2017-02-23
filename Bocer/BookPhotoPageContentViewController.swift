@@ -19,6 +19,9 @@ class BookPhotoPageContentViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         mImageView.image = photo
+        
+        //增加右滑返回
+        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
     }
 
     override func didReceiveMemoryWarning() {

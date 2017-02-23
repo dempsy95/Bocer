@@ -18,8 +18,12 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
         case main
     }
     
+    private let star = ["onestar", "twostar", "threestar", "fourstar", "fivestar"]
+    
     internal var right: rightButton?
     internal var bookID: String?
+    
+    private var book: Book?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +40,9 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        book = BookInfoHelper().getBookInfo(bookID: bookID!)
         mTableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        mTableView.reloadData()
     }
     
     //customize navigation item
@@ -153,36 +159,56 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
             let mImage = cell?.viewWithTag(100) as! UIImageView?
             let mTitle = cell?.viewWithTag(101) as! UILabel?
             let mAuthor = cell?.viewWithTag(102) as! UILabel?
+            
+            let imagedata = BookInfoHelper().getFirstImage(book: book!)?.photo
+            mImage?.image = UIImage(data: imagedata as! Data)
+            mTitle?.text = book?.title
+            mAuthor?.text = book?.author
+            
             break
         case IndexPath(item: 0, section: 1):
             let identifier = "book_price_cell"
             cell = tableView.dequeueReusableCell(withIdentifier: identifier)
             let mLabel = cell?.viewWithTag(100) as! UILabel?
+            
+            mLabel?.text = "$" + String(format: "%.2f", (book?.buyerPrice)!)
             break
         case IndexPath(item: 1, section: 1):
             let identifier = "book_edition_cell"
             cell = tableView.dequeueReusableCell(withIdentifier: identifier)
             let mLabel = cell?.viewWithTag(100) as! UILabel?
+            
+            mLabel?.text = String(format: "%d", (book?.edition)!)
             break
         case IndexPath(item: 2, section: 1):
             let identifier = "book_publisher_cell"
             cell = tableView.dequeueReusableCell(withIdentifier: identifier)
             let mLabel = cell?.viewWithTag(100) as! UILabel?
+            
+            mLabel?.text = book?.publisher
             break
         case IndexPath(item: 0, section: 2):
             let identifier = "book_rating_cell"
             cell = tableView.dequeueReusableCell(withIdentifier: identifier)
             let mImage = cell?.viewWithTag(100) as! UIImageView?
+            
+            let imageString = star[Int((book?.wellness)!)]
+            mImage?.image = UIImage(named: imageString)
             break
         case IndexPath(item: 1, section: 2):
             let identifier = "book_description_cell"
             cell = tableView.dequeueReusableCell(withIdentifier: identifier)
             let mLabel = cell?.viewWithTag(100) as! UILabel?
+            
+            mLabel?.text = book?.comment
             break
         default:
             let identifier = "book_photo_cell"
             cell = tableView.dequeueReusableCell(withIdentifier: identifier)
             let mImage = cell?.viewWithTag(100) as! UIImageView?
+            
+            let imagedata = BookInfoHelper().getFirstImage(book: book!)?.photo
+            mImage?.image = UIImage(data: imagedata as! Data)
             break
         }
         if right == .edit {
@@ -213,7 +239,7 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
             let sb = UIStoryboard(name: "new-Qian", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "BookPhotoPage") as! BookPhotoPageViewController
             vc.startIndex = 0
-            vc.images = [UIImage(named: "book_image")!, UIImage(named: "book_image_2")!, UIImage(named: "book_image_3")!]
+            vc.images = BookInfoHelper().getImages(book: book!)
             self.navigationController?.pushViewController(vc, animated: true)
             break
         default:

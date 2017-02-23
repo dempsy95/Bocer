@@ -147,6 +147,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
                         //Mark: used to set up core data
                         DatabaseHelper().setupData()
                         UserInfoHelper().setupData()
+                        BookInfoHelper().setupData()
         
                         //connect socketio
                         SocketIOManager.sharedInstance.establishConnection()
