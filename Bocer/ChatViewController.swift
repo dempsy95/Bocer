@@ -11,6 +11,8 @@
 
 import UIKit
 import JSQMessagesViewController
+import Alamofire
+import SwiftyJSON
 
 class ChatViewController: JSQMessagesViewController {
     var friend: Friend? {
@@ -94,8 +96,8 @@ class ChatViewController: JSQMessagesViewController {
         self.messages.append(message)
         DatabaseHelper().createMessageWithText(text: text, friend: friend!, toFriend: true, hasRead: true, date: date)
         self.finishSendingMessage(animated: true)
-        
-            //Mark: This part is only for NSAttributedString?        
+ 
+        //Mark: This part is only for NSAttributedString?
         /**
         *  Upon receiving a message, you should:
         *
@@ -103,7 +105,7 @@ class ChatViewController: JSQMessagesViewController {
         *  2. Add new JSQMessageData object to your data source
         *  3. Call `finishReceivingMessage`
         */
-//        
+//
 //        let newMessage = JSQMessage(senderId: "nobody", senderDisplayName: "nobody", date: date, text: text)
 //        self.messages.append(newMessage)
 //        self.finishReceivingMessage(animated: true)

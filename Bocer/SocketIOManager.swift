@@ -22,8 +22,6 @@ class SocketIOManager: NSObject {
             let fromid = data?["from"] as! String?
             let friend = DatabaseHelper().findFriend(id: fromid)
             
-            print("fromid: \(fromid), friend: \(friend)")
-            
             let message = data?["message"] as! String?
             let image = data?["image"] as! String?
             let dateString = data?["date"] as! String?
@@ -39,6 +37,27 @@ class SocketIOManager: NSObject {
             DatabaseHelper().createMessageWithText(text: message!, friend: friend!, toFriend: false, hasRead: false, date: date!)
             NotificationCenter.default
                 .post(name: Notification.Name(rawValue: "callMessageUpdateNotification"), object: [friend])
+        }
+        
+        socket.on("messages") { dataArray, ack in
+            let mData = dataArray[0] as? [String: AnyObject]
+            let messages = mData?["from"] as! [[String: AnyObject]]
+            for data in messages {
+                let fromid = data["from"] as! String?
+                let friend = DatabaseHelper().findFriend(id: fromid)
+                
+                let message = data["message"] as! String?
+                let image = data["image"] as! String?
+                let dateString = data["date"] as! String?
+                let dateFormat = DateFormatter()
+                
+                dateFormat.dateFormat = "yyyyMMddhhmmss"
+                let date = dateFormat.date(from: dateString!)
+                                
+                DatabaseHelper().createMessageWithText(text: message!, friend: friend!, toFriend: false, hasRead: false, date: date!)
+                NotificationCenter.default
+                    .post(name: Notification.Name(rawValue: "callMessageUpdateNotification"), object: [friend])
+            }
         }
     }
     
