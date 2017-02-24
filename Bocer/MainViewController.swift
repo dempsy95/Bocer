@@ -11,8 +11,11 @@ import SideMenu
 
 class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate, MenuViewControllerDelegate {
     //user info
+    
     internal var username:String?
     internal var password:String?
+    private var books: [Book]?
+    private var star = ["onestar", "twostar", "threestar", "fourstar", "fivestar"]
     
 
     private let mNavBar = Constant().makeNavBar()
@@ -40,6 +43,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        books = BookInfoHelper().fetchBooksForMain()
         myTableView.reloadData()
     }
     
@@ -48,7 +52,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
     //Cell numbers for each section
     func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
-        return 10
+        return (books?.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -60,15 +64,15 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         let mView = cell?.viewWithTag(99)
         let mTitle = cell?.viewWithTag(1) as! UILabel?
         let mAuthor = cell?.viewWithTag(2) as! UILabel?
-        let mComment = cell?.viewWithTag(3) as! UILabel?
-        let mPublisher = cell?.viewWithTag(4) as! UILabel?
+        let mComment = cell?.viewWithTag(4) as! UILabel?
+        let mPublisher = cell?.viewWithTag(3) as! UILabel?
         let mRate = cell?.viewWithTag(5) as! UIImageView?
         let mEdition = cell?.viewWithTag(6) as! UILabel?
+        let mPrice = cell?.viewWithTag(7) as! UILabel?
         mAvatar?.layer.cornerRadius = 30
         mAvatar?.layer.masksToBounds = true
         
         mImage?.image = UIImage(named: "book_image")
-        mAvatar?.image = UIImage(named: "sample_avatar")
         //TODO:
         //need a class get bookinfo to retrieve all the info about a book
         //getBookinfo(bookID).image
@@ -79,6 +83,28 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         //getBookinfo(bookID).comment
         //getBookinfo(bookID).rate
         //getBookinfo(bookID).edition
+        let book = books?[indexPath.item]
+        mTitle?.text = book?.title
+        mAuthor?.text = "By " + (book?.author)!
+        mPublisher?.text = "Publisher: " + (book?.publisher)!
+        mComment?.text = book?.comment
+        mRate?.image = UIImage(named: star[Int((book?.wellness)!)])
+        mEdition?.text = "Edition: " + String(format: "%d", Int((book?.wellness)!))
+        mPrice?.text = "$" + String(format: "%.2f", (book?.buyerPrice)!)
+        
+        let avatarData = DatabaseHelper().findFriend(id: book?.ownerID)?.profileImage
+        var avatar, bookImage: UIImage?
+        if avatarData == nil {
+            avatar = UIImage(named: "sample_avatar")
+        } else {
+            avatar = UIImage(data: avatarData as! Data)
+        }
+        mAvatar?.image = avatar
+        
+        let bookImageData = BookInfoHelper().getFirstImage(book: book!)?.photo
+        bookImage = UIImage(data: bookImageData as! Data)
+        mImage?.image = bookImage
+        
         return cell!
     }
     
@@ -87,8 +113,8 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Book") as! BookViewController
         vc.right = .main
+        vc.bookID = books?[indexPath.item].bookID
         
-        let info = UserInfoHelper().loadData()
         let navCon = UINavigationController(rootViewController: vc)
         self.present(navCon, animated: true, completion: nil)
         

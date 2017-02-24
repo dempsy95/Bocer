@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActionSheetPicker_3_0
 
 class BookViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -61,7 +62,7 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
             let mRightImage = UIImage(named: "finish")
             let rightBtn = UIButton(frame: CGRect(x: self.view.bounds.maxX - 55, y: 30, width: 20, height: 20))
             rightBtn.setImage(mRightImage, for: .normal)
-            rightBtn.addTarget(self, action: #selector(BookViewController.didFinish), for: .touchUpInside)
+            rightBtn.addTarget(self, action: #selector(BookViewController.didCancel), for: .touchUpInside)
             rightBtn.tintColor = UIColor.white
             let rightBtnItem = UIBarButtonItem(customView: rightBtn)
             navigationItem.rightBarButtonItem = rightBtnItem
@@ -75,8 +76,17 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
             navigationItem.rightBarButtonItem = rightBtnItem
         }
         
-        navigationItem.title = "BOOK INFORMATION"
-        navigationItem.leftBarButtonItem = btnItem
+        if right == .edit {
+            navigationItem.title = "EDIT BOOK INFO"
+        } else {
+            navigationItem.title = "BOOK INFORMATION"
+        }
+        
+        if !(right == .edit) {
+            navigationItem.leftBarButtonItem = btnItem
+        } else {
+            navigationItem.leftBarButtonItem = UIBarButtonItem()
+        }
     }
     
     @objc private func didCancel() {
@@ -85,10 +95,6 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             self.navigationController?.popViewController(animated: true)
         }
-    }
-    
-    @objc private func didFinish() {
-        
     }
     
     @objc private func didMenu() {
@@ -211,7 +217,7 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
             mImage?.image = UIImage(data: imagedata as! Data)
             break
         }
-        if right == .edit {
+        if (right == .edit) && (indexPath != IndexPath(item:2, section: 1)) {
             cell?.accessoryType = .disclosureIndicator
             cell?.isUserInteractionEnabled = true
         }
@@ -241,6 +247,44 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
             vc.startIndex = 0
             vc.images = BookInfoHelper().getImages(book: book!)
             self.navigationController?.pushViewController(vc, animated: true)
+            break
+        case IndexPath(item: 0, section: 0):
+            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "EditBook") as! EditBookViewController
+            vc.bookID = book?.bookID
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+        case IndexPath(item: 0, section: 1):
+            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "EditBookPrice") as! EditBookPriceViewController
+            vc.bookID = book?.bookID
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+        case IndexPath(item: 1, section: 1):
+            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "EditEdition") as! EditEditionViewController
+            vc.bookID = book?.bookID
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+        case IndexPath(item: 1, section: 2):
+            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "EditComment") as! EditCommentViewController
+            vc.bookID = book?.bookID
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+        case IndexPath(item: 0, section: 2):
+            let picker = ActionSheetStringPicker(title: "Book Wellness", rows: ["five - new", "four - almost new", "three - not bad", "two - a little poor", "one - poor"], initialSelection: 4 - Int((book?.wellness)!), doneBlock: {
+                picker, value, index in
+                BookInfoHelper().updateBookWellness(book: self.book!, wellness: 4 - value)
+                let cell = self.mTableView.cellForRow(at: IndexPath(item: 0, section: 2))
+                let image = cell?.viewWithTag(100) as! UIImageView?
+                image?.image = UIImage(named: self.star[4 - value])
+                self.mTableView.reloadRows(at: [IndexPath(item: 0, section: 2)], with: .none)
+                self.mTableView.deselectRow(at: IndexPath(item: 0, section: 2), animated: false)
+                return
+            }, cancel: { ActionStringCancelBlock in return }, origin: self.view)
+            picker?.toolbarButtonsColor = UIColor.black
+            picker?.show()
             break
         default:
             break

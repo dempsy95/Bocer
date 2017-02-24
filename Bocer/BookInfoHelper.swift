@@ -52,13 +52,13 @@ class BookInfoHelper {
             book1.bookID = "idforbook1"
             book1.comment = "A very nice story"
             book1.edition = 11
-            book1.ownerID = "someid"
+            book1.ownerID = "mark"
             book1.wellness = 4
             book1.googleID = "somegoogleid"
             book1.title = "Selected Stories from Lu Hsun"
             book1.author = "Lu Hsun"
             book1.publisher = "Pearson"
-            book1.forMain = false
+            book1.forMain = true
             book1.sellerPrice = 12
             book1.buyerPrice = 15
             
@@ -75,13 +75,13 @@ class BookInfoHelper {
             book2.bookID = "idforbook2"
             book2.comment = "A very nice drama"
             book2.edition = 5
-            book2.ownerID = "someid"
+            book2.ownerID = "steve"
             book2.wellness = 3
             book2.googleID = "somegoogleid2"
             book2.title = "A Streetcar Named Desire"
             book2.author = "I Forgot"
             book2.publisher = "Pearson"
-            book2.forMain = false
+            book2.forMain = true
             book2.sellerPrice = 10
             book2.buyerPrice = 12
             
@@ -188,17 +188,93 @@ class BookInfoHelper {
     }
     
     
-    func updateBookTitleAndAuthor(book: Book, title: String, author: String) {
+    func updateBookGoogleInfo(book: Book, google_id: String, title: String, author: String, publisher: String) {
         let delegate = UIApplication.shared.delegate as? AppDelegate
         
         if let context = delegate?.managedObjectContext {
+            book.googleID = google_id
             book.author = author
             book.title = title
+            book.publisher = publisher
             do {
                 try(context.save())
             } catch let err {
                 print(err)
             }
         }
+    }
+    
+    func updateBookPrice(book: Book, sPrice: Double, fPrice: Double) {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        if let context = delegate?.managedObjectContext {
+            book.buyerPrice = fPrice
+            book.sellerPrice = sPrice
+            do {
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+        }
+    }
+    
+    func updateBookEdition(book: Book, edition: Int) {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        if let context = delegate?.managedObjectContext {
+            book.edition = Int16(edition)
+            do {
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+        }
+    }
+    
+    func updateBookComment(book: Book, comment: String) {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        if let context = delegate?.managedObjectContext {
+            book.comment = comment
+            do {
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+        }
+    }
+    
+    func updateBookWellness(book: Book, wellness: Int) {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        if let context = delegate?.managedObjectContext {
+            book.wellness = Int16(wellness)
+            do {
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+        }
+    }
+    
+    func fetchBooksForMain() -> [Book] {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        var res = [Book]()
+        
+        if let context = delegate?.managedObjectContext {
+            do {
+                let fetchMessageRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Book")
+                let books = try(context.fetch(fetchMessageRequest)) as? [Book]
+                for book in books! {
+                    if book.forMain {
+                        res.append(book)
+                    }
+                }
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+        }
+        return res
     }
 }

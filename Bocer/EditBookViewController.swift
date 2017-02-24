@@ -23,7 +23,7 @@ class EditBookViewController: UIViewController, UITableViewDelegate, UITableView
     internal var google_id:String?
     internal var myTitle: String? = ""
     internal var myAuthor: String? = ""
-    internal var myEdition: String?
+    private var myPublisher: String? = ""
     
     //for show book info
     var authorCell: UITableViewCell?
@@ -34,8 +34,8 @@ class EditBookViewController: UIViewController, UITableViewDelegate, UITableView
     private var book: Book?
     
     @IBOutlet weak var mSearchBar: UISearchBar!
-    @IBOutlet weak var mResTable: UITableView!
-    @IBOutlet weak var mTableView: UITableView!
+    @IBOutlet weak var mResTable: UITableView!  //书本内容
+    @IBOutlet weak var mTableView: UITableView! //搜索结果
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,13 +59,16 @@ class EditBookViewController: UIViewController, UITableViewDelegate, UITableView
         book = BookInfoHelper().getBookInfo(bookID: bookID!)
         google_id = book?.googleID
         
-        titleCell = mResTable.dequeueReusableCell(withIdentifier: "addBookTitle")
+        titleCell = mResTable.dequeueReusableCell(withIdentifier: "edit_book_title")
         mTitle = titleCell?.viewWithTag(100) as! UILabel?
         mTitle?.text = book?.title
-        authorCell = mResTable.dequeueReusableCell(withIdentifier: "addBookAuthor")
+        myTitle = book?.title
+        authorCell = mResTable.dequeueReusableCell(withIdentifier: "edit_book_author")
         mAuthor = authorCell?.viewWithTag(100) as! UILabel?
         mAuthor?.text = book?.author
+        myAuthor = book?.author
         
+        myPublisher = book?.publisher
         //增加右滑返回
         self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
     }
@@ -91,7 +94,7 @@ class EditBookViewController: UIViewController, UITableViewDelegate, UITableView
         rightBtn.addTarget(self, action: #selector(EditBookViewController.didNext), for: .touchUpInside)
         rightBtn.tintColor = UIColor.white
         let rightBtnItem = UIBarButtonItem(customView: rightBtn)
-        navigationItem.title = "CHANGE TO ANOTHER BOOK"
+        navigationItem.title = "CHANGE BOOK"
         navigationItem.leftBarButtonItem = btnItem
         navigationItem.rightBarButtonItem = rightBtnItem
     }
@@ -112,7 +115,7 @@ class EditBookViewController: UIViewController, UITableViewDelegate, UITableView
             self.present(alert, animated: true, completion: nil)
             return
         }
-        BookInfoHelper().updateBookTitleAndAuthor(book: book!, title: myTitle!, author: myAuthor!)
+        BookInfoHelper().updateBookGoogleInfo(book: book!, google_id: google_id!, title: myTitle!, author: myAuthor!, publisher: myPublisher!)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -143,15 +146,13 @@ class EditBookViewController: UIViewController, UITableViewDelegate, UITableView
         if (tableView == mResTable) {
                 if indexPath.item == 0 {
                     self.mTitle?.text = self.myTitle
-                    print("reload \(self.myTitle)   \(mTitle?.text)")
                     return self.titleCell!
                 } else {
                     self.mAuthor?.text = self.myAuthor
-                    print("reload \(self.myAuthor)   \(mAuthor?.text)")
                     return self.authorCell!
                 }
         } else {
-            let identifier = "addBookCell2"
+            let identifier = "search_book_info"
             let cell=tableView.dequeueReusableCell(withIdentifier: identifier)
             let mTitle = cell?.viewWithTag(100) as! UILabel?
             let mAuthor = cell?.viewWithTag(101) as! UILabel?
@@ -192,12 +193,6 @@ class EditBookViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    //fetch edition info back from child vc
-    func fetchEditionBack(edition: String) {
-        myEdition = edition
-        mResTable.reloadData()
-    }
-    
     @objc private func didSearch() {
         Alamofire.request(
             URL(string: "http://localhost:3000/searchBook")!,
@@ -222,6 +217,8 @@ class EditBookViewController: UIViewController, UITableViewDelegate, UITableView
                             temp["google_id"] = item["id"].string!
                             self.search_result.append(temp)
                         }
+                        //TODO:
+                        //retrieve google_id and publisher from search result
                         if(json["bookname"].string! == self.search_text!){
                             self.mTableView.reloadData()
                         }

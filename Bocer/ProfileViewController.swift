@@ -9,11 +9,15 @@
 import UIKit
 import SideMenu
 
+enum Profile {
+    case user
+    case friend
+}
+
 class ProfileViewController: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
     //information used by server
     internal var username:String?
     internal var school:String? = "Vanderbilt University"
-    
 
     
     
@@ -232,7 +236,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         let imagedata = BookInfoHelper().getFirstImage(book: book!)?.photo
         mImage?.image = UIImage(data: imagedata as! Data)
         mTitle?.text = book?.title
-        mAuthor?.text = "By" + (book?.author)!
+        mAuthor?.text = "By " + (book?.author)!
         mPrice?.text = "$" + String(format: "%.2f", (book?.buyerPrice)!)
         mEdition?.text = "Edition: " + String(format: "%d", (book?.edition)!)
         
