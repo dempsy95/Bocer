@@ -9,6 +9,11 @@
 import UIKit
 import ActionSheetPicker_3_0
 
+enum AddBook2Attr {
+    case add
+    case edit
+}
+
 class photoTableCell: UITableViewCell {
     //end information used by server
     @IBOutlet weak var photo1: UIButton!
@@ -86,7 +91,7 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     internal var google_id:String?
     internal var school:String?
     
-    
+    internal var attr: AddBook2Attr?
     internal var uid:String?
     internal var userimage:String?
     
@@ -102,6 +107,8 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     private let wellString = ["onestar", "twostar", "threestar", "fourstar", "fivestar"]
     private var showedPhoto: Int?
     
+    internal var book: Book?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -113,6 +120,11 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
         mTableView.dataSource = self
         
         nextBtn.layer.cornerRadius = CGFloat(Constant().buttonCornerRadius)
+        
+        if attr == .edit {
+            nextBtn.isEnabled = false
+            nextBtn.isHidden = true
+        }
         
         //增加右滑返回
         self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
@@ -134,13 +146,13 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
         btn.tintColor = UIColor.white
         let btnItem = UIBarButtonItem(customView: btn)
         
-        let mRightImage = UIImage(named: "next")
+        let mRightImage = attr == .add ? UIImage(named: "next") : UIImage(named: "finish")
         let rightBtn = UIButton(frame: CGRect(x: self.view.bounds.maxX - 55, y: 30, width: 20, height: 20))
         rightBtn.setImage(mRightImage, for: .normal)
         rightBtn.addTarget(self, action: #selector(AddBook2ViewController.didNext), for: .touchUpInside)
         rightBtn.tintColor = UIColor.white
         let rightBtnItem = UIBarButtonItem(customView: rightBtn)
-        navigationItem.title = "ADD BOOK"
+        navigationItem.title = attr == .add ? "ADD BOOK" : "EDIT PHOTOS"
         navigationItem.leftBarButtonItem = btnItem
         navigationItem.rightBarButtonItem = rightBtnItem
     }
@@ -151,15 +163,19 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
-        if section == 0 {
-            return 1
+        if attr == .add {
+            if section == 0 {
+                return 1
+            } else {
+                return 2
+            }
         } else {
-            return 2
+            return 1
         }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return attr == .add ? 2 : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -352,29 +368,34 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func nextPerformed() {
-        var photo_data:[NSData]? = []
-        var small_image:String? = ""
-        if(photoCnt != 0){
-            for index in 0..<photoCnt{
-                let imagedata = UIImageJPEGRepresentation(self.photos[index], 0.6)
-                photo_data?.append(imagedata! as NSData)
+        if attr == .add {
+            var photo_data:[NSData]? = []
+            var small_image:String? = ""
+            if(photoCnt != 0){
+                for index in 0..<photoCnt{
+                    let imagedata = UIImageJPEGRepresentation(self.photos[index], 0.6)
+                    photo_data?.append(imagedata! as NSData)
+                }
             }
+            var rate = self.wellness
+            var description = self.myInfo
+            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "AddBook3") as! AddBook3ViewController
+            vc.uid = self.uid!
+            vc.book_title = self.book_title!
+            vc.google_id = self.google_id!
+            vc.author = self.author!
+            vc.edition = self.edition!
+            vc.userimage = self.userimage!
+            vc.big_image = photo_data!
+            vc.state = String(self.wellness)
+            vc.desc = self.myInfo!
+            vc.school = self.school!
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            BookInfoHelper().resetPhotos(book: book!, images: photos)
+            self.navigationController?.popViewController(animated: true)
         }
-        var rate = self.wellness
-        var description = self.myInfo
-        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "AddBook3") as! AddBook3ViewController
-        vc.uid = self.uid!
-        vc.book_title = self.book_title!
-        vc.google_id = self.google_id!
-        vc.author = self.author!
-        vc.edition = self.edition!
-        vc.userimage = self.userimage!
-        vc.big_image = photo_data!
-        vc.state = String(self.wellness)
-        vc.desc = self.myInfo!
-        vc.school = self.school!
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     /*

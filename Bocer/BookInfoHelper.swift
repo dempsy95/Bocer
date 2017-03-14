@@ -318,5 +318,36 @@ class BookInfoHelper {
         
         loadData()
     }
+    
+    func resetPhotos(book: Book, images: [UIImage]) {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        if let context = delegate?.managedObjectContext {
+            do {
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BookPhoto")
+                let objects = try(context.fetch(fetchRequest)) as? [BookPhoto]
+                for object in objects! {
+                    if object.book == book {
+                        context.delete(object)
+                    }
+                }
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+            
+            do {
+                var i = 0
+                for image in images {
+                    let photo = NSEntityDescription.insertNewObject(forEntityName: "BookPhoto", into: context) as! BookPhoto
+                    photo.photo = UIImageJPEGRepresentation(image, 0.6) as NSData?
+                    photo.book = book
+                    photo.nth = Int16(i)
+                    i = i + 1
+                }
+            }
+            
+        }
+    }
 
 }

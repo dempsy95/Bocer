@@ -11,7 +11,7 @@ import UIKit
 class BookPhotoPageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
     internal var startIndex = 0
-    internal var images: [BookPhoto]?
+    internal var images: [UIImage]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class BookPhotoPageViewController: UIPageViewController, UIPageViewControllerDat
         btn.tintColor = .white
         let btnItem = UIBarButtonItem(customView: btn)
         
-        navigationItem.title = "BOOK PHOTOS"
+        navigationItem.title = "Photos  \(startIndex + 1)/\((images?.count)!)"
         navigationItem.leftBarButtonItem = btnItem
     }
     
@@ -53,7 +53,7 @@ class BookPhotoPageViewController: UIPageViewController, UIPageViewControllerDat
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "BookPhotoPageContent") as! BookPhotoPageContentViewController
         vc.index = index
-        vc.photo = UIImage(data: images?[index].photo as Data!)
+        vc.photo = images?[index]
         return vc
     }
     
@@ -61,10 +61,13 @@ class BookPhotoPageViewController: UIPageViewController, UIPageViewControllerDat
     {
         let pageContent: BookPhotoPageContentViewController = viewController as! BookPhotoPageContentViewController
         var index = pageContent.index
+        navigationItem.title = "Photos \(index + 1)/\((images?.count)!)"
+
         if ((index == 0) || (index == NSNotFound))
         {
             return nil
         }
+
         index -= 1
         return getViewControllerAtIndex(index: index)
     }
@@ -73,10 +76,13 @@ class BookPhotoPageViewController: UIPageViewController, UIPageViewControllerDat
     {
         let pageContent: BookPhotoPageContentViewController = viewController as! BookPhotoPageContentViewController
         var index = pageContent.index
+        navigationItem.title = "Photos \(index + 1)/\((images?.count)!)"
+
         if (index == NSNotFound)
         {
             return nil;
         }
+
         index += 1;
         if (index == images?.count)
         {

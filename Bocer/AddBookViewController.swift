@@ -147,6 +147,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         vc.google_id = self.google_id!
         vc.userimage = self.userimage!
         vc.school = self.school!
+        vc.attr = .add
         self.navigationController?.pushViewController(vc, animated: true)
     }
 

@@ -255,11 +255,29 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath {
         case IndexPath(item: 0, section: 3):
-            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "BookPhotoPage") as! BookPhotoPageViewController
-            vc.startIndex = 0
-            vc.images = BookInfoHelper().getImages(book: book!)
-            self.navigationController?.pushViewController(vc, animated: true)
+            if right == .edit {
+                let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+                let vc = sb.instantiateViewController(withIdentifier: "AddBook2") as! AddBook2ViewController
+                let mImages = BookInfoHelper().getImages(book: book!)
+                var i = 0
+                for image in mImages! {
+                    vc.photos[i] = (UIImage(data: image.photo as! Data)!)
+                    i = i + 1
+                }
+                vc.photoCnt = i
+                vc.attr = .edit
+                vc.book = book
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+                let vc = sb.instantiateViewController(withIdentifier: "BookPhotoPage") as! BookPhotoPageViewController
+                vc.startIndex = 0
+                let mImages = BookInfoHelper().getImages(book: book!)
+                for image in mImages! {
+                    vc.images?.append(UIImage(data: image.photo as! Data)!)
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             break
         case IndexPath(item: 0, section: 0):
             let sb = UIStoryboard(name: "new-Qian", bundle: nil)
