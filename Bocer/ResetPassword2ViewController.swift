@@ -121,7 +121,7 @@ class ResetPassword2ViewController: UIViewController, UITextFieldDelegate, UITab
             }
             else{
                 Alamofire.request(
-                    URL(string: "ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/reset")!,
+                    URL(string: "http://ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/reset")!,
                     method: .post,
                     parameters: ["username":self.username!,"token":self.token!,"password":pw1TF.text!])
                     .validate()

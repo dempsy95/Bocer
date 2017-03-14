@@ -141,7 +141,7 @@ class SignUp2ViewController: UIViewController, UITextFieldDelegate {
     */
     private func enterPerformed() {
         Alamofire.request(
-            URL(string: "ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/addUser")!,
+            URL(string: "http://ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/addUser")!,
             method: .post,
             parameters: ["username":self.username!,"password":self.password!,"school":self.school!,"firstName":self.firstname!,"lastName":self.lastname!])
             .validate()
@@ -171,7 +171,7 @@ class SignUp2ViewController: UIViewController, UITextFieldDelegate {
                     }
                     else{ // success
                         Alamofire.request(
-                            URL(string: "ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/login")!,
+                            URL(string: "http://ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/login")!,
                             method: .post,
                             parameters: ["username":self.username!,"password":self.password!])
                             .validate()

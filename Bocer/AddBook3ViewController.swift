@@ -14,18 +14,18 @@ import SwiftyJSON
 class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     //information used by server
     private var sPrice, fPrice: Double?
-    internal var username:String?
-    internal var userimage:String?
-    internal var book_title:String?
-    internal var google_id:String?
-    internal var school:String?
-    internal var author:String?
-    internal var edition:String?
-    internal var small_image:String?
-    internal var big_image:[String]?
-    internal var state:String?
-    internal var desc:String?
-    internal var price:String?
+    internal var uid:String? = ""
+    internal var userimage:String? = ""
+    internal var book_title:String? = ""
+    internal var google_id:String? = ""
+    internal var school:String? = ""
+    internal var author:String? = ""
+    internal var edition:String? = ""
+    internal var big_image:[NSData]?
+    internal var small_image: String? = ""
+    internal var state:String? = ""
+    internal var desc:String? = ""
+    internal var price:String? = ""
     
     
     
@@ -125,9 +125,9 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
     
     private func finishPerformed() {
         Alamofire.request(
-            URL(string: "ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/createListing")!,
+            URL(string: "http://ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/createListing")!,
             method: .post,
-            parameters: ["username":self.username!,"title":self.book_title!,"google_id":self.google_id!,"school":self.school!,"author":self.author!,"edition":self.edition!,"userimage":self.userimage!,"small_image":self.small_image!,"big_image":self.big_image!,"price":self.sPrice!,"real_price":self.fPrice!,"state":self.state!,"description":self.desc!])
+            parameters: ["username":self.uid!,"title":self.book_title!,"google_id":self.google_id!,"school":self.school!,"author":self.author!,"edition":self.edition!,"userimage":self.userimage!,"small_image":self.small_image!,"big_image":self.big_image!,"price":self.sPrice!,"real_price":self.fPrice!,"state":self.state!,"description":self.desc!])
             .validate()
             .responseJSON {response in
                 var result = response.result.value
@@ -144,11 +144,11 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
                             self.present(alertController, animated: true, completion: nil)
                         }
                         else{
-                            //TODO:
-                            //Check pop to root vc functionality 
-//                            let transition = Constant().transitionFromBottom()
-//                            self.view.window!.layer.add(transition, forKey: kCATransition)
-//                            self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
+                            let book = Book()
+                            //missing bookid and publisher
+                            let bookid = self.title
+                            let publisher = "some publisher"
+                            BookInfoHelper().storeBook(author: self.author, state: self.state, bookid: bookid, publisher: publisher, comment: self.desc, edition: Int16(self.edition!)!, forMain: false, googldID: self.google_id, ownerID: self.uid, title: self.book_title, sPrice: self.sPrice!, bPrice: self.fPrice!, images: self.big_image)
                             self.navigationController?.popToRootViewController(animated: true)
                         }
                     }

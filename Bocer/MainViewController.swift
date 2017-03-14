@@ -39,7 +39,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         myTableView.dataSource = self
         
         //initialize chat view
-        let chatView = ChatViewController()
+        _ = ChatViewController()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -209,7 +209,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         self.presentedViewController?.dismiss(animated: true, completion: nil)
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
-        vc.username = self.username!
         let info = UserInfoHelper().loadData()
         vc.uid = info.id
         vc.attr = .user

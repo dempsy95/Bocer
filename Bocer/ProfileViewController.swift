@@ -17,7 +17,6 @@ enum Profile {
 
 class ProfileViewController: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
     //information used by server
-    internal var username:String?
     internal var school:String? = "Vanderbilt University"
     internal var attr: Profile?
     
@@ -180,7 +179,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
                 let imagestring = imagedata?.base64EncodedString()
                 let sb = UIStoryboard(name: "new-Qian", bundle: nil)
                 let vc = sb.instantiateViewController(withIdentifier: "AddBook") as! AddBookViewController
-                vc.username = self.username!
+                vc.uid = self.uid!
                 vc.userimage = imagestring!
                 vc.school = self.collegeLabel.text!
 

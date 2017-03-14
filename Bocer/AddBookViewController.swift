@@ -13,7 +13,7 @@ import SwiftyJSON
 class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, EditionDelegate {
     //information used by server
     
-    internal var username:String?
+    internal var uid:String?
     internal var userimage:String?
     internal var school:String?
     
@@ -76,6 +76,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        mTableView.reloadData()
         mResTable.deselectRow(at: IndexPath(item: 0, section: 1), animated: false)
     }
     
@@ -139,7 +140,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "AddBook2") as! AddBook2ViewController
-        vc.username = self.username!
+        vc.uid = self.uid!
         vc.book_title = self.myTitle!
         vc.author = self.myAuthor!
         vc.edition = self.myEdition!
@@ -240,6 +241,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 
                 self.mResTable.reloadRows(at: [IndexPath(item: 0, section: 0), IndexPath(item: 1, section: 0)], with: .none)
+                self.mTableView.reloadData()
             }, completion: nil)
         } else {
             if indexPath == IndexPath(item: 0, section: 1) {
@@ -262,7 +264,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @objc private func didSearch() {
         Alamofire.request(
-            URL(string: "ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/searchBook")!,
+            URL(string: "http://ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/searchBook")!,
             method: .post,
             parameters: ["field":self.search_text!])
             .validate()

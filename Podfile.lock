@@ -5,6 +5,7 @@ PODS:
   - CreditCardValidator (0.3.2)
   - JSQMessagesViewController (7.3.4)
   - Socket.IO-Client-Swift (8.2.0)
+  - Stripe (9.3.0)
   - SwiftyJSON (3.1.4)
   - YALSideMenu (2.0.1)
 
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - CreditCardValidator
   - JSQMessagesViewController (from `https://github.com/jessesquires/JSQMessagesViewController.git`, branch `develop`)
   - Socket.IO-Client-Swift (~> 8.2.0)
+  - Stripe
   - SwiftyJSON
   - YALSideMenu (~> 2.0)
 
@@ -35,9 +37,10 @@ SPEC CHECKSUMS:
   CreditCardValidator: f2e0fc0f273e3f303513d35745df23d336eb1d67
   JSQMessagesViewController: c11b9e77372ab72c45c67311f6da7342e32df1e8
   Socket.IO-Client-Swift: 900cf511777045c80d1ce1f11f71261e87765dd1
+  Stripe: 0f41a33a6fa3ac76ee668d7df3e2680c28b8ab1a
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   YALSideMenu: 4d6b90ea44dcdded18a99e46b676e4ad51d9c6bb
 
-PODFILE CHECKSUM: 00db3c6e140d4e3f0bddc68c962d3cf6b7e417b5
+PODFILE CHECKSUM: 1404cbdb05591554fc5910ffbe248872edecd4c4
 
 COCOAPODS: 1.1.1

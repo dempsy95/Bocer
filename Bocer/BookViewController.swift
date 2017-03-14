@@ -85,6 +85,7 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
         if !(right == .edit) {
             navigationItem.leftBarButtonItem = btnItem
         } else {
+            navigationItem.hidesBackButton = true
             navigationItem.leftBarButtonItem = UIBarButtonItem()
         }
     }
@@ -124,7 +125,6 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
         //goto seller's profile vc
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
-        vc.username = book?.ownerID
         let info = UserInfoHelper().loadData()
         vc.uid = book?.ownerID
         vc.attr = .friend

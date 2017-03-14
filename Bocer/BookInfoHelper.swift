@@ -277,4 +277,46 @@ class BookInfoHelper {
         }
         return res
     }
+    
+    func storeBook(author: String?, state: String?, bookid: String?, publisher: String?, comment: String?, edition: Int16, forMain: Bool, googldID: String?, ownerID: String?, title: String?, sPrice: Double, bPrice: Double, images: [NSData]?) {
+        
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        if let context = delegate?.managedObjectContext {
+            
+            var book = NSEntityDescription.insertNewObject(forEntityName: "Book", into: context) as! Book
+            
+            book.wellness = Int16(state!)!
+            book.bookID = bookid
+            book.publisher = publisher
+            book.author = author
+            book.comment = comment
+            book.edition = edition
+            book.forMain = forMain
+            book.googleID = googldID
+            book.ownerID = ownerID
+            book.title = title
+            book.sellerPrice = sPrice
+            book.buyerPrice = bPrice
+            
+            if images != nil {
+                var i = 0
+                for image in images! {
+                    let photo = NSEntityDescription.insertNewObject(forEntityName: "BookPhoto", into: context) as! BookPhoto
+                    photo.photo = image
+                    photo.book = book
+                    photo.nth = Int16(i)
+                    i = i + 1
+                }
+            }
+            do {
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+        }
+        
+        loadData()
+    }
+
 }

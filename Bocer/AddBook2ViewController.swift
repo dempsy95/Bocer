@@ -87,7 +87,7 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     internal var school:String?
     
     
-    internal var username:String?
+    internal var uid:String?
     internal var userimage:String?
     
     //end information used by server
@@ -352,30 +352,25 @@ class AddBook2ViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func nextPerformed() {
-        var photo_string:[String]? = []
+        var photo_data:[NSData]? = []
         var small_image:String? = ""
         if(photoCnt != 0){
-            var smallimagedata = UIImageJPEGRepresentation(self.coverPhoto!, 0.6)
-            var smallimagestring = smallimagedata?.base64EncodedString()
-            small_image = smallimagestring
             for index in 0..<photoCnt{
-                var imagedata = UIImageJPEGRepresentation(self.photos[index], 0.6)
-                var imagestring = imagedata?.base64EncodedString()
-                photo_string?.append(imagestring!)
+                let imagedata = UIImageJPEGRepresentation(self.photos[index], 0.6)
+                photo_data?.append(imagedata! as NSData)
             }
         }
         var rate = self.wellness
         var description = self.myInfo
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "AddBook3") as! AddBook3ViewController
-        vc.username = self.username!
+        vc.uid = self.uid!
         vc.book_title = self.book_title!
         vc.google_id = self.google_id!
         vc.author = self.author!
         vc.edition = self.edition!
         vc.userimage = self.userimage!
-        vc.big_image = photo_string!
-        vc.small_image = small_image!
+        vc.big_image = photo_data!
         vc.state = String(self.wellness)
         vc.desc = self.myInfo!
         vc.school = self.school!
