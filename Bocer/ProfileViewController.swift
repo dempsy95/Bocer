@@ -8,6 +8,7 @@
 
 import UIKit
 import SideMenu
+import QuartzCore
 
 enum Profile {
     case user
@@ -18,7 +19,7 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
     //information used by server
     internal var username:String?
     internal var school:String? = "Vanderbilt University"
-
+    internal var attr: Profile?
     
     
     //end information used by server
@@ -63,6 +64,22 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         bookButton.layer.shadowOpacity = 1
         bookButton.layer.cornerRadius = 25
         nameLabel.layer.cornerRadius = CGFloat(Constant().buttonCornerRadius)
+        
+        //customize book button for other view
+        if attr == .friend {
+            self.bookButton.setImage(UIImage(named: "chat"), for: UIControlState.normal)
+            self.bookButton.backgroundColor = UIColor.brown
+            self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
+            menuButton.setImage(UIImage(named: "back"), for: UIControlState.normal)
+        }
+        
+        //customize name nameLabel
+        nameLabel.layer.shadowColor = UIColor.black.cgColor
+        nameLabel.layer.shadowOffset = CGSize.zero
+        nameLabel.layer.shadowRadius = 1.0
+        nameLabel.layer.shadowOpacity = 0.5
+        nameLabel.layer.masksToBounds = false
+        nameLabel.layer.shouldRasterize = true
         
         //customize scroll view
         mScroll.showsHorizontalScrollIndicator = false
@@ -110,7 +127,9 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
             mPageControl.currentPage = page
             if currentpage != page {
                 currentpage = page
-                changeButton()
+                if attr == .user {
+                    changeButton()
+                }
             }
         }
     }
@@ -122,7 +141,9 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         mScroll.setContentOffset(point, animated: true)
         if currentpage != sender.currentPage {
             currentpage = sender.currentPage
-            changeButton()
+            if attr == .user {
+                changeButton()
+            }
         }
     }
     
@@ -144,31 +165,44 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
     //TODO:
     //Edit user's info or add a book
     @IBAction func bookFired(_ sender: UIButton) {
-        if currentpage == 0 {
-            //TODO:
-            //Edit personal info
-            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "EditInfo") as! EditInfoViewController
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            //TODO:
-            //Add a book
-            //encode image
-            let imagedata = UIImageJPEGRepresentation(self.mImage.image!, 0.25)
-            let imagestring = imagedata?.base64EncodedString()
-            let sb = UIStoryboard(name: "new-Qian", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "AddBook") as! AddBookViewController
-            vc.username = self.username!
-            vc.userimage = imagestring!
-            vc.school = self.collegeLabel.text!
+        if attr == .user {
+            if currentpage == 0 {
+                //TODO:
+                //Edit personal info
+                let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+                let vc = sb.instantiateViewController(withIdentifier: "EditInfo") as! EditInfoViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                //TODO:
+                //Add a book
+                //encode image
+                let imagedata = UIImageJPEGRepresentation(self.mImage.image!, 0.25)
+                let imagestring = imagedata?.base64EncodedString()
+                let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+                let vc = sb.instantiateViewController(withIdentifier: "AddBook") as! AddBookViewController
+                vc.username = self.username!
+                vc.userimage = imagestring!
+                vc.school = self.collegeLabel.text!
 
-            self.navigationController?.pushViewController(vc, animated: true)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        } else {
+            let friend = DatabaseHelper().findFriend(id: uid)
+            let chatView = ChatViewController()
+            chatView.myUserID = "someid"
+            chatView.myDisplayName = friend?.name
+            chatView.friend = friend
+            self.navigationController?.pushViewController(chatView, animated: true)
         }
     }
     
     @IBAction func menuFired(_ sender: UIButton) {
-        UIView.transition(with: menuButton, duration: 0.15, options: UIViewAnimationOptions.transitionFlipFromTop, animations: nil, completion: nil)
-        showMain()
+        if attr == .friend {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            UIView.transition(with: menuButton, duration: 0.15, options: UIViewAnimationOptions.transitionFlipFromTop, animations: nil, completion: nil)
+            showMain()
+        }
     }
     
     //TODO:
@@ -179,24 +213,41 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
         //collegeLabel.text = userInfo(uid).getCollege
         //addressLabel.text = userInfo(uid).getAddress
         //bid = userInfo(uid).getBook
-        let info = UserInfoHelper().loadData()
-        if (uid == info.id) {
-            let s = info.firstname! + "  " + info.lastname!
-            nameLabel.text = s.uppercased()
+        if attr == .user {
+            let info = UserInfoHelper().loadData()
+            if (uid == info.id) {
+                let s = info.firstname! + "  " + info.lastname!
+                nameLabel.text = s.uppercased()
+                nameLabel.sizeToFit()
+                emailLabel.text = info.email
+                collegeLabel.text = info.college
+                if info.address != nil {
+                    addressLabel.text = info.address
+                } else {
+                    addressLabel.text = "None"
+                }
+                if info.full_avatar == nil {
+                    mImage.image = UIImage(named: "sample_big_avatar")
+                } else {
+                    mImage.image = UIImage(data: info.full_avatar as Data!)
+                }
+            }
+        } else {
+            let info = DatabaseHelper().findFriend(id: uid)
+            nameLabel.text = info?.name?.uppercased()
             nameLabel.sizeToFit()
-            emailLabel.text = info.email
-            collegeLabel.text = info.college
-            if info.address != nil {
-                addressLabel.text = info.address
+            emailLabel.text = info?.email
+            collegeLabel.text = info?.college
+            if info?.address != nil {
+                addressLabel.text = info?.address
             } else {
                 addressLabel.text = "None"
             }
-            if info.full_avatar == nil {
+            if info?.profileImage == nil {
                 mImage.image = UIImage(named: "sample_big_avatar")
             } else {
-                mImage.image = UIImage(data: info.full_avatar as Data!)
+                mImage.image = UIImage(data: info?.profileImage as Data!)
             }
-            
         }
     }
     
@@ -248,7 +299,11 @@ class ProfileViewController: UIViewController, UIViewControllerTransitioningDele
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Book") as! BookViewController
-        vc.right = .edit
+        if attr == .user {
+            vc.right = .edit
+        } else {
+            vc.right = .profile
+        }
         vc.bookID = books?[indexPath.item].bookID
         self.navigationController?.pushViewController(vc, animated: true)
     }

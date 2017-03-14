@@ -122,11 +122,24 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func didProfile() {
         //TODO:
         //goto seller's profile vc
+        let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+        vc.username = book?.ownerID
+        let info = UserInfoHelper().loadData()
+        vc.uid = book?.ownerID
+        vc.attr = .friend
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func didContact() {
         //TODO:
         //goto chat vc
+        let chatView = ChatViewController()
+        let friend = DatabaseHelper().findFriend(id: book?.ownerID)
+        chatView.myUserID = "someid"
+        chatView.myDisplayName = friend?.name
+        chatView.friend = friend
+        self.navigationController?.pushViewController(chatView, animated: true)
     }
     
     private func didBuy() {

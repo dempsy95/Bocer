@@ -38,6 +38,8 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         myTableView.delegate = self
         myTableView.dataSource = self
         
+        //initialize chat view
+        let chatView = ChatViewController()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -210,6 +212,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITable
         vc.username = self.username!
         let info = UserInfoHelper().loadData()
         vc.uid = info.id
+        vc.attr = .user
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)
         }

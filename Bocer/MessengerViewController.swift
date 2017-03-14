@@ -110,13 +110,10 @@ class MessengerViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatView = ChatViewController()
-//        chatView.messages = makeNormalConversation()
         let friend = messages?[indexPath.item].friend
         chatView.myUserID = "someid"
         chatView.myDisplayName = friend?.name
         chatView.friend = friend
-//        let chatNavigationController = UINavigationController(rootViewController: chatView)
-//        present(chatNavigationController, animated: true, completion: nil)
         self.navigationController?.pushViewController(chatView, animated: true)
     }
     

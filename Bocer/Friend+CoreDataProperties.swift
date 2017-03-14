@@ -2,7 +2,7 @@
 //  Friend+CoreDataProperties.swift
 //  Bocer
 //
-//  Created by Dempsy on 2/17/17.
+//  Created by Dempsy on 3/13/17.
 //  Copyright © 2017 Bocer. All rights reserved.
 //
 
@@ -19,6 +19,9 @@ extension Friend {
     @NSManaged public var id: String?
     @NSManaged public var name: String?
     @NSManaged public var profileImage: NSData?
+    @NSManaged public var email: String?
+    @NSManaged public var college: String?
+    @NSManaged public var address: String?
     @NSManaged public var messages: NSSet?
 
 }
