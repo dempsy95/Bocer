@@ -157,7 +157,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate, UITabl
     private func sendPerformed() {
         if(validateEmail(enteredEmail: emailTF.text!)){
             Alamofire.request(
-                URL(string: "http://localhost:3000/forgetPassword")!,
+                URL(string: "ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/forgetPassword")!,
                 method: .post,
                 parameters: ["username":emailTF.text!])
                 .validate()

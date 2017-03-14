@@ -134,7 +134,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
         var password = pwTF.text
         /*
         Alamofire.request(
-            URL(string: "http://localhost:3000/login")!,
+            URL(string: "ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/login")!,
             method: .post,
             parameters: ["username":username!, "password":password!])
             .validate()

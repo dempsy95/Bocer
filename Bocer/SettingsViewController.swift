@@ -43,6 +43,21 @@ class SettingsViewController: UIViewController {
     
     @IBAction func logoutFired(_ sender: UIButton) {
         //TODO:
+        
+        let mAlert = UIAlertController(title: "Warning", message: "Do you want to log out?", preferredStyle: .alert)
+        let actionDelete = UIAlertAction(title: "Yes", style: .destructive, handler: {
+            (action: UIAlertAction!) in self.logout()
+        })
+        let actionCancel = UIAlertAction(title: "Cancel", style: .default, handler: {
+            (action: UIAlertAction!) in mAlert.dismiss(animated: true, completion: nil)
+        })
+        mAlert.addAction(actionDelete)
+        mAlert.addAction(actionCancel)
+        self.present(mAlert, animated: true, completion: nil)
+
+    }
+    
+    private func logout() {
         //delete user info from database
         var vc = self.presentingViewController
         while ((vc?.presentingViewController) != nil) {

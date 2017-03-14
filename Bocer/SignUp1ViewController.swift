@@ -102,7 +102,7 @@ class SignUp1ViewController: UIViewController, UITextFieldDelegate, UITableViewD
             var username = emailTF.text
             var password = pwTF.text
             Alamofire.request(
-                URL(string: "http://localhost:3000/searchSchoolname")!,
+                URL(string: "ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/searchSchoolname")!,
                 method: .post,
                 parameters: ["domain":username!])
                 .validate()

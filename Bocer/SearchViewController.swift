@@ -103,7 +103,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //TODO:
         //When search fired, information inside search bar is sent to the server, and the client will get a list of book names back
         Alamofire.request(
-            URL(string: "http://localhost:3000/searchBook")!,
+            URL(string: "ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/searchBook")!,
             method: .post,
             parameters: ["field":self.search_text!])
             .validate()
@@ -204,7 +204,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             var title = titleLabel?.text!
             var author = authorLabel?.text!
             Alamofire.request(
-                URL(string: "http://localhost:3000/fetch_listing_by_author")!,
+                URL(string: "ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/fetch_listing_by_author")!,
                 method: .post,
                 parameters: ["title":title!,"author":author!,"school":schoolName!])
                 .validate()

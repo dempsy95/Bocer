@@ -125,7 +125,7 @@ class AddBook3ViewController: UIViewController, UITableViewDelegate, UITableView
     
     private func finishPerformed() {
         Alamofire.request(
-            URL(string: "http://localhost:3000/createListing")!,
+            URL(string: "ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000/createListing")!,
             method: .post,
             parameters: ["username":self.username!,"title":self.book_title!,"google_id":self.google_id!,"school":self.school!,"author":self.author!,"edition":self.edition!,"userimage":self.userimage!,"small_image":self.small_image!,"big_image":self.big_image!,"price":self.sPrice!,"real_price":self.fPrice!,"state":self.state!,"description":self.desc!])
             .validate()

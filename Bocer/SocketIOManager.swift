@@ -12,7 +12,7 @@ import JSQMessagesViewController
 
 class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
-    var socket = SocketIOClient(socketURL: URL(string: "http://localhost:8080")!, config: [.log(false), .forcePolling(true), .connectParams(["email" : UserInfoHelper().loadData().id!])])
+    var socket = SocketIOClient(socketURL: URL(string: "ec2-50-18-202-224.us-west-1.compute.amazonaws.com:3000:8080")!, config: [.log(false), .forcePolling(true), .connectParams(["email" : UserInfoHelper().loadData().id!])])
     
     override init() {
         super.init()
