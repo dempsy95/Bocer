@@ -148,6 +148,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, UITableViewDe
                         DatabaseHelper().setupData()
                         UserInfoHelper().setupData()
                         BookInfoHelper().setupData()
+                        CardInfoHelper().setupData()
         
                         //connect socketio
                         SocketIOManager.sharedInstance.establishConnection()

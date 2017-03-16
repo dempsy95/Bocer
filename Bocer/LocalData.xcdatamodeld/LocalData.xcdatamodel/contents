@@ -20,6 +20,12 @@
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="photos" inverseEntity="Book" syncable="YES"/>
     </entity>
+    <entity name="Card" representedClassName="Card" syncable="YES">
+        <attribute name="cvv" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="month" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="Friend" representedClassName="Friend" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="college" optional="YES" attributeType="String" syncable="YES"/>
@@ -53,5 +59,6 @@
         <element name="Friend" positionX="153" positionY="36" width="128" height="150"/>
         <element name="Message" positionX="342" positionY="78" width="128" height="120"/>
         <element name="UserInfo" positionX="153" positionY="-171" width="128" height="180"/>
+        <element name="Card" positionX="252" positionY="-18" width="128" height="105"/>
     </elements>
 </model>

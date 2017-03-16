@@ -13,7 +13,7 @@ class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 
     @IBOutlet weak var mTableView: UITableView!
     
-    private var cards : [String]? = ["1234567812345678", "1234567812345678", "1234567812345678"]
+    private var cards : [Card]?
     private var numOfCards = 3
     
     override func viewDidLoad() {
@@ -33,6 +33,8 @@ class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         //TODO:
         //cards = getCardInfo(uid)
         //numOfCards = cards?.count
+        cards = CardInfoHelper().loadData()
+        numOfCards = (cards?.count)!
         mTableView.reloadData()
     }
     
@@ -74,10 +76,10 @@ class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 let mImage = cell?.viewWithTag(100) as! UIImageView?
                 let mNumber = cell?.viewWithTag(101) as! UILabel?
 
-                mNumber?.text = secure(origin: (cards?[indexPath.item])!)
-                //let v = CreditCardValidator()
-                //let type = v.typeFromString(number)
-                //mImage.image = UIImage(named: type)
+                mNumber?.text = secure(origin: (cards?[indexPath.item].number)!)
+                let v = CreditCardValidator()
+                let type = v.type(from: (cards?[indexPath.item].number)!)
+                mImage?.image = UIImage(named: (type?.name)!)
                 return cell!
             } else {
                 let identifier = "addCardCell"
@@ -96,6 +98,11 @@ class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         if indexPath.section == 0 {
             if indexPath.item < numOfCards {
                 showCardDetail(card: (cards?[indexPath.item])!)
+            } else {
+                let sb = UIStoryboard(name: "new-Qian", bundle: nil)
+                let vc = sb.instantiateViewController(withIdentifier: "CardEdit") as! CardEditViewController
+                vc.mCard = nil
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
@@ -117,10 +124,10 @@ class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     //go to the vc which shows the detail info about a card
-    private func showCardDetail(card: String) {
+    private func showCardDetail(card: Card) {
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Card") as! CardViewController
-        vc.cardNumber = card
+        vc.card = card
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

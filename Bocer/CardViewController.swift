@@ -13,8 +13,9 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var mTableView: UITableView!
     
-    var cardNumber: String?
-    private var month = "08", year = "2018"
+    internal var card: Card?
+    private var month, year : Int64?
+    private var type: String? = "MASTERCARD"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
         mTableView.dataSource = self
         
         onMakeNavitem()
-        
+                
         //增加右滑返回
         self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
 
@@ -33,10 +34,12 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         //TODO:
         //get card expiry date by using card number
-        //month = getCardInfo(cardNumber).month
-        //year = getCardInfo(cardNumber).year
-        //let v = CreditCardValidator()
-        //let type = v.type(from: cardNumber)
+        month = card?.month
+        year = card?.year
+        let v = CreditCardValidator()
+        type = v.type(from: (card?.number)!)?.name.uppercased()
+        navigationItem.title = type
+        mTableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,14 +66,14 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cell=tableView.dequeueReusableCell(withIdentifier: identifier)
             let mNumber = cell?.viewWithTag(100) as! UILabel?
                 
-            mNumber?.text = secure(origin: (cardNumber)!)
+            mNumber?.text = secure(origin: (card?.number)!)
             return cell!
         } else {
             let identifier = "cardDateCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier)
-            let mDate = cell?.viewWithTag(101) as! UILabel?
+            let mDate = cell?.viewWithTag(100) as! UILabel?
             
-            mDate?.text = getDate(month: month, year: year)
+            mDate?.text = getDate(month: String(describing: month!), year: String(describing: year!))
             return cell!
         }
     }
@@ -95,7 +98,7 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
         rbtn.tintColor = UIColor.white
         let rbtnItem = UIBarButtonItem(customView: rbtn)
         
-        navigationItem.title = "MASTERCARD"
+        navigationItem.title = type
         navigationItem.leftBarButtonItem = btnItem
         navigationItem.rightBarButtonItem = rbtnItem
     }
@@ -124,12 +127,24 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func didEdit() {
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "CardEdit") as! CardEditViewController
-        vc.mCardNumber = self.cardNumber
+        vc.mCard = card
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func didDelete() {
-        
+        let alert = UIAlertController(title: "Warning", message: "Do you really want to delete this card?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Yes", style: .destructive, handler: {
+            (action: UIAlertAction!) in self.deleteCard(card: self.card!)
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func deleteCard(card: Card) {
+        CardInfoHelper().deleteCard(card: card)
+        self.navigationController?.popViewController(animated: true)
     }
     
     private func secure(origin: String) -> String {
@@ -139,7 +154,11 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     private func getDate(month: String, year: String) -> String {
-        return month+"/"+year
+        if month.characters.count == 1 {
+            return "0"+month+"/"+year
+        } else {
+            return month+"/"+year
+        }
     }
 
     /*

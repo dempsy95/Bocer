@@ -15,7 +15,7 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mCVV: SkyFloatingLabelTextFieldWithIcon!
     @IBOutlet weak var mDate: SkyFloatingLabelTextFieldWithIcon!
     @IBOutlet weak var mNumber: SkyFloatingLabelTextFieldWithIcon!
-    internal var mCardNumber: String?
+    internal var mCard: Card?
     internal var mCardTitle: String? = "ADD CARD"
     private var firstChange = true
     private var cvvLimit = 3
@@ -28,10 +28,12 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
         mNumber.title = "Credit Card"
         mNumber.iconFont = UIFont(name: "FontAwesome", size: 20)
         mNumber.iconText = "\u{f061}"
-        if mCardNumber != nil {
-            mNumber.text? = secure(origin: mCardNumber!)
-            //TODO:
-            //customize the image of the card
+        if mCard != nil {
+            mNumber.text? = secure(origin: (mCard?.number!)!)
+
+            let v = CreditCardValidator()
+            let type = v.type(from: (mCard?.number)!)
+            mImage?.image = UIImage(named: (type?.name)!)
         }
         Constant().customizeSFLTextField(tf: mNumber)
         
@@ -48,6 +50,10 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
         mCVV.iconText = "\u{f0a3}"
         mCVV.textAlignment = .center
         Constant().customizeSFLTextField(tf: mCVV)
+        
+        if mCard != nil {
+            mCardTitle = "EDIT CARD"
+        }
         
         //customize nav bar
         onMakeNavitem()
@@ -77,34 +83,46 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
     //textfield delegate
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == mNumber {
-            if (textField.text == nil || textField.text == "") && mCardNumber != nil{
-                textField.text = secure(origin: mCardNumber!)
+            if (textField.text == nil || textField.text == "") && mCard != nil{
+                textField.text = secure(origin: (mCard?.number!)!)
             }
-            if textField != nil {
-                let text = textField.text!
-                let v = CreditCardValidator()
-                let flag = v.validate(string: text)
-                if !flag {
-                    UIView.transition(with: mImage, duration: 0.15, options: [UIViewAnimationOptions.transitionFlipFromTop, UIViewAnimationOptions.allowAnimatedContent], animations: {
+            let text = textField.text!
+            if (text.characters.count >= 15) && (text.substring(to: text.index(text.startIndex, offsetBy: 15)) == "•••• •••• •••• ") {return}
+            let number = getText(text: text)
+            let v = CreditCardValidator()
+            let flag = v.validate(string: number)
+            print("flag is \(flag), number is \(number)")
+            if !flag {
+                UIView.transition(with: mImage, duration: 0.15, options: [UIViewAnimationOptions.transitionFlipFromTop, UIViewAnimationOptions.allowAnimatedContent], animations: {
                         self.mImage.image = UIImage(named: "creditcard")
                     }, completion: nil)
-                } else {
-                    let type = v.type(from: text)?.name
-                    let image = UIImage(named: type!)
-                    if image! != self.mImage.image {
-                        UIView.transition(with: mImage, duration: 0.15, options: [UIViewAnimationOptions.transitionFlipFromTop, UIViewAnimationOptions.allowAnimatedContent], animations: {
+            } else {
+                let type = v.type(from: number)?.name
+                let image = UIImage(named: type!)
+                if image! != self.mImage.image {
+                    UIView.transition(with: mImage, duration: 0.15, options: [UIViewAnimationOptions.transitionFlipFromTop, UIViewAnimationOptions.allowAnimatedContent], animations: {
                             self.mImage.image = image
                         }, completion: nil)
-                    }
-                    if type != "Amex" {
-                        cvvLimit = 3
-                    } else {
-                        cvvLimit = 4
-                    }
-                    
+                }
+                if type != "Amex" {
+                    cvvLimit = 3
+                } else {
+                    cvvLimit = 4
                 }
             }
         }
+    }
+    
+    private func getText(text: String) -> String {
+        var number = ""
+        var i = 0
+        for c in text.characters {
+            i = i + 1
+            if i % 5 != 0 {
+                number = number.appending(String(c))
+            }
+        }
+        return number
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -212,7 +230,7 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
             dateAlert()
             return
         }
-        if Int(year)! > 50 || Int(year)! < 0 {
+        if Int(year)! > 50 || Int(year)! < 15 {
             dateAlert()
             return
         }
@@ -222,17 +240,24 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
             numberAlert()
             return
         }
-        for digit in (mNumber.text?.characters)! {
-            if digit != " " {
-              number = number + String(digit)
-            }
-            if (digit < "0" || digit > "9") {
-                numberAlert()
-                return
+        if ((mNumber.text?.characters.count)! >= 15) && ((mNumber.text?.substring(to: (mNumber.text?.index((mNumber.text?.startIndex)!, offsetBy: 15))!))! == "•••• •••• •••• ") {
+            number = (mCard?.number)!
+        } else {
+            for digit in (mNumber.text?.characters)! {
+                if digit != " " {
+                    number = number + String(digit)
+                    if (digit < "0" || digit > "9") {
+                        numberAlert()
+                        print("digit wrong, digit is \(digit)")
+                        return
+                    }
+                }
             }
         }
-        if number.characters.count < 12 {
+        
+        if number.characters.count != 16 {
             numberAlert()
+            print("length wrong, number is \(number), length is \(number.characters.count)")
             return
         }
         
@@ -252,14 +277,28 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        if (validate()) {
+        if (validate(number: number, month: month, year: year, cvv: cvv)) {
           //TODO:
           //send info:
           //card number: number
           //card expiary date: month year
           //card cvv: cvv
+          //edit card or add card
+            let newCard = CardInfoHelper().addCard(number: number, month: month, year: year, cvv: cvv)
+            if (mCard != nil) {
+                CardInfoHelper().deleteCard(card: mCard!)
+                let numberOfVCs = self.navigationController?.viewControllers.count
+                let vc = self.navigationController?.viewControllers[numberOfVCs! - 2] as! CardViewController
+                vc.card = newCard
+            }
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "This card is invalid.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
         }
-        self.navigationController?.popViewController(animated: true)
     }
 
     private func dateAlert() {
@@ -288,7 +327,12 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
     
     //TODO:
     //validate credit card
-    private func validate() -> Bool {
+    private func validate(number: String, month: String, year: String, cvv: String) -> Bool {
+        let v = CreditCardValidator()
+        if !(v.validate(string: number)) {
+            return false
+        }
+        //TODO: Use stripe to validate card
         return true
 
     }
