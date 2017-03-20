@@ -8,6 +8,7 @@
 
 import UIKit
 import CreditCardValidator
+import Stripe
 
 class CardEditViewController: UIViewController, UITextFieldDelegate {
 
@@ -330,11 +331,33 @@ class CardEditViewController: UIViewController, UITextFieldDelegate {
     private func validate(number: String, month: String, year: String, cvv: String) -> Bool {
         let v = CreditCardValidator()
         if !(v.validate(string: number)) {
+            print("number is \(number)")
             return false
         }
         //TODO: Use stripe to validate card
-        return true
-
+        var flag = true
+        
+        let cardParams = STPCardParams()
+        cardParams.number = number
+        cardParams.expMonth = UInt(month)!
+        cardParams.expYear = 2000 + UInt(year)!
+        cardParams.cvc = cvv
+        STPAPIClient.shared().createToken(withCard: cardParams) { (token, error) in
+            print("Token is \(token), error is \(error)")
+            if let error = error {
+                // show the error to the user
+                flag = false
+            } else if let token = token {
+                self.submitTokenToBackend(token: token)
+            }
+        }
+        return flag
+    }
+    
+    //TOOD:
+    //submit to card info to backend
+    private func submitTokenToBackend(token: STPToken) {
+        print("Token is \(token)")
     }
     
     /*

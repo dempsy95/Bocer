@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //customize stripe app
+        STPPaymentConfiguration.shared().publishableKey = "pk_test_cq3pvphR7NZWZVt24I1rkFOb"
+        
         UINavigationBar.appearance().barTintColor = Constant().defaultColor
         UINavigationBar.appearance().isTranslucent = false
         let navTitleAttribute: NSDictionary = NSDictionary(object: UIColor.white, forKey: NSForegroundColorAttributeName as NSCopying)

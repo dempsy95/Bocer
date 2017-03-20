@@ -128,7 +128,6 @@ class PayViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let sb = UIStoryboard(name: "new-Qian", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Card") as! CardViewController
         vc.card = card
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
